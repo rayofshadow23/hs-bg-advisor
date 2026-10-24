@@ -277,3 +277,19 @@ def test_renderer_draw_overlay():
     # Verifica che il rendering abbia modificato i pixel dell'overlay (non piu' tutti neri)
     assert out.sum() > 0
 
+
+def test_turn2_always_upgrades_tavern():
+    # Al turno 2 con 4 oro e taverna al tier 1 l'upgrade deve essere il consiglio primario (priorità 15.0)
+    st = GameState(phase="recruit", gold=4, max_gold=4, tavern_tier=1, turn=2,
+                   shop=[Minion("Felboar", 5)])
+    tips = advisor.structured_advise(st)
+    assert tips[0].action == "UPGRADE"
+    assert "Turno 2" in tips[0].text
+    assert "upgrade alla taverna 2" in tips[0].text
+
+    # Se invece la taverna e' gia' a tier 2, non deve suggerirlo di nuovo
+    st_upgraded = GameState(phase="recruit", gold=0, max_gold=4, tavern_tier=2, turn=2)
+    tips_upgraded = advisor.structured_advise(st_upgraded)
+    assert not any("Turno 2: fai sempre l'upgrade" in t.text for t in tips_upgraded)
+
+

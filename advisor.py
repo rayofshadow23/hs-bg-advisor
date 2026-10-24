@@ -86,8 +86,8 @@ def key_card_tips(state, comps=None):
 
 # Costo base per salire al tier successivo (scende di 1 ogni turno senza salire; qui usiamo il massimo)
 UPGRADE_BASE_COST = {1: 5, 2: 7, 3: 8, 4: 11, 5: 11}
-# Turno indicativo entro cui conviene aver raggiunto il tier (guida approssimativa)
-TARGET_TIER_BY_TURN = {3: 2, 5: 3, 7: 4, 9: 5, 11: 6}
+# Turno indicativo entro cui conviene aver raggiunto il tier (guida approssimativa: turno 2 -> tier 2)
+TARGET_TIER_BY_TURN = {2: 2, 5: 3, 7: 4, 9: 5, 11: 6}
 
 
 def _target_tier(turn):
@@ -108,6 +108,16 @@ def structured_advise(state):
     gold = state.gold or 0
     tier = state.tavern_tier or 1
 
+    # 0. Regola fondamentale Turno 2: si fa SEMPRE l'upgrade della taverna al Tier 2 (costo 4 oro)
+    is_turn_2 = (state.turn == 2) or (state.turn is None and state.max_gold == 4)
+    if is_turn_2 and tier == 1 and gold >= (state.upgrade_cost or 4):
+        tips.append(Tip(
+            text="Turno 2: fai sempre l'upgrade alla taverna 2 (costa 4 oro).",
+            action="UPGRADE",
+            role="tier",
+            score=15.0
+        ))
+
     # 1. Triple: due copie sul board + una nello shop
     board_names = Counter(m.name for m in state.board if m.name != "?")
     for idx, m in enumerate(state.shop):
@@ -124,15 +134,16 @@ def structured_advise(state):
     # 1b. Carte chiave delle comp piu' forti
     tips.extend(structured_key_card_tips(state))
 
-    # 2. Salita di tier
+    # 2. Salita di tier per turni successivi o ritardi rispetto alla curva
     cost, margin = (state.upgrade_cost, 0) if state.upgrade_cost else (UPGRADE_BASE_COST.get(tier), 1)
     if cost is not None and tier < _target_tier(state.turn) and gold >= cost - margin:
-        tips.append(Tip(
-            text=f"Sali alla taverna {tier + 1} (sei indietro rispetto al turno {state.turn}).",
-            action="UPGRADE",
-            role="tier",
-            score=4.0
-        ))
+        if not any(t.action == "UPGRADE" for t in tips):
+            tips.append(Tip(
+                text=f"Sali alla taverna {tier + 1} (sei indietro rispetto al turno {state.turn}).",
+                action="UPGRADE",
+                role="tier",
+                score=4.0
+            ))
 
     # 3. Sinergie di tribu'
     tribes = Counter(m.tribe for m in state.board if m.tribe)
@@ -166,6 +177,8 @@ def structured_advise(state):
             tips.append(Tip(text="Fai roll dello shop o congela se ci sono buoni minion.", action="ROLL"))
     if gold == 0:
         tips.append(Tip(text="Oro finito: riordina il board e termina il turno.", action="HOLD"))
+    if tips:
+        tips = sorted(tips, key=lambda x: -x.score)
     return tips or [Tip(text="Nessun consiglio forte: usa l'oro per roll o acquisto.", action="INFO")]
 
 
