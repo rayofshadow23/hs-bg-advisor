@@ -16,6 +16,7 @@ PALETTE = {
     "tier": (180, 220, 255),    # Giallo chiaro / oro chiaro
     "upgrade": (80, 235, 120),  # Verde chiaro per level up taverna
     "roll": (220, 130, 240),    # Viola / magenta chiaro per roll
+    "freeze": (255, 220, 100),  # Ciano glaciale per freeze
     "default": (70, 220, 70),   # Verde standard
     "dark_bg": (20, 22, 28),    # Sfondo scuro per badge e banner
     "text_white": (255, 255, 255),
@@ -193,5 +194,13 @@ def draw_overlay(
         rx, ry, rw, rh = regions["phase_markers"]["roll_button"]
         cv2.rectangle(out, (rx, ry), (rx + rw, ry + rh), PALETTE["roll"], 2, cv2.LINE_AA)
         _draw_badge(out, "🎲 ROLL", rx + rw // 2, ry + rh + 20, PALETTE["roll"], PALETTE["text_white"], scale=0.55)
+
+    # 7. Evidenziazione Freeze (se consigliato da Jeef)
+    freeze_tip = next((t for t in tips if t.action == "FREEZE"), None)
+    if freeze_tip and "roll_button" in regions.get("phase_markers", {}):
+        rx, ry, rw, rh = regions["phase_markers"]["roll_button"]
+        fx = 750
+        cv2.rectangle(out, (fx, ry), (fx + rw, ry + rh), PALETTE["freeze"], 2, cv2.LINE_AA)
+        _draw_badge(out, "❄️ FREEZE", fx + rw // 2, ry + rh + 20, PALETTE["freeze"], PALETTE["text_dark"], scale=0.55)
 
     return out
