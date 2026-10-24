@@ -372,3 +372,4 @@ def structured_advise(state):
 def advise(state):
     """Ritorna una lista di stringhe con i consigli, dal piu' importante (retrocompatibilita')."""
     return [t.text for t in structured_advise(state)]
+
