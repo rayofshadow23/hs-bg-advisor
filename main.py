@@ -50,6 +50,7 @@ def main():
     ap.add_argument("--serial", help="seriale adb se hai piu' dispositivi")
     ap.add_argument("--interval", type=float, default=0.7)
     ap.add_argument("--gui", action="store_true", help="mostra finestra video con overlay grafico in tempo reale")
+    ap.add_argument("--image", help="invece di adb, usa un'immagine statica (utile per test e demo)")
     args = ap.parse_args()
 
     regions = load_regions()
@@ -63,6 +64,30 @@ def main():
     prev, last_print = None, None
     st = GameState()
     structured_tips = []
+
+    if args.image:
+        raw = cv2.imread(args.image)
+        if raw is None:
+            raise SystemExit(f"Impossibile leggere il file immagine: {args.image}")
+        frame = cv2.resize(raw, tuple(regions["base_size"]), interpolation=cv2.INTER_AREA)
+        st = read_state(frame, regions, reader)
+        st.turn = tracker.update(st.phase, st.max_gold)
+        structured_tips = advisor.structured_advise(st)
+        print(f"\n[turno {st.turn}] fase={st.phase} oro={st.gold}/{st.max_gold} taverna={st.tavern_tier} "
+              f"(upgrade {st.upgrade_cost}) vita={st.hero_health}+{st.hero_armor}")
+        print("  shop :", ", ".join(m.name for m in st.shop) or "-")
+        print("  board:", ", ".join(m.name for m in st.board) or "-")
+        for t in structured_tips:
+            print("  >", t.text)
+        if args.gui:
+            rendered = draw_overlay(frame, st, structured_tips, regions)
+            cv2.namedWindow("Hearthstone BG Advisor", cv2.WINDOW_NORMAL)
+            cv2.resizeWindow("Hearthstone BG Advisor", 1400, 630)
+            cv2.imshow("Hearthstone BG Advisor", rendered)
+            print("Finestra grafica aperta: premi qualsiasi tasto sulla finestra (o 'q') per chiudere.")
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
+        return
 
     if args.gui:
         cv2.namedWindow("Hearthstone BG Advisor", cv2.WINDOW_NORMAL)
