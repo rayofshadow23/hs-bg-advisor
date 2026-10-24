@@ -1,0 +1,1955 @@
+[
+ {
+  "id": "BG32_236",
+  "name": "Aureate Laureate",
+  "tier": 1,
+  "tribe": "Pirate",
+  "hash": "eaf1cb3c3f8c6cc31de3318cc6529c637b86b298342c6b66963190d23d86cd6b"
+ },
+ {
+  "id": "BG31_149",
+  "name": "Bubble Gunner",
+  "tier": 1,
+  "tribe": "Murloc",
+  "hash": "bff552fd2d0a3c9760f0b3b562c397927643e78e3a46d18dad6246a42136249c"
+ },
+ {
+  "id": "BG31_803",
+  "name": "Buzzing Vermin",
+  "tier": 1,
+  "tribe": "Beast",
+  "hash": "dfffe0913dd28d6ec64e6a4cea19e8258ce61490b288b1eea4c3a673c233913d"
+ },
+ {
+  "id": "BG29_611",
+  "name": "Cord Puller",
+  "tier": 1,
+  "tribe": "Mech",
+  "hash": "efd4c62f3ed219c02d4be09b30b7309f26646362f3da7036263c98e40f337273"
+ },
+ {
+  "id": "BGS_119",
+  "name": "Crackling Cyclone",
+  "tier": 1,
+  "tribe": "Elemental",
+  "hash": "ffaa63331bacecce363185b461e6920bc6c8c8d3992fb72c60dd998ecc829471"
+ },
+ {
+  "id": "BG36_360",
+  "name": "Dark Paradox",
+  "tier": 1,
+  "tribe": "Aberration",
+  "hash": "ea85393b5b11919b3b26d197398bdb713d9b96ccb439492160e3a66666cc256c"
+ },
+ {
+  "id": "BG31_815",
+  "name": "Dune Dweller",
+  "tier": 1,
+  "tribe": "Elemental",
+  "hash": "afd49c2b49d0e697f65d790cc33ec27397213c96cd974987931a335892070be4"
+ },
+ {
+  "id": "BG32_330",
+  "name": "Flighty Scout",
+  "tier": 1,
+  "tribe": "Murloc",
+  "hash": "abfd7b443ee686326a1bd99979d96c636ce6998cc984d212366926691986678c"
+ },
+ {
+  "id": "BG36_200",
+  "name": "Flittering Bat",
+  "tier": 1,
+  "tribe": "Beast",
+  "hash": "af40c0ff99cb84c836b09f34db32925bd0fdf06d936a4f64868ca4c7e0a76199"
+ },
+ {
+  "id": "BG29_888",
+  "name": "Glim Guardian",
+  "tier": 1,
+  "tribe": "Dragon",
+  "hash": "abd7c29697311af532d7cc84998c332d9e496c3903f1c66d279b3c169b36e0c2"
+ },
+ {
+  "id": "BG28_300",
+  "name": "Harmless Bonehead",
+  "tier": 1,
+  "tribe": "Undead",
+  "hash": "bbfdc8b18f4ecb0669b31cc4e118323b1e456123c3d6cf0b742ccc7c169a79e2"
+ },
+ {
+  "id": "BG36_110",
+  "name": "Joyous",
+  "tier": 1,
+  "tribe": "Aberration",
+  "hash": "be058508cb1ad65d2667c933250cb3c26ed1eda767699e581ad64a336783b16e"
+ },
+ {
+  "id": "BG26_146",
+  "name": "Lullabot",
+  "tier": 1,
+  "tribe": "Mech",
+  "hash": "eabae0403b2bcf8fcc3c78b06464cda7219b36ce1ece363e367c3c8166e0e24c"
+ },
+ {
+  "id": "BGDUO_114",
+  "name": "Passenger",
+  "tier": 1,
+  "tribe": "None",
+  "hash": "faa5d07d8bc9e5a6c9379cb834f0e26b352b35a027c033decb1c97308f328cc2"
+ },
+ {
+  "id": "BG20_100",
+  "name": "Razorfen Geomancer",
+  "tier": 1,
+  "tribe": "Quilboar",
+  "hash": "fad5c03e6b829dc29729c61bce98d0ec986e62c6c2f3333a361d9193cd966932"
+ },
+ {
+  "id": "BG25_001",
+  "name": "Risen Rider",
+  "tier": 1,
+  "tribe": "Undead",
+  "hash": "b7ffa4118a79096fdf0e5ba664b046524d4934ad29c7394a338c678ccb32cf32"
+ },
+ {
+  "id": "BG25_013",
+  "name": "Rot Hide Gnoll",
+  "tier": 1,
+  "tribe": "Undead",
+  "hash": "ea85b0fc9ee0ce47ca3e8f1c99b22dc33dce9339c7196649b439652291664c3a"
+ },
+ {
+  "id": "BG35_814",
+  "name": "Scarlet Survivor",
+  "tier": 1,
+  "tribe": "Dragon",
+  "hash": "ebd069465a4666f935ad0f4be29291b4a70bf1b498bf3e46643cc4c993321b35"
+ },
+ {
+  "id": "BG26_135",
+  "name": "Southsea Busker",
+  "tier": 1,
+  "tribe": "Pirate",
+  "hash": "faa087d5cf40845ef0faac679d6731883f9c338de309867156236e2666e6e0cc"
+ },
+ {
+  "id": "BG36_345",
+  "name": "Suspicious Prisonguard",
+  "tier": 1,
+  "tribe": "None",
+  "hash": "faed986739b2ce1c6c8c32c8336c39662733c739cc6c25b631b39dc99304cc6c"
+ },
+ {
+  "id": "BG33_886",
+  "name": "Tusked Camper",
+  "tier": 1,
+  "tribe": "Quilboar",
+  "hash": "abf5358d38cc8c332f365ad0ca1bb34f38cd9324364ecc969312692b98e5635b"
+ },
+ {
+  "id": "BGS_004",
+  "name": "Wrath Weaver",
+  "tier": 1,
+  "tribe": "Demon",
+  "hash": "ba55c38c4d279a38921c6c63cdd94d8bc537364ce4eab1b1966d84f191b83e63"
+ },
+ {
+  "id": "BG36_098",
+  "name": "Zoatroid",
+  "tier": 1,
+  "tribe": "Aberration",
+  "hash": "eac599646712999e8e0b66498c343ce5b1da3a67b127721599ce3b9395396e38"
+ },
+ {
+  "id": "BG36_520",
+  "name": "Bilgewater Breakout",
+  "tier": 2,
+  "tribe": "Pirate",
+  "hash": "af80856c312c632dcc2d19c3dada7c999b8b37e4e4b76235d3686e74c2736234"
+ },
+ {
+  "id": "BG34_170t2",
+  "name": "Blue Volumizer",
+  "tier": 2,
+  "tribe": "Mech",
+  "hash": "ae41c7496d1e18e471b26c78c0f36b37ce2d399991b26cc6ccc732d991990f1b"
+ },
+ {
+  "id": "BG36_099",
+  "name": "Brain Rotter",
+  "tier": 2,
+  "tribe": "Aberration",
+  "hash": "ef04c31a34f13ce559c3c386cb2c3319cc62cdac718dc59e94d998f1e126e66e"
+ },
+ {
+  "id": "BGS_034",
+  "name": "Bronze Warden",
+  "tier": 2,
+  "tribe": "Dragon",
+  "hash": "caaecf1f0f9a93e133c39ac633661c308c59ce0fe9ce78cb70313670847e8dc1"
+ },
+ {
+  "id": "BG36_342",
+  "name": "Clever Castaway",
+  "tier": 2,
+  "tribe": "Pirate",
+  "hash": "abff6ac84aaf1bac944961ca271f9ed762c4e6653378875234e66421d62c3256"
+ },
+ {
+  "id": "BG31_320",
+  "name": "Crater Miner",
+  "tier": 2,
+  "tribe": "Quilboar",
+  "hash": "fa858f223a1d389579cc6b43872b6e2c92d26b37852b3a91c45b6bcd91cc3e64"
+ },
+ {
+  "id": "BG36_354",
+  "name": "Decoy Conjurer",
+  "tier": 2,
+  "tribe": "None",
+  "hash": "ebd49b673b8d24381c660cc6e4396e58d08739c791c86e38e6762ff0d8037b99"
+ },
+ {
+  "id": "BG26_963",
+  "name": "Electric Synthesizer",
+  "tier": 2,
+  "tribe": "Dragon",
+  "hash": "aff095623e25c88727cf3b8678d4c7782f38332d94b1ccd34b239d0698e466d8"
+ },
+ {
+  "id": "BG25_008",
+  "name": "Eternal Knight",
+  "tier": 2,
+  "tribe": "Undead",
+  "hash": "ee1597a899a34b47ca5931b8b5b8c4639663da5b91eec4acc5a93ce2d0cc9c86"
+ },
+ {
+  "id": "BG34_140",
+  "name": "Expert Aviator",
+  "tier": 2,
+  "tribe": "Murloc",
+  "hash": "fa81945e9e168ccfc79387012e68970ea1c66cc784c9c1f8b79e32c7e0b3c3f4"
+ },
+ {
+  "id": "BG31_816",
+  "name": "Fire Baller",
+  "tier": 2,
+  "tribe": "Elemental",
+  "hash": "ffaa6ae07a0eb40e61c5e33366329c9dc9ccc32297331c988bcc6d6366d32d34"
+ },
+ {
+  "id": "BG31_801",
+  "name": "Forest Rover",
+  "tier": 2,
+  "tribe": "Beast",
+  "hash": "bf00c0d9c2c49766679e967ac139c189b4cfb1ca936ee226c32fcc328db3c939"
+ },
+ {
+  "id": "BGDUO_104",
+  "name": "Friendly Saloonkeeper",
+  "tier": 2,
+  "tribe": "None",
+  "hash": "ffa03fa45a1b6a1ca5c42d82866972799a349e52a5d2592a3d2b93dce1b45ace"
+ },
+ {
+  "id": "BGDUO31_201",
+  "name": "Gathering Stormer",
+  "tier": 2,
+  "tribe": "Elemental",
+  "hash": "ee55c0f993cc872c3b271976c5b219936b83c497a6a91e08c25cda799c6b69c3"
+ },
+ {
+  "id": "BGDUO_111",
+  "name": "Generous Geomancer",
+  "tier": 2,
+  "tribe": "Quilboar",
+  "hash": "ea85c4fe37839b639c796d8c4d923cd9635c62c73cb4993c90e130d2e12fa463"
+ },
+ {
+  "id": "BG34_170t3",
+  "name": "Green Volumizer",
+  "tier": 2,
+  "tribe": "Mech",
+  "hash": "fe45cd496d1c38e470f96cd9c0f36b36848c219991f26cce95cb339995390f26"
+ },
+ {
+  "id": "BG26_805",
+  "name": "Humming Bird",
+  "tier": 2,
+  "tribe": "Beast",
+  "hash": "fea285551b885e6a72f931d3679e4e3c646661e6998c9d4c6719129998d931a7"
+ },
+ {
+  "id": "BG32_237",
+  "name": "Intrepid Botanist",
+  "tier": 2,
+  "tribe": "None",
+  "hash": "bee8d2328533c0e7cb69c9cccc1c6793b14f1c8d8d991f69d87064fcc324985e"
+ },
+ {
+  "id": "BG35_150",
+  "name": "Laboratory Assistant",
+  "tier": 2,
+  "tribe": "Demon",
+  "hash": "ea81ce733db32d93c33c727932ce384c8f0c238c98ccc87c62c39cf33d2cc78b"
+ },
+ {
+  "id": "BG36_201",
+  "name": "Lurking Lionfish",
+  "tier": 2,
+  "tribe": "Beast",
+  "hash": "c1939adbcb69cb2273c3fcc43c9dc79bb233932796e606f96089893c093e650c"
+ },
+ {
+  "id": "BG31_177",
+  "name": "Mechagnome Interpreter",
+  "tier": 2,
+  "tribe": "Mech",
+  "hash": "ba059d6c7814659733c9e168c37e8627b58b99789a3c978fc1c9d9c82616d0bb"
+ },
+ {
+  "id": "BG23_357",
+  "name": "Mind Muck",
+  "tier": 2,
+  "tribe": "Demon",
+  "hash": "fa8519195b67c323b194919e95e9ce9625a566cd4cd2966d9349e172c9a48cf3"
+ },
+ {
+  "id": "BG25_011",
+  "name": "Nerubian Deathswarmer",
+  "tier": 2,
+  "tribe": "Undead",
+  "hash": "ba112e9458c76e386d4a31cf863b5b3192664ca7c1a936d294db3a4f94e63a6d"
+ },
+ {
+  "id": "BG24_715",
+  "name": "Patient Scout",
+  "tier": 2,
+  "tribe": "None",
+  "hash": "bfc0c46de52b5b1ac99a36c498696d8cc6586db217147349d9b6396397993c58"
+ },
+ {
+  "id": "BG33_430",
+  "name": "Prodigious Tusker",
+  "tier": 2,
+  "tribe": "Quilboar",
+  "hash": "fa95d0fe8607e38e8d6b9498b0f62da2c1ca666e91e56724c59a9c9bc16cc349"
+ },
+ {
+  "id": "BG34_170t",
+  "name": "Red Volumizer",
+  "tier": 2,
+  "tribe": "Mech",
+  "hash": "afd4c74c6d8e9cf638992e5c687863336e04399c909acce6ce6330c999cd8f0b"
+ },
+ {
+  "id": "BG20_101",
+  "name": "Roadboar",
+  "tier": 2,
+  "tribe": "Quilboar",
+  "hash": "ebc1c1db5ab7976c69c930f63035c38bce32663999c27a708d896cc6d2633c31"
+ },
+ {
+  "id": "BG25_022",
+  "name": "Scarlet Skull",
+  "tier": 2,
+  "tribe": "Undead",
+  "hash": "eba969095ab492ad65299db3b142a356993573a7b52ab35a4b5a32576a439646"
+ },
+ {
+  "id": "BGS_115",
+  "name": "Sellemental",
+  "tier": 2,
+  "tribe": "Elemental",
+  "hash": "dc0085ffdc0007fee300f24930fdfc2467dcd2e99a4914defd068db7923e60c9"
+ },
+ {
+  "id": "BG31_818",
+  "name": "Snow Baller",
+  "tier": 2,
+  "tribe": "Elemental",
+  "hash": "bebe7ae86903cc2c6161e61ac67cc4c34b6c496197bcb69c0dcecd2666716c0e"
+ },
+ {
+  "id": "BG26_174",
+  "name": "Soul Rewinder",
+  "tier": 2,
+  "tribe": "Demon",
+  "hash": "be056c9ac95b986531ac365884a76dbab193c32664db18f1c7344a4cb39bb4bd"
+ },
+ {
+  "id": "BG32_235",
+  "name": "Surfing Sylvar",
+  "tier": 2,
+  "tribe": "Pirate",
+  "hash": "bef9cf2f4ff23586248fe0975a87f2d4623a5bc04c68660712f39c584cc49996"
+ },
+ {
+  "id": "BG22_202",
+  "name": "Tad",
+  "tier": 2,
+  "tribe": "Murloc",
+  "hash": "caaaf7000f4c338779e19c793696c19e3e3bdb199394986564672692b19949ed"
+ },
+ {
+  "id": "BG21_015",
+  "name": "Tarecgosa",
+  "tier": 2,
+  "tribe": "Dragon",
+  "hash": "ef44b8e6d83b87b2a7994b078e696d29b06635ace186a7b098cb96946799c863"
+ },
+ {
+  "id": "BG36_116",
+  "name": "Underrot Spawn",
+  "tier": 2,
+  "tribe": "Aberration",
+  "hash": "af408f293b5064d668d733c93689e29ddb709b3c962c6cc76cf325b19a30c666"
+ },
+ {
+  "id": "BG29_300",
+  "name": "Very Hungry Winterfinner",
+  "tier": 2,
+  "tribe": "Murloc",
+  "hash": "fe95c1aa4bc786d3612f6d29c70a9e179cd370fce14ac9b270cc34668c1b1a5c"
+ },
+ {
+  "id": "BGDUO_100",
+  "name": "Wanderer Cho",
+  "tier": 2,
+  "tribe": "None",
+  "hash": "eb85c4f05e31370f68cf38d931a5274cd65a3e726d34cb6791c6499261616cd9"
+ },
+ {
+  "id": "BG36_100",
+  "name": "Wandering Willbreaker",
+  "tier": 2,
+  "tribe": "Aberration",
+  "hash": "fa95b3831e076834c7269b39e1f90e139db33c4ec1d96ac4926479c3b70e3293"
+ },
+ {
+  "id": "BG36_346",
+  "name": "Fruit Vendor",
+  "tier": 3,
+  "tribe": "None",
+  "hash": "abfdc40b675ae3d4b367c0f1912c946698c19d38e71ab443c43ec43e9d0e91c7"
+ },
+ {
+  "id": "BG36_240",
+  "name": "Hired Mount",
+  "tier": 3,
+  "tribe": "Dragon",
+  "hash": "ffeaf8051b5a6670e496f087bb053a618ecc34944b33cd0df32d1e2368d9c685"
+ },
+ {
+  "id": "BG36_311",
+  "name": "Abyssal Envoy",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "afd4c51b1e6196e0934a7a4659adcc2eb79ae0cd64e76d9ac9242685619b996c"
+ },
+ {
+  "id": "BG26_147",
+  "name": "Accord-o-Tron",
+  "tier": 3,
+  "tribe": "Mech",
+  "hash": "faa0ceda1b49692730d290cbcd0b6e3834d871e3269b9a4ad86db64d2769699b"
+ },
+ {
+  "id": "BG24_500",
+  "name": "Amber Guardian",
+  "tier": 3,
+  "tribe": "Dragon",
+  "hash": "fea2c94fb5dd0711e39a68f0f211bc3a964ebc419fc9b9a09b20b9e2e30e6618"
+ },
+ {
+  "id": "BG_BOT_911",
+  "name": "Annoy-o-Module",
+  "tier": 3,
+  "tribe": "Mech",
+  "hash": "bf123cde6373e6586ccc69a53264339d498999f636d386520c33c6c13765c9e1"
+ },
+ {
+  "id": "BG34_170",
+  "name": "Auto Accelerator",
+  "tier": 3,
+  "tribe": "Mech",
+  "hash": "ba05a5a14ac496d4e1b9c2dbb2c69719946899e6c1c68d9bc6b2b669996bc36d"
+ },
+ {
+  "id": "BG33_830",
+  "name": "Azsharan Cutlassier",
+  "tier": 3,
+  "tribe": "Pirate",
+  "hash": "bec184696987793ecb9166633365b6d8c098196cdac73f1339e16860f19e338e"
+ },
+ {
+  "id": "BG33_924",
+  "name": "Blue Whelp",
+  "tier": 3,
+  "tribe": "Dragon",
+  "hash": "fa1597ba4a055848b56b1e33e1ba858c872c60db94f99e35c32e6767846598f9"
+ },
+ {
+  "id": "BGDUO33_140",
+  "name": "Bottom Feeder",
+  "tier": 3,
+  "tribe": "Murloc",
+  "hash": "ea05c1cec4bcf1be91266cec90fb1db1c1e8b2d88e334b63973a861299ecc639"
+ },
+ {
+  "id": "BG30_125",
+  "name": "Cadaver Caretaker",
+  "tier": 3,
+  "tribe": "Undead",
+  "hash": "abdfcb193e7d1cee68c2f36319394991b386b0ce23398e4438c4793687966619"
+ },
+ {
+  "id": "BGS_131",
+  "name": "Deadly Spore",
+  "tier": 3,
+  "tribe": "None",
+  "hash": "ea9198243b0ccf493c4e63d9666639b3ccda9f36d970c4c6338d66642cb2c667"
+ },
+ {
+  "id": "BG33_155",
+  "name": "Devout Hellcaller",
+  "tier": 3,
+  "tribe": "Demon",
+  "hash": "afd095263c9dc099d06769c6659bb6699125c533c666d29ec09bc52de3399699"
+ },
+ {
+  "id": "BG27_556",
+  "name": "Diremuck Forager",
+  "tier": 3,
+  "tribe": "Murloc",
+  "hash": "efd5991a3cf12c6d666663b4990d99cc391bc6c334663b83c6cc4e1c92496c67"
+ },
+ {
+  "id": "BG28_303",
+  "name": "Disguised Graverobber",
+  "tier": 3,
+  "tribe": "Undead",
+  "hash": "fa85972694c99858959ecdb7b06e6607c1d9831a9271cce6e667e318c58cf34c"
+ },
+ {
+  "id": "BGDUO_107",
+  "name": "Doting Dracthyr",
+  "tier": 3,
+  "tribe": "Dragon",
+  "hash": "ea80c9465e943f3919c32d85b97c38ee679b278559316878e44f67278727c6c4"
+ },
+ {
+  "id": "BG36_113",
+  "name": "Drifting Sacrifice",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "ee01c23d0d84c5be60bd3f108f87656533e39992ac7a7ad3e4f8b07c0e0725a7"
+ },
+ {
+  "id": "BG30_123",
+  "name": "Fearless Foodie",
+  "tier": 3,
+  "tribe": "Quilboar",
+  "hash": "ea85d09f4a95c83dd8798da2c5b691639e42e4dbe0cc960c97a1b4bab46ad366"
+ },
+ {
+  "id": "BG36_112",
+  "name": "Fetid Corroder",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "ead1d3da9fa63e659e39258b799349e1e4f13e30b525c9ccc198330e94cc2989"
+ },
+ {
+  "id": "BG31_326",
+  "name": "Gem Rat",
+  "tier": 3,
+  "tribe": "Quilboar",
+  "hash": "ddd886ab12d72594fcb5f86a2d6a16d16413790afaf405e3c96b430e820f68f9"
+ },
+ {
+  "id": "BG36_369",
+  "name": "Greedy Conniver",
+  "tier": 3,
+  "tribe": "Pirate",
+  "hash": "afd0c2411d963b6c396c2634cf26b4db5b709c926343999b647c696586c36e76"
+ },
+ {
+  "id": "BG25_010",
+  "name": "Handless Forsaken",
+  "tier": 3,
+  "tribe": "Undead",
+  "hash": "abbf0f396c7138e732c611de791acb1c8765b1297cd2269ee30b99608cbd2c42"
+ },
+ {
+  "id": "BG27_000",
+  "name": "Iron Groundskeeper",
+  "tier": 3,
+  "tribe": "None",
+  "hash": "aaf50f8419e6b083cf5af016b9c8c716f4e5d4eaad19c662f50fd253c6369148"
+ },
+ {
+  "id": "BGDUO_115",
+  "name": "Jumping Jack",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "af164e91d2d56b2ccd8fb2d33ce36858331c66f40ce69e0f9932363862cdd941"
+ },
+ {
+  "id": "BG36_521",
+  "name": "Locked-up Mutineer",
+  "tier": 3,
+  "tribe": "Pirate",
+  "hash": "fe156e4c71657b114db8968c34e3796384664d3cd38d3634932239cbcd9b6a46"
+ },
+ {
+  "id": "BG26_524",
+  "name": "Malchezaar, Prince of Dance",
+  "tier": 3,
+  "tribe": "Demon",
+  "hash": "fa05da5c1c6631698f3461e6e6cbcc6993a1913ec79c963691d99d99c4e3c48c"
+ },
+ {
+  "id": "BG28_582",
+  "name": "Mangled Bandit",
+  "tier": 3,
+  "tribe": "Quilboar",
+  "hash": "fe1595ac2c67631d724cc6696d8fc3261e7e9873e1ce38669986cc0f661870d1"
+ },
+ {
+  "id": "BG28_309",
+  "name": "Mummifier",
+  "tier": 3,
+  "tribe": "Undead",
+  "hash": "aed0f0c7d1bdc1db90e7c3998bc69a4cceda8c06d9258d1b647cc6336c649b28"
+ },
+ {
+  "id": "BGDUO_119",
+  "name": "Orc-estra Conductor",
+  "tier": 3,
+  "tribe": "None",
+  "hash": "fea191795941cc1e62f38471b19c31dbcc58865ee476c1b59369905be596c5f0"
+ },
+ {
+  "id": "BGDUO_118",
+  "name": "Plunder Pal",
+  "tier": 3,
+  "tribe": "Pirate",
+  "hash": "afd03d213e15c13c3d6ad3e763846cd2b44b4b1a627232c897696f73b1b01cb6"
+ },
+ {
+  "id": "BG_DEEP_015",
+  "name": "Prosthetic Hand",
+  "tier": 3,
+  "tribe": "Mech",
+  "hash": "bfd0c04f6b65952a98deccc58661c673c81ba59cd18ec4c78487ce3cd31cb58e"
+ },
+ {
+  "id": "BGDUO_117",
+  "name": "Puddle Prancer",
+  "tier": 3,
+  "tribe": "Murloc",
+  "hash": "aff4950a99919fb2d053c4c86e18c39dc7b43c6e68c13c70633bd34f32936ccc"
+ },
+ {
+  "id": "BG34_405",
+  "name": "Relentless Deflector",
+  "tier": 3,
+  "tribe": "Mech",
+  "hash": "ea944b8160e9264e99a33961e25cb69b1b31999dc58ec6e63c693863b61e3ece"
+ },
+ {
+  "id": "BG36_854",
+  "name": "Rescue Bot",
+  "tier": 3,
+  "tribe": "Mech",
+  "hash": "be8593197b1119b6646ec46fd8cd919bce33964c958c91c964796432b7a691c7"
+ },
+ {
+  "id": "BG29_816",
+  "name": "Roaring Recruiter",
+  "tier": 3,
+  "tribe": "Dragon",
+  "hash": "9659cf18d834b0b54986ac4aa6864616f0397e28be63eb887f34b9d04e9cd6f3"
+ },
+ {
+  "id": "BG32_860",
+  "name": "Shoalfin Mystic",
+  "tier": 3,
+  "tribe": "Murloc",
+  "hash": "abfdc6216adf19b649f0b0c9309c65b49ce6cf4ac24694746cf1270893784ef6"
+ },
+ {
+  "id": "BG36_330",
+  "name": "Sly Infiltrator",
+  "tier": 3,
+  "tribe": "Quilboar",
+  "hash": "be01932c6bb466cbce492c94a53a7a94d387330d95387ad2b1863b3dd0dd6e43"
+ },
+ {
+  "id": "BG27_084",
+  "name": "Sprightly Scarab",
+  "tier": 3,
+  "tribe": "Beast",
+  "hash": "bf01e50f87b03684c00f91f36b1de66e61e79ed949121d479cd9938561726f70"
+ },
+ {
+  "id": "BG36_202",
+  "name": "Tasty Lobster",
+  "tier": 3,
+  "tribe": "Beast",
+  "hash": "aaaa86f89b456d65d2193d8be51d346684d33a2449bbb6954cba6f01403d2ff6"
+ },
+ {
+  "id": "BG31_327",
+  "name": "Thorned Trailblazer",
+  "tier": 3,
+  "tribe": "Quilboar",
+  "hash": "fa8595e23b1e9318c913cc36cdb0c4cbc521b1ed92cfe46ce6f29316999ac45a"
+ },
+ {
+  "id": "BG27_005",
+  "name": "Timecap'n Hooktail",
+  "tier": 3,
+  "tribe": "Dragon",
+  "hash": "be0030f84e49ce07b1a670edd0dac1ebe361c190c536963f939f964f94e8c5f2"
+ },
+ {
+  "id": "BG36_730",
+  "name": "Trapped Clapper",
+  "tier": 3,
+  "tribe": "Demon",
+  "hash": "afd4cfd08643d13eb06e319db333c263c11b9c9bb06cb23ac199c90d842bb4bf"
+ },
+ {
+  "id": "BG36_763",
+  "name": "Treasure Parrot",
+  "tier": 3,
+  "tribe": "Beast",
+  "hash": "bb501f90c7e13c67da5a83e3c1f03fc3e59248d919c9c76926f0d31336679262"
+ },
+ {
+  "id": "BG34_684",
+  "name": "Trench Fighter",
+  "tier": 3,
+  "tribe": "Quilboar",
+  "hash": "aff5944f4b1e38e18d60395e669eca2d4e2164f0949c66cfc94bdad89614632d"
+ },
+ {
+  "id": "BG36_101",
+  "name": "Unwilling Slacker",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "fa15c6cc983a38794966659684be913cc1e9c9c9c4f6cd98926d92ce84fad2d9"
+ },
+ {
+  "id": "BG36_108",
+  "name": "Vicious Mindslasher",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "ea8531a13e911ad22e4eed9db2b1c366698e36736e62b1ccc71dda26346066d9"
+ },
+ {
+  "id": "BGDUO_700",
+  "name": "Voidpriest Cloner",
+  "tier": 3,
+  "tribe": "Aberration",
+  "hash": "be85cb58e53f944accac4b34b52e4cc07b1b3766c4d9e392f8679c8d62860e26"
+ },
+ {
+  "id": "BG34_856",
+  "name": "Waveling",
+  "tier": 3,
+  "tribe": "Elemental",
+  "hash": "afd42c696c52e326646998db9326f0add19c9196c62fc2cccd38913996f3c4ba"
+ },
+ {
+  "id": "BGDUO31_207",
+  "name": "Wheeled Crewmate",
+  "tier": 3,
+  "tribe": "Pirate",
+  "hash": "aaafb4955ae33a4f4d0d6f2863b5831f6691d472c6cfce490349e3249ca46792"
+ },
+ {
+  "id": "BGS_126",
+  "name": "Wildfire Elemental",
+  "tier": 3,
+  "tribe": "Elemental",
+  "hash": "d1861b7d7268501c9cd798e8eb4be5a584929d2ba6ccb196cc088f22b8f19f6f"
+ },
+ {
+  "id": "BG36_207",
+  "name": "Wolf Pup",
+  "tier": 3,
+  "tribe": "Beast",
+  "hash": "aaa92c376ac3d3de9d24b1cb71964b3c91812da3ced99cf23367c3086ca63859"
+ },
+ {
+  "id": "BG36_511",
+  "name": "Dead Bellringer",
+  "tier": 4,
+  "tribe": "Undead",
+  "hash": "be055e717c7393c631b4639969cc8d2663196c706bcfd3099b2d89246cf3a4c9"
+ },
+ {
+  "id": "BG36_506",
+  "name": "Drone Duplicator",
+  "tier": 4,
+  "tribe": "Mech",
+  "hash": "bb81b48d7a949e0769ed6b91663249c687666e79a4bb3db490db321b84193999"
+ },
+ {
+  "id": "BG36_701",
+  "name": "Kelp Keeper",
+  "tier": 4,
+  "tribe": "Murloc",
+  "hash": "fa81c4e0c9b96193e6717992c0d26973d13c7a0dc55b6d4b834c6f58c9cb3a65"
+ },
+ {
+  "id": "BG36_180",
+  "name": "Living Prison",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "fa0138c67a959e706e5b919369b0b32c3ccfe4939734497c931e94c6cc79322d"
+ },
+ {
+  "id": "BG36_362",
+  "name": "Sacrificial Wrathguard",
+  "tier": 4,
+  "tribe": "Demon",
+  "hash": "fe859532d276db49c8d193869366c36dcc2de5c2e4da969395b39198c578c470"
+ },
+ {
+  "id": "BG36_243",
+  "name": "Sky-hatch Runaway",
+  "tier": 4,
+  "tribe": "Dragon",
+  "hash": "bf01942bcce6e1cdb0bcc398731fc16cb063c67e96e1c9366139818bd273d0f8"
+ },
+ {
+  "id": "BG36_503",
+  "name": "Soulkeeping Jailer",
+  "tier": 4,
+  "tribe": "Demon",
+  "hash": "ea05378d6e656673299bc7b726c6909c386cca698b3331663499ccfc9a46c273"
+ },
+ {
+  "id": "BG36_181",
+  "name": "Air Baller",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "bab476c16ae7e92e6994861bd6588cc16de14da6b1869e9c2d98667334d3d0c9"
+ },
+ {
+  "id": "BG32_873",
+  "name": "Ashen Corruptor",
+  "tier": 4,
+  "tribe": "Demon",
+  "hash": "aabfceb68d660cd93a4dc58d31c579a632136613870c68d3707287c1d30fe76c"
+ },
+ {
+  "id": "BG26_802",
+  "name": "Banana Slamma",
+  "tier": 4,
+  "tribe": "Beast",
+  "hash": "ba05c3c91b3ccd389cb9e9b3b0e3e6c3e38c98cce73c9166a424c732c1b1c799"
+ },
+ {
+  "id": "BG33_822",
+  "name": "Bigwig Bandit",
+  "tier": 4,
+  "tribe": "Pirate",
+  "hash": "faa1d3326f942cdeb52b36096cd46332966348796b1e93c7da6648998d9b9198"
+ },
+ {
+  "id": "BG26_817",
+  "name": "Blade Collector",
+  "tier": 4,
+  "tribe": "Pirate",
+  "hash": "ba4594facb53c317c29b3a1ca464cb61c7e6b4c391af392e8598c79894e90de9"
+ },
+ {
+  "id": "BG20_104",
+  "name": "Bonker",
+  "tier": 4,
+  "tribe": "Quilboar",
+  "hash": "ffa8d6c26b199d241cd4b8dcc793ec1b3252b13ccd0d92713586c969c466b4e6"
+ },
+ {
+  "id": "BG36_620",
+  "name": "Boom-in-a-Box",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "ebd0908e9e61c33ec93b2d8696960ef13b8c73155bc54e1f32362e7e4853c1f0"
+ },
+ {
+  "id": "BG36_331",
+  "name": "Bramble Tunneler",
+  "tier": 4,
+  "tribe": "Quilboar",
+  "hash": "bfc0912ec39a96e1cc334d9a9bca66d2c62473d03e72cf096c794c7a61636d34"
+ },
+ {
+  "id": "BG26_137",
+  "name": "Bream Counter",
+  "tier": 4,
+  "tribe": "Murloc",
+  "hash": "fa0534784a943383ce58396d94ee332cc3db6e929361c8f5948668dec39bf871"
+ },
+ {
+  "id": "BG36_242",
+  "name": "Bronze Timewalker",
+  "tier": 4,
+  "tribe": "Dragon",
+  "hash": "eaff07df4359783078a4b48d6c611247d60d34bee42639e8994961d38cd981fd"
+ },
+ {
+  "id": "BG36_211",
+  "name": "Cage Gnawer",
+  "tier": 4,
+  "tribe": "Beast",
+  "hash": "fa89c1f46a52bd2b34adc1e6c49a969d8e16996399e1869667933a798d26c1b4"
+ },
+ {
+  "id": "BG34_171",
+  "name": "Conveyor Construct",
+  "tier": 4,
+  "tribe": "Mech",
+  "hash": "ba50c5ad6661321aed8d3ca49432cb49e5ad9497949f6929d3364cd9d1cc65e6"
+ },
+ {
+  "id": "BG36_106",
+  "name": "Cutthroat K'Thir",
+  "tier": 4,
+  "tribe": "Aberration",
+  "hash": "fa85b43a2e31cb67271a8d93d2cc3648c93363a696931879e36ecd878c8d2e4e"
+ },
+ {
+  "id": "BG34_865",
+  "name": "En-Djinn Blazer",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "afd494f22d2d230fb46b1e7987263d87948647b7963b90d3989e4671e4691b41"
+ },
+ {
+  "id": "BG35_341",
+  "name": "Enchanted Sentinel",
+  "tier": 4,
+  "tribe": "Mech",
+  "hash": "be45c7234b876c7663306d0e961a31b4cc664e73a6799664919a38cf98cd6b3c"
+ },
+ {
+  "id": "BG36_308",
+  "name": "Faceless Operative",
+  "tier": 4,
+  "tribe": "Aberration",
+  "hash": "ae04c36d5b4794f2c992cc9bc4cfc38dc738d06695b9c67390cf919cc1b2913b"
+ },
+ {
+  "id": "BGDUO_110",
+  "name": "Feisty Freshwater",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "ea15c1fb9fa6ce06ce36993890f865e3866b271c91bc326785a3492e964e96d8"
+ },
+ {
+  "id": "BG34_500",
+  "name": "Flaming Enforcer",
+  "tier": 4,
+  "tribe": "Demon",
+  "hash": "fa15d9e2da931e9b3d68b488858c5b4c9254b06e9469c539c13be196c5bcf1e9"
+ },
+ {
+  "id": "BG32_880",
+  "name": "Friendly Geist",
+  "tier": 4,
+  "tribe": "Undead",
+  "hash": "eba8c45d48f0d862310793252d193d310fa3a5c23bcd4cdbbc58337c33bedc66"
+ },
+ {
+  "id": "BG36_764",
+  "name": "Gearfin",
+  "tier": 4,
+  "tribe": "Murloc",
+  "hash": "befb1ee72dee2198429bb25892ac6c24e5c94cd93047b3b64f18c9b24b0e4e6c"
+ },
+ {
+  "id": "BG28_583",
+  "name": "Geomagus Roogug",
+  "tier": 4,
+  "tribe": "Quilboar",
+  "hash": "cc9ccd714b33c4962c629f4e63157ec0c1cd60a51e3c8a1e7cc598e9e3f2ecb1"
+ },
+ {
+  "id": "BG36_853",
+  "name": "Glambot",
+  "tier": 4,
+  "tribe": "Mech",
+  "hash": "be819b783c85b4d3618e35cd315a731d63892763666bccb29c6c868dc4d33d32"
+ },
+ {
+  "id": "BG32_336",
+  "name": "Gormling Gourmet",
+  "tier": 4,
+  "tribe": "Murloc",
+  "hash": "bfd0c3106e4d34e73b6493e666d96b19b5b34cd324c86cce4d93372499c69c30"
+ },
+ {
+  "id": "BGDUO_112",
+  "name": "Grave Narrator",
+  "tier": 4,
+  "tribe": "Undead",
+  "hash": "fe8192c34e316c33b0346386d18e4a4c93ca3a99f14d6b64c1327e31e66f7b6d"
+ },
+ {
+  "id": "BG26_810",
+  "name": "Gunpowder Courier",
+  "tier": 4,
+  "tribe": "Pirate",
+  "hash": "ea44c4fa952b8f8384c739d0b318323ef1f963b1d0b74a36c79e4e0f94792c61"
+ },
+ {
+  "id": "BG36_204",
+  "name": "Headhunter Gryphon",
+  "tier": 4,
+  "tribe": "Beast",
+  "hash": "abdd2ed61a3730e16ecd152de3c9619e9cd1722605b9ce184cd61e7938c7842e"
+ },
+ {
+  "id": "BG34_604",
+  "name": "Heroic Underdog",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "fbec9a909a194b2ce1f6e4332f24612764b98fca64ce349c1e646c66cc9f31cc"
+ },
+ {
+  "id": "BG36_210",
+  "name": "Hoarding Hyena",
+  "tier": 4,
+  "tribe": "Beast",
+  "hash": "fee0f2a3404f98498e359db498f3e4e360cd630b334696766b79cc91cc1a3a4b"
+ },
+ {
+  "id": "BG36_372",
+  "name": "Holy Vanguard",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "eb9492cd9bce6649cc6639b0969bcf31c962969490676c69c439939a94ad6c67"
+ },
+ {
+  "id": "BG30_121",
+  "name": "Hot-Air Surveyor",
+  "tier": 4,
+  "tribe": "Quilboar",
+  "hash": "bfc05a95356bb48fca5ac729845b98cb31dbf107c44e8703d838c4f08da5e0ef"
+ },
+ {
+  "id": "BG32_341",
+  "name": "Humon'gozz",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "abfdc5086f66d2f694c98b0b1af2b0cd352923f266cc660d3f9236d44c6d9912"
+ },
+ {
+  "id": "BG31_812",
+  "name": "Ichoron the Protector",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "ffc01f3535703b42a78a52b99a5707c4380b4b55e96e336b8da43781c93f2ce4"
+ },
+ {
+  "id": "BG36_731",
+  "name": "Imp-lusionist",
+  "tier": 4,
+  "tribe": "Demon",
+  "hash": "abf5c90e6dc207b1ce4b3a63b5b566d869669b2d92896c924d2413cbe6d149a6"
+ },
+ {
+  "id": "BG26_525",
+  "name": "Imposing Percussionist",
+  "tier": 4,
+  "tribe": "Demon",
+  "hash": "afd5916bd8d9d99b691ecccc3c4db02c63983649a4cecd23cd13b332c936924c"
+ },
+ {
+  "id": "BG35_881",
+  "name": "Leyline Surfacer",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "fa816c973c49e34c329691626b719e37c61279c91ccd8ecce34ce5b839999c65"
+ },
+ {
+  "id": "BG26_814",
+  "name": "Lovesick Balladist",
+  "tier": 4,
+  "tribe": "Pirate",
+  "hash": "ba04d13fe199c4738432959a9d8c94c936cfa68ee338a369c266c0f6c1bbc9be"
+ },
+ {
+  "id": "BGDUO31_212",
+  "name": "Mantid King",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "ea15c6cccccdccf1a67c31b38db9264991869e60b678999ac4e29d3095dcb137"
+ },
+ {
+  "id": "BG36_524",
+  "name": "Maritime Extortionist",
+  "tier": 4,
+  "tribe": "Pirate",
+  "hash": "ba944b333c7938ccb32772de969a6e30c9811b8e94eb3e13d07a31ccc32e1eb4"
+ },
+ {
+  "id": "BG32_340",
+  "name": "Maw Caster",
+  "tier": 4,
+  "tribe": "Undead",
+  "hash": "afec9b5768b325a66bec3ac96e3096749a4b664b2d72d8964cb292d1630cf04c"
+ },
+ {
+  "id": "BG36_312",
+  "name": "Mindbending Recruiter",
+  "tier": 4,
+  "tribe": "Aberration",
+  "hash": "ea151e74687c798130c30ec698d019b1b36f6334933a63db93996734ce707ed3"
+ },
+ {
+  "id": "BGDUO_108",
+  "name": "Mirror Monster",
+  "tier": 4,
+  "tribe": "Aberration",
+  "hash": "faa193a4669cce19c360964c9c3ad962c9e7cd96e199b4dbb44ee14ce16cb078"
+ },
+ {
+  "id": "BG36_115",
+  "name": "Nightmare Corroder",
+  "tier": 4,
+  "tribe": "Aberration",
+  "hash": "bf5098379e066b484b5078d9259b69807b692e1b91b13f97e4bd6e61b2c33872"
+ },
+ {
+  "id": "BG36_114",
+  "name": "Parasitic Fleshling",
+  "tier": 4,
+  "tribe": "Aberration",
+  "hash": "bb456cf593073631e73dd0b6cc7a9ac490e299a886985a59c4a499db933ec33a"
+ },
+ {
+  "id": "BG29_813",
+  "name": "Persistent Poet",
+  "tier": 4,
+  "tribe": "Dragon",
+  "hash": "fa879b666838e4d8ccc28ce7c36f6dce3c5eb2d4c0c3cd8b1a5998d889861726"
+ },
+ {
+  "id": "BG34_690",
+  "name": "Plaguerunner",
+  "tier": 4,
+  "tribe": "Undead",
+  "hash": "fa85c79f9e4c186cf1b631b24e13871399b34da4364c6665cde1318dccc366c3"
+ },
+ {
+  "id": "BG34_682",
+  "name": "Razorfen Flapper",
+  "tier": 4,
+  "tribe": "Quilboar",
+  "hash": "efa8e2619a3ab71ea60c99e130738cc6791f6671a3c64b214e39b8d919e179c3"
+ },
+ {
+  "id": "BGS_116",
+  "name": "Refreshing Anomaly",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "942b653c279062d3332499ee584799cb6ef33611c29cce6cb438cda69da96679"
+ },
+ {
+  "id": "BG36_245",
+  "name": "Runic Arcanist",
+  "tier": 4,
+  "tribe": "Dragon",
+  "hash": "ea053e246ad54cc785893cf1b0da6b0c972db1b4c1366ed394de6da494cd32d9"
+ },
+ {
+  "id": "BGDUO31_208",
+  "name": "San'layn Scribe",
+  "tier": 4,
+  "tribe": "Undead",
+  "hash": "ea05e1ec9e67663a3326cd47b498c9cd906be692c9b83866c73c9179e462931e"
+ },
+ {
+  "id": "BGDUO31_203",
+  "name": "Shifty Snake",
+  "tier": 4,
+  "tribe": "Beast",
+  "hash": "abf5c5216e136e7264f5909c038f638b9878643e32c3cc69ce3c93366d2762cb"
+ },
+ {
+  "id": "BG25_016",
+  "name": "Sin'dorei Straight Shot",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "abfd874d9c5b3c1b6cb29392394699243263c6c961393247e4ce38c6cdd939b4"
+ },
+ {
+  "id": "BG36_332",
+  "name": "Snare Trapper",
+  "tier": 4,
+  "tribe": "Quilboar",
+  "hash": "afd086cc0ed319719a783786318e694be3256b3695b33bd9c46d6ca799873310"
+ },
+ {
+  "id": "BG36_206",
+  "name": "Snarky Shark",
+  "tier": 4,
+  "tribe": "Beast",
+  "hash": "86ecce718e5bce0c3d9448dcd1692b93549aaf307339dcc70e66c68e7148d279"
+ },
+ {
+  "id": "BGS_123",
+  "name": "Tavern Tempest",
+  "tier": 4,
+  "tribe": "Elemental",
+  "hash": "ae0193bb18c69c66933e6d49c1b990b6e4ee338fc39a327cc6394925846ec6de"
+ },
+ {
+  "id": "BG24_018",
+  "name": "Tortollan Blue Shell",
+  "tier": 4,
+  "tribe": "None",
+  "hash": "fa15cf2787a50e83c67aeccdd2d19938978c634ce1e97266c9223c9c909b94b3"
+ },
+ {
+  "id": "BG36_703",
+  "name": "Twilight Tidehunter",
+  "tier": 4,
+  "tribe": "Murloc",
+  "hash": "bea0da243c6d60db6f086cbc69b31c61934f96da3c9032e29f58c7356ce664c3"
+ },
+ {
+  "id": "BG36_621",
+  "name": "Deft Deserter",
+  "tier": 5,
+  "tribe": "Demon",
+  "hash": "be414f39d8c6b2ce65b3c59c92639132e666c633c939d99e8d86906cc4b3cc93"
+ },
+ {
+  "id": "BG36_700",
+  "name": "Sewer Escapee",
+  "tier": 5,
+  "tribe": "Murloc",
+  "hash": "bb501ed164ef3314974b586149346db6b4c333c9673c66369cd39992c969334d"
+ },
+ {
+  "id": "BG_LOE_077",
+  "name": "Brann Bronzebeard",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "ead5875a1e29d8ef871ea45a38466306b066963bc72bb1b8cb0bd0cf9c96c28d"
+ },
+ {
+  "id": "BG34_858",
+  "name": "Air Revenant",
+  "tier": 5,
+  "tribe": "Elemental",
+  "hash": "bec1967d4b1d99c6cc595249f3644ccf98ee6734c6b418c9916d6c3690bb6309"
+ },
+ {
+  "id": "BG36_514",
+  "name": "Barrier Banshee",
+  "tier": 5,
+  "tribe": "Undead",
+  "hash": "ffead0225aab3791e3d069cc3dc44e2c867cccb0d8e0c3c3926f964c3846736d"
+ },
+ {
+  "id": "BG33_318",
+  "name": "Bile Spitter",
+  "tier": 5,
+  "tribe": "Murloc",
+  "hash": "bad09a4cd999cb3619f326b30ccbd83c9cc1cd336642319ecd2e32697393c53c"
+ },
+ {
+  "id": "BGDUO_701",
+  "name": "C'Thrax Wrecker",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "fa91326e4e059196260d6f1938f33c9ecb58d393314c636f63654e3d1c9472b6"
+ },
+ {
+  "id": "BG35_123",
+  "name": "Cataclysmic Harbinger",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "fea0c3463b527c3f788d3a980f491e0f352dc97896d032a16262875acf0fe877"
+ },
+ {
+  "id": "BG28_741",
+  "name": "Charging Czarina",
+  "tier": 5,
+  "tribe": "Mech",
+  "hash": "fa051bc0c0f4658ae5cacad581273e5d9cd92c86c69a6c679ce97359a71f9864"
+ },
+ {
+  "id": "BG34_142",
+  "name": "Costume Enthusiast",
+  "tier": 5,
+  "tribe": "Murloc",
+  "hash": "afd06b613b1cb29ce4e3e523e2dc946c6da6919b9199606f864ec364f1339133"
+ },
+ {
+  "id": "BG36_102",
+  "name": "De-volition-ist",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "ee4594681f90d9b05ad68e48d9b7cb83245963e49666669db3189db270739ccb"
+ },
+ {
+  "id": "BG36_762",
+  "name": "Devilish Distractor",
+  "tier": 5,
+  "tribe": "Demon",
+  "hash": "ae404b593994e6ea7bc63da678b0d34dcc6e30926339ce4c99cd31ccb6306e63"
+ },
+ {
+  "id": "BG34_633",
+  "name": "Draconic Warden",
+  "tier": 5,
+  "tribe": "Dragon",
+  "hash": "feea4c28e5197362cc848f356b596ccc4d969cc862183266b39c9ed3ccd96b98"
+ },
+ {
+  "id": "BG26_ICC_901",
+  "name": "Drakkari Enchanter",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "eb849f831a5994bdc61c38e968583da726b6278399837a6cb76199b0cb64e5b2"
+ },
+ {
+  "id": "BG32_324",
+  "name": "Drustfallen Butcher",
+  "tier": 5,
+  "tribe": "Undead",
+  "hash": "fe8181773d8bb66c3674d09ab0b29071a748a4c6958d9932c67ec5d9e1b6836d"
+ },
+ {
+  "id": "BG32_231",
+  "name": "Elite Navigator",
+  "tier": 5,
+  "tribe": "Pirate",
+  "hash": "aaabe0d85a6ec6272d9618c63dd93e193a74e72ce73849cbe34e262c93659125"
+ },
+ {
+  "id": "BG36_523",
+  "name": "Enterprising Escapee",
+  "tier": 5,
+  "tribe": "Pirate",
+  "hash": "faa197c01f30d81e339999936c7632d14d8ccc6db671b3926d8e336b3303e474"
+ },
+ {
+  "id": "BG25_009",
+  "name": "Eternal Summoner",
+  "tier": 5,
+  "tribe": "Undead",
+  "hash": "ba05d1b9584565cca73c973394efb4e9c4b986b491a65b46c36b6658c13a699a"
+ },
+ {
+  "id": "BG34_403",
+  "name": "Eternal Tycoon",
+  "tier": 5,
+  "tribe": "Undead",
+  "hash": "eef4cec9790f313e167894239107c9d9e41c9d1e92729466c99bcd98c0d9d32e"
+ },
+ {
+  "id": "BG36_318",
+  "name": "Faceless Converter",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "ea54d07ccf43c3c3cd3c3e3627903d90b4f0b27873c336c33f05cb268c366c9c"
+ },
+ {
+  "id": "BG28_633",
+  "name": "Felboar",
+  "tier": 5,
+  "tribe": "Demon",
+  "hash": "ffea69544bb63f23e529d1845286e63a6cb924c9c2479e624a4e2d88ccf19acd"
+ },
+ {
+  "id": "BG32_821",
+  "name": "Felfire Conjurer",
+  "tier": 5,
+  "tribe": "Dragon",
+  "hash": "aad5d2d99f908da5c54b961ce902e4c2952480fbd342f320d4f3c6c9f718fc7c"
+ },
+ {
+  "id": "BG35_882",
+  "name": "Firelands Fugitive",
+  "tier": 5,
+  "tribe": "Elemental",
+  "hash": "fa91d07f690fc731b4f091ce1b09326361b8e4bcc6e56783c666cccc3d9816c3"
+ },
+ {
+  "id": "BGS_008",
+  "name": "Ghastcoiler",
+  "tier": 5,
+  "tribe": "Beast",
+  "hash": "ee1095aa3187623b9e63c8edc90c8d966926da2467926df3b4a76696c71963c9"
+ },
+ {
+  "id": "BGS_018",
+  "name": "Goldrinn, the Great Wolf",
+  "tier": 5,
+  "tribe": "Beast",
+  "hash": "e618dff359ef70d92781ef063a7eb3f0919ba059c2e00c4bf4cc8a51d7233106"
+ },
+ {
+  "id": "BG31_148",
+  "name": "Hackerfin",
+  "tier": 5,
+  "tribe": "Murloc",
+  "hash": "ae0496ce1b1e3f23c5ebe0d28333796b9d32949cc5ccd1c8a4bbc639946b31d2"
+ },
+ {
+  "id": "BG36_364",
+  "name": "Hopebringer",
+  "tier": 5,
+  "tribe": "Dragon",
+  "hash": "fa8594ac385b6e13d319f1e584e4de5c916e3368845ac4c981ecdb3cc25be3d2"
+ },
+ {
+  "id": "BG21_004",
+  "name": "Insatiable Ur'zul",
+  "tier": 5,
+  "tribe": "Demon",
+  "hash": "eb11cb1f860c2d8e9d9336c936d0b1c3f1cf93194b344e6296743872cce3c787"
+ },
+ {
+  "id": "BGS_041",
+  "name": "Kalecgos, Arcane Aspect",
+  "tier": 5,
+  "tribe": "Dragon",
+  "hash": "e894118a3ab17a37686348cdc09e43f597ad67b18fcd71888f027a6edc7a1a96"
+ },
+ {
+  "id": "BG23_318",
+  "name": "Leeroy the Reckless",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "8587a72d6d3c98c236c17e3dcdbe21f66297d0b690788618c98fd8639c634b87"
+ },
+ {
+  "id": "BG36_848",
+  "name": "Lichling Hoarder",
+  "tier": 5,
+  "tribe": "Undead",
+  "hash": "fa05c7666ec59cd934f838c8d9d6f326938d668c66199c1b38339329ca466766"
+ },
+ {
+  "id": "BG28_707",
+  "name": "Living Azerite",
+  "tier": 5,
+  "tribe": "Elemental",
+  "hash": "8767cc1468d9378963073196cec6ce6978b091bacdd3c623363be478e64ce334"
+ },
+ {
+  "id": "BG35_602",
+  "name": "Lurking Leviathan",
+  "tier": 5,
+  "tribe": "Beast",
+  "hash": "cfbb8e32b8ce5b8cbb913cf3bd148319c1f37342923c3db4c4563671868321c9"
+ },
+ {
+  "id": "BGDUO_121",
+  "name": "Man'ari Messenger",
+  "tier": 5,
+  "tribe": "Demon",
+  "hash": "ea95c5686b0ec9873e71ca53d39a33d095ceb56ba56185a9949996d091d69b1c"
+ },
+ {
+  "id": "BG36_097",
+  "name": "Mindbender Ghur'sha",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "ee051a457a3663963ccb1e30639c38dbb6691867e363638d938e3e32cc726f06"
+ },
+ {
+  "id": "BG36_320",
+  "name": "Mysterious K'Thir",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "ebe5e1dbcb96962c4e6361962db263e13c43e53c338fc24cce36394e58e88491"
+ },
+ {
+  "id": "BG36_300",
+  "name": "N'raqi Frostcaller",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "ff84970a3893e2fd4e252d8a18cb723d97964f42672db49c665a493399263ac5"
+ },
+ {
+  "id": "BG36_103",
+  "name": "N'raqi Sapper",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "be05917a4895c9cd624e94b6b7a19338cd9a6cc6596593592739b6b2d14e6f44"
+ },
+ {
+  "id": "BG32_111",
+  "name": "Nightmare Par-tea Guest",
+  "tier": 5,
+  "tribe": "Aberration",
+  "hash": "aff4c4826981c90f72bc90f866716b6636e46ce39d93699b996cc396a4193e34"
+ },
+ {
+  "id": "BGS_020",
+  "name": "Primalfin Lookout",
+  "tier": 5,
+  "tribe": "Murloc",
+  "hash": "c5bb38ce6e443b3164c93396e2751f0dcc6c9cf33c18c9869c677289635accc3"
+ },
+ {
+  "id": "BG33_825",
+  "name": "Proud Privateer",
+  "tier": 5,
+  "tribe": "Pirate",
+  "hash": "fe81977e99527a7491ac29d8e3522ce387664e8dc2996e53946e396f84486c2d"
+ },
+ {
+  "id": "BG33_883",
+  "name": "Razorfen Vineweaver",
+  "tier": 5,
+  "tribe": "Quilboar",
+  "hash": "abd496893f699da291b6d033cd09e1cee48e9c469261933be60fc18cd0fbc4e3"
+ },
+ {
+  "id": "BG36_366",
+  "name": "Resourceful Robot",
+  "tier": 5,
+  "tribe": "Mech",
+  "hash": "afd09728336126b37998d33d84ee6c4c3c719d91331ec6749ce399980db1665e"
+ },
+ {
+  "id": "BG28_550",
+  "name": "Rodeo Performer",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "be1795bc496d1ec384d8d3664b24331a3d836d939a326ce33dcd964c64cc2c76"
+ },
+ {
+  "id": "BG33_885",
+  "name": "Sanguine Refiner",
+  "tier": 5,
+  "tribe": "Quilboar",
+  "hash": "abf5e8136c9133484f46c7db3cf9c92d24a63c63e70939668c3c30e39872669d"
+ },
+ {
+  "id": "BGDUO31_205",
+  "name": "Selfless Sightseer",
+  "tier": 5,
+  "tribe": "Dragon",
+  "hash": "afff964221bbe198f840ea446c932c327970b3494dcbcb970f3639f8b2cb9241"
+ },
+ {
+  "id": "BG35_604",
+  "name": "Sewer Lord",
+  "tier": 5,
+  "tribe": "Beast",
+  "hash": "ffff375e977d5cf338e699306316c8c653381d3142638dc6b180b431bc08d60c"
+ },
+ {
+  "id": "BG36_704",
+  "name": "Shamanic Tidecaller",
+  "tier": 5,
+  "tribe": "Murloc",
+  "hash": "ef81963a62f5959a5a41e798c8f0f0f837b9c999e13b703e643e4ce10de19426"
+ },
+ {
+  "id": "BG33_828",
+  "name": "Ship Master Eudora",
+  "tier": 5,
+  "tribe": "Pirate",
+  "hash": "ef819ee49f28de1dc69e68c318b4698dcb61f19b993834d29a39a3063967e429"
+ },
+ {
+  "id": "BG33_821",
+  "name": "Shipwrecked Rascal",
+  "tier": 5,
+  "tribe": "Pirate",
+  "hash": "ee81c46b4a46e59299a13c4c366f1ee938c63a967391331e4b25d933b71b4ee1"
+ },
+ {
+  "id": "BG36_851",
+  "name": "Spark Snapper",
+  "tier": 5,
+  "tribe": "Mech",
+  "hash": "ea11ccf036c73b2594d3c318c33231eb9dec965bc7b9c98691ec30e2964ccd9c"
+ },
+ {
+  "id": "BGDUO_109",
+  "name": "Support System",
+  "tier": 5,
+  "tribe": "Mech",
+  "hash": "bf50c0bfcd96361c703de8e7a4e39212d31bcc4cc04ecb58c4a691b3c1db4f69"
+ },
+ {
+  "id": "BG26_523",
+  "name": "Tichondrius",
+  "tier": 5,
+  "tribe": "Demon",
+  "hash": "bfd09d660cc424bcc22c3199d3c36d36cd3bc64b93ce69b4c439d9f3949e6160"
+ },
+ {
+  "id": "BG25_354",
+  "name": "Titus Rivendare",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "abdf0ad3f2313f6df096348049dc94c369c1cb3e0da77930905f61e4079936cb"
+ },
+ {
+  "id": "BG31_809",
+  "name": "Turquoise Skitterer",
+  "tier": 5,
+  "tribe": "Beast",
+  "hash": "ee44c4af987b9323931b1e583e1839e6e1b2c72bc62d9c8c84da3cd931c5b396"
+ },
+ {
+  "id": "BGDUO_120",
+  "name": "Well Wisher",
+  "tier": 5,
+  "tribe": "None",
+  "hash": "afd4852a9670c67167633787c99e49bc781b63c8b2791e30692469653d8bc99d"
+ },
+ {
+  "id": "BG36_356",
+  "name": "Tyrael",
+  "tier": 6,
+  "tribe": "None",
+  "hash": "abd0952b9a5ed0f39c9868c927e4e18c4f64363393e61e92e31b3b197873cc86"
+ },
+ {
+  "id": "BG36_370",
+  "name": "Victorious Geomant",
+  "tier": 6,
+  "tribe": "Quilboar",
+  "hash": "be14c4ec7869683193b331c3c4e433a4873ee4dac6d99265907ad69e94ed8d2d"
+ },
+ {
+  "id": "BG36_367",
+  "name": "Auto Reveille",
+  "tier": 6,
+  "tribe": "Mech",
+  "hash": "ee05c16c68fc7a5a373a643e687479c196c172b7d6362d8385e134e193e96b42"
+ },
+ {
+  "id": "BG35_883",
+  "name": "Balinda Stonehearth",
+  "tier": 6,
+  "tribe": "None",
+  "hash": "bb84c6b63e992c406a53632bb76e336fc18dc2cb64b0cdacc92ed994cc8594cb"
+ },
+ {
+  "id": "BG26_354",
+  "name": "Choral Mrrrglr",
+  "tier": 6,
+  "tribe": "Murloc",
+  "hash": "ea95e4be4f056a6525cb6d18c07c8defcc4bb27935c6e106da51cc91c1bc30dc"
+ },
+ {
+  "id": "BG36_241",
+  "name": "Crimson Vindicator",
+  "tier": 6,
+  "tribe": "Dragon",
+  "hash": "ea54993a1b09946f9d2531f23cf64ac662d0659b278e370c6738d2d2b0dbb665"
+ },
+ {
+  "id": "BGDUO33_150",
+  "name": "Dark Dazzler",
+  "tier": 6,
+  "tribe": "Demon",
+  "hash": "bec5907c6b10c60f692779b09cf0934f33ca69e4673c3398c4983673e6731e4c"
+ },
+ {
+  "id": "BG36_104",
+  "name": "Dark Puppeteer",
+  "tier": 6,
+  "tribe": "Aberration",
+  "hash": "fa0591da2d9999223c727867617b25cde6cc63b7360c62e6c3343c3bd3b1c309"
+ },
+ {
+  "id": "BG31_835",
+  "name": "Deathly Striker",
+  "tier": 6,
+  "tribe": "Undead",
+  "hash": "ba918d3a8f42d864bc0e1e6cb03369b6d8366b873731f92d9cd9231a726d26c9"
+ },
+ {
+  "id": "BG36_208",
+  "name": "Deathstrider",
+  "tier": 6,
+  "tribe": "Beast",
+  "hash": "b4939a4c196b1b03c9cc04dc2de4f40fecf630c1bd81e36e18ee9d8d993bc798"
+ },
+ {
+  "id": "BG26_175",
+  "name": "Elemental of Surprise",
+  "tier": 6,
+  "tribe": "Elemental",
+  "hash": "afd0c0bb1a4d4f0cf0e1d8f3b296cd80cd3d70e6e58bb723b069c6c8b186d499"
+ },
+ {
+  "id": "BG36_733",
+  "name": "Eredar Escapist",
+  "tier": 6,
+  "tribe": "Demon",
+  "hash": "bf814a95c96e24b1c8cfa46ac6cf918fc664993cd1b2b72cc0b2b58c9278e5b3"
+ },
+ {
+  "id": "BG35_342",
+  "name": "Falling Sky Golem",
+  "tier": 6,
+  "tribe": "Mech",
+  "hash": "ea85e0d81c7b1a753985d8c438d3359b652c734b385a4eb4c3b5633373699369"
+ },
+ {
+  "id": "BG34_692",
+  "name": "Forsaken Weaver",
+  "tier": 6,
+  "tribe": "Undead",
+  "hash": "fa816394a70e5af3bc7368e713c2b318621c1e1ae3733c93cb1a3bc0c66e6b31"
+ },
+ {
+  "id": "BG36_640",
+  "name": "Gatekeeper Amalgam",
+  "tier": 6,
+  "tribe": "Aberration",
+  "hash": "fa85913a3a1c8e6699e79581c8e93f66361a3919b65966f2d192366364c3d987"
+ },
+ {
+  "id": "BGFYM_005",
+  "name": "Harbinger Aph'lass",
+  "tier": 6,
+  "tribe": "Aberration",
+  "hash": "fb85cd391a3096476d2c70e192de2d996918721a4da7cd2d9b7936d3a6a4a64c"
+ },
+ {
+  "id": "BG36_849",
+  "name": "Heroic Broodmother",
+  "tier": 6,
+  "tribe": "Dragon",
+  "hash": "ebd0c332a61e9906cce4cee31f33cf3398cc38cc939866c066e39c66999d991b"
+ },
+ {
+  "id": "BG36_344",
+  "name": "Hooktusk, Master Marauder",
+  "tier": 6,
+  "tribe": "Pirate",
+  "hash": "fa0593b3cadead284f81ccc980e3d2ccb526c2e4e369c53ec719d13a9399cc6a"
+ },
+ {
+  "id": "BGDUO31_202",
+  "name": "Loyal Mobster",
+  "tier": 6,
+  "tribe": "Quilboar",
+  "hash": "eabe58ee0dbb233236e0624936874cfcd83c8dca73d3992f931e66493e432630"
+ },
+ {
+  "id": "BG33_891",
+  "name": "Magicfin Mycologist",
+  "tier": 6,
+  "tribe": "Murloc",
+  "hash": "fe818598328572e5716799d878ccc63c2793caf168628c5a1c9bd9b93373330f"
+ },
+ {
+  "id": "BGS_040",
+  "name": "Nadina the Red",
+  "tier": 6,
+  "tribe": "Dragon",
+  "hash": "ab95c5226e96d865934a9b1eb4d0e427c93393c9f42c2de3c30cda78cb67b486"
+ },
+ {
+  "id": "BG36_209",
+  "name": "Ravaging Scorpid",
+  "tier": 6,
+  "tribe": "Beast",
+  "hash": "ee14c0b6cef197697149968de18e9c3591ac69929935679bf6726274c46e18c5"
+ },
+ {
+  "id": "BG23_017",
+  "name": "Sanguine Champion",
+  "tier": 6,
+  "tribe": "Quilboar",
+  "hash": "bba891134e590efc49a16b635e94d18d72cb6672b463d9a42d381f4bc78698f2"
+ },
+ {
+  "id": "BG36_343",
+  "name": "Silent Deliverer",
+  "tier": 6,
+  "tribe": "Pirate",
+  "hash": "ba854d258cc16ed9cb1d4b25c59634dec34d331c873c4b44903c3e73d3673bb4"
+ },
+ {
+  "id": "BG33_823",
+  "name": "Sky Admiral Rogers",
+  "tier": 6,
+  "tribe": "Pirate",
+  "hash": "be10c1dcda393bc196ee36c8cc3ec53b93c9b0f06b41c53e964f987398f0858a"
+ },
+ {
+  "id": "BG36_515",
+  "name": "Snazzy Phantom",
+  "tier": 6,
+  "tribe": "Undead",
+  "hash": "bba06a1197b939f1cc9312682f1c730dd1916cf9d0732f3ccd9d368ce04a3fc2"
+ },
+ {
+  "id": "BG36_109",
+  "name": "The Shadow of Doubt",
+  "tier": 6,
+  "tribe": "Aberration",
+  "hash": "ebc1c76049341a983c3f3c679cc964c770b37313e36e61b693334e6337c8318d"
+ },
+ {
+  "id": "BGDUO31_211",
+  "name": "Transport Reactor",
+  "tier": 6,
+  "tribe": "Mech",
+  "hash": "fa0591986e55e52bc9369e6335e6e19ec66d8648c3c79971b0f3b0f1870cc386"
+ },
+ {
+  "id": "BG31_323",
+  "name": "Turbo Hogrider",
+  "tier": 6,
+  "tribe": "Quilboar",
+  "hash": "bfd09c26db1637c0c6cc785c6d2cb2d95a9165269336665ab36a4c586d898d9b"
+ },
+ {
+  "id": "BG35_155",
+  "name": "Twisted Wrathguard",
+  "tier": 6,
+  "tribe": "Demon",
+  "hash": "fa05c4f94c97934ee46dc9b6b4cab4c3c3719672c58e994990ce87b0c53285ed"
+ },
+ {
+  "id": "BG31_810",
+  "name": "Ultraviolet Ascendant",
+  "tier": 6,
+  "tribe": "Elemental",
+  "hash": "ffea97099823ce2719a679c76ad031cc3327360c23c339ad98dc18734e5ec33c"
+ },
+ {
+  "id": "BG36_352",
+  "name": "Unbound Tempest",
+  "tier": 6,
+  "tribe": "Elemental",
+  "hash": "fa0584f639305b48e74cecbfc4b6e49894f99263c2c2932c9d2ec1ec956b98e6"
+ },
+ {
+  "id": "BG26_152",
+  "name": "Utility Drone",
+  "tier": 6,
+  "tribe": "Mech",
+  "hash": "fa117a1549871f8531c438f2967e363549999e66b72e6f8b846bcc9466c4331b"
+ },
+ {
+  "id": "BG36_341",
+  "name": "Veteran Brigand",
+  "tier": 6,
+  "tribe": "Quilboar",
+  "hash": "ee81816bcf241d929e4b4ac53830e76398db270d69989f9336e4cd6dced034b9"
+ },
+ {
+  "id": "BG22_403",
+  "name": "Young Murk-Eye",
+  "tier": 6,
+  "tribe": "Murloc",
+  "hash": "ef84c07e4a4b1b313ce51b124f1a60e79b1c656325c61e7de2cfce58b1631e58"
+ },
+ {
+  "id": "BG25_034",
+  "name": "Captain Sanders",
+  "tier": 7,
+  "tribe": "Pirate",
+  "hash": "afd6998bca639259496ccb933bcfa4accd881b1ac3b239b22b0dc7d91a984e1c"
+ },
+ {
+  "id": "BG27_016",
+  "name": "Champion of Sargeras",
+  "tier": 7,
+  "tribe": "Demon",
+  "hash": "ee80cbb51b946af0d1b1ce6530d9078748e4741f0b583f0f34b63e328c5b3b79"
+ },
+ {
+  "id": "BG34_145",
+  "name": "Futurefin",
+  "tier": 7,
+  "tribe": "Murloc",
+  "hash": "ebaa4baa2d1f3e3530d938487266918361e666cecd19692c9963e6398dce1ea3"
+ },
+ {
+  "id": "BG34_319",
+  "name": "Highkeeper Ra",
+  "tier": 7,
+  "tribe": "None",
+  "hash": "ef0192c66ad634e9326939db739cd23c396c3321db193b494db1c996c9d28ce4"
+ },
+ {
+  "id": "BG36_333",
+  "name": "Jailbird Juggernaut",
+  "tier": 7,
+  "tribe": "Quilboar",
+  "hash": "ea8527894f15da369e664a4961333d87c58632b4c1996bc3b87e3437b1696e78"
+ },
+ {
+  "id": "BG27_017",
+  "name": "Obsidian Ravager",
+  "tier": 7,
+  "tribe": "Dragon",
+  "hash": "bbd4c31e4ed5b4e3c5b48c0ce16bd06bb41ac53ac7e7930f913bc43c932cc548"
+ },
+ {
+  "id": "BG26_149",
+  "name": "Polarizing Beatboxer",
+  "tier": 7,
+  "tribe": "Mech",
+  "hash": "fa811ecdca192c73376371a6cb8666389cdec9e3692331969c3c6c9eb3489334"
+ },
+ {
+  "id": "BGDUO_125",
+  "name": "Sandy",
+  "tier": 7,
+  "tribe": "None",
+  "hash": "eb04b52e98389e63b4b890f68e49d0b18da4b09a724b6973b43ec6ecb61e6679"
+ },
+ {
+  "id": "BG36_111",
+  "name": "Sha of Fear",
+  "tier": 7,
+  "tribe": "Aberration",
+  "hash": "ea5585bc95aa9ccb91484b0ecf3778779385633c94f27ec290f9337987244e0c"
+ },
+ {
+  "id": "BG34_322",
+  "name": "Stalwart Kodo",
+  "tier": 7,
+  "tribe": "Beast",
+  "hash": "ead194799f84c3c368583c3869b5db949c7b361394e76e4c938c8e6b632949b2"
+ },
+ {
+  "id": "BG31_999",
+  "name": "Stitched Salvager",
+  "tier": 7,
+  "tribe": "Undead",
+  "hash": "bad4c17b9e4194b46d2e4d4248d2b4f378cf3304330cc67c663db678e6783b29"
+ },
+ {
+  "id": "BG34_950",
+  "name": "Stone Age Slab",
+  "tier": 7,
+  "tribe": "Elemental",
+  "hash": "fe81349472956a765b4ac30bcdcb39c9249dd271132e676739cd9c3c98689b52"
+ },
+ {
+  "id": "BG34_320",
+  "name": "The Last One Standing",
+  "tier": 7,
+  "tribe": "Aberration",
+  "hash": "fa8399551a463ac6a794c6f56ce64d0a24d998c499849dcdcb59d336643b4cf3"
+ }
+]

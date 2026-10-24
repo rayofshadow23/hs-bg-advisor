@@ -1,0 +1,42 @@
+# Coordinate calibrate su screenshot reali (turni 1 e 3, fase di acquisto) a risoluzione 2000x900.
+# capture.py ridimensiona ogni frame a base_size, quindi basta che il telefono sia 20:9.
+# Formato rettangolo: [x, y, larghezza, altezza]. Verifica con: python tools/calibrate.py shot.png
+base_size: [2000, 900]   # [larghezza, altezza]
+
+# --- Numeri ---
+gold:         [1515, 675, 110, 80]   # formato "corrente/massimo", es. 0/3. Max = turno + 2 (fino a 10)
+upgrade_cost: [787, 60, 56, 56]
+hero_health:  [1040, 826, 66, 56]
+hero_armor:   [1040, 770, 66, 56]
+
+# --- Livello taverna: si legge CONTANDO le stelle del badge, non con l'OCR ---
+tavern_stars: [880, 125, 70, 80]
+
+# --- Fase di gioco ---
+phase_banner: [262, 8, 270, 55]      # "Bartender Bob" in acquisto, nome dell'avversario in combattimento
+phase_markers:
+  roll_button: [1095, 50, 150, 170]  # area di ricerca del template vision/templates/roll_button.png
+  combat_label: [1515, 405, 160, 80] # targhetta a destra: timer in acquisto, scritta "Combat" in combattimento
+
+# --- Minion ---
+# Le carte sono centrate (spaziatura ~177 px) e il loro numero cambia, quindi non esiste una griglia fissa:
+# - shop: si cercano gli stendardi viola sopra le carte (ci sono anche per gli incantesimi, che non hanno
+#   la goccia della vita);
+# - board: si cercano le gocce rosse della vita (solo minion).
+# Poi si ritaglia l'arte relativa al centro di ciascuna carta.
+shop_pennant_strip: [450, 230, 1170, 58]
+board_strip:  [450, 565, 1170, 90]
+board_grid:           # i minion del board sono centrati e distanziati in modo costante (misurato con 1, 2 e 4 minion)
+  center_x: 993
+  spacing: 172.5
+  tol: 22
+minion_art:
+  drop_dx: 42        # distanza orizzontale tra goccia vita e centro carta (solo board)
+  shop_drop_y: 405   # altezza della goccia della vita nelle carte dello shop (assente negli incantesimi)
+  w: 104
+  h: 100
+  shop_y: 282
+  board_y: 478
+
+# --- Mano (in basso a destra, tagliata dal bordo dello schermo) ---
+hand_area:    [1320, 730, 290, 170]

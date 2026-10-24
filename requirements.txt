@@ -1,0 +1,8 @@
+opencv-python
+numpy
+pytesseract
+imagehash
+Pillow
+pyyaml
+requests
+pytest

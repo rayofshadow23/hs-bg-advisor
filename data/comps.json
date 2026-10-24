@@ -1,0 +1,1435 @@
+{
+ "_source": "HSReplay.net Comps Tier List - https://hsreplay.net/battlegrounds/comps/",
+ "_scraped": "2026-10-23T06:05:12Z",
+ "comps": [
+  {
+   "tribe": "Mechs",
+   "name": "Mechs - APM Magnetic",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Polarizing Beatboxer",
+     "tavern_tier": 7
+    },
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Auto Reveille",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Spark Snapper",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Enterprising Escapee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Drone Duplicator",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 1,
+   "rank": 0,
+   "summary": "Attach bigger and bigger magnetics",
+   "commit": "Infinite gold (Sky Admiral Rogers + Proud Privateer) + Auto Reveille",
+   "enablers": "Infinite gold (Sky Admiral Rogers)",
+   "strategy": "First, have infinite gold. Sky Admiral Rogers, Proud Privateer, Enterprising Escapee, and Brann Bronzebeard are all cards to get you infinite gold, and cycle every cheap card (Sellemental). Then, start generating magnetics with Auto Reveille. Scale a Spark Snapper so every magnetic you attach gets big very fast. After you have Spark Snapper, leave a golden Drone Duplicator on board, and start making a huge volumizer by attaching onto it. Triple it easily with Auto Reveille and then magnetize the huge magnetic you tripled onto the activated Drone Duplicator. Finally, buy every Greedy Conniver and use Eyes of the Earth Mother on it to get Polarizing Beatboxer."
+  },
+  {
+   "tribe": "Quilboar",
+   "name": "Quilboar - APM Shop Buff",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Felboar",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Twisted Wrathguard",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Devilish Distractor",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Gatekeeper Amalgam",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Enterprising Escapee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Hot-Air Surveyor",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Victorious Geomant",
+     "tavern_tier": 6
+    }
+   ],
+   "difficulty": 1,
+   "rank": 0,
+   "summary": "Cast spells to consume buffed shop.",
+   "commit": "Early infinite gold + Felboar",
+   "enablers": "Brann Bronzebeard",
+   "strategy": "You must have an insane amount of economy to go for this comp. This is usually achieved with a turn 9 Brann + Rogers + Privateer. You may also buff the shop cycling bloom gem buffers, spell power buffers, and buying every gem barrage card such as Veteran Brigand. You'll also generate a ton of spells by being infinite, allowing Felboar or Twisted Wrathguard to eat a huge shop over and over again. The best cards to cycle are blood gem generators such as Fearless Foodie. Casting targetted spells onto Gatekeeper Amalgam or Devilish Distractor is a good use of spells."
+  },
+  {
+   "tribe": "Menagerie",
+   "name": "Menagerie",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Hot-Air Surveyor",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Gatekeeper Amalgam",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Felfire Conjurer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Felboar",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Enterprising Escapee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Victorious Geomant",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Magicfin Mycologist",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Dark Puppeteer",
+     "tavern_tier": 6
+    }
+   ],
+   "difficulty": 2,
+   "rank": 0,
+   "summary": "Cast targetted spells to scale all tribes",
+   "commit": "Gatekeeper Amalgam + Balinda Stonehearth or spell power (Dark Puppeteer)",
+   "enablers": "Spell power (Dark Puppeteer); Gatekeeper Amalgam",
+   "strategy": "Play spells onto Gatekeeper Amalgam to buff one minion of each type. Balinda Stonehearth doubles your scaling, and Brann Bronzebeard increases spell generation and overall economy. Additionally, spell power units such as (Dark Puppeteer) are nice to run in this comp. Economy units such as Enterprising Escapee or Magicfin Mycologist gives more gold to hit more core cards and targetted spells. Finally, Hot-air Surveyor and/or Victorious Geomant increase the total spells played on your Amalgam. If Deity is Y'sharajj, then running reborn amalgam is very strong because Y'sharajj will resummon it."
+  },
+  {
+   "tribe": "Elementals",
+   "name": "Elementals - Living Azerite",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Living Azerite",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Leyline Surfacer",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Kelp Keeper",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Felboar",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Wildfire Elemental",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 2,
+   "rank": 1,
+   "summary": "Buff Elementals in shop",
+   "commit": "Brann Bronzebeard + Living Azerite + good economy",
+   "enablers": "Brann Bronzebeard",
+   "strategy": "Use Living Azerite to scale the shop. May use Sky Admiral Rogers + Proud Privateer to cast a bunch of spells. Then, your payoff for the shop buff is generating as many Arcane Absorption as possible, which is the spell from Leyline Surfacer.  Use Brann Bronzebeard and Kelp Keeper to generate them, and Balinda Stonehearth to doubt its effect. Finally, the best elemental to buff is Wildfire Elemental."
+  },
+  {
+   "tribe": "Demons",
+   "name": "Demons - Self Damage",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Ashen Corruptor",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Eredar Escapist",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Devilish Distractor",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Malchezaar, Prince of Dance",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Wrath Weaver",
+     "tavern_tier": 1
+    },
+    {
+     "name": "Tichondrius",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 1,
+   "rank": 2,
+   "summary": "Use self-damage to scale",
+   "commit": "Ashen Corruptor + self damage (Wrath Weaver or Malchezaar, Prince of Dance) + payoff (Tichondrius or Eredar Escapist)",
+   "enablers": "Wrath Weaver + Soul Rewinder demon midgame",
+   "strategy": "The idea of this comp is to use effects such as Malchezaar, Prince of Dance, Wrath Weaver, or trinkets to deal damage to your hero, and Ashen Corruptor to negate this damage. Tichondrius is some payoff for self damage, and used to stabilize in the midgame. Cupcakes generation with Eredar Escapist is your main payoff for the lategame, targetting Ashen Corruptor to buff your shop. Balinda Stonehearth doubles the effect of both Cupcakes and Devilish Distractor. The best demon generation is from Brann Bronzebeard and cycling Imposing Percussionist."
+  },
+  {
+   "tribe": "Undead",
+   "name": "Undead - APM Undead",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Handless Forsaken",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Forsaken Weaver",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Snazzy Phantom",
+     "tavern_tier": 6
+    }
+   ],
+   "addons": [
+    {
+     "name": "Enterprising Escapee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 1,
+   "rank": 3,
+   "summary": "Scale undead attack with infinite gold",
+   "commit": "Bounty Generation (Sky Admiral Rogers) + Proud Privateer + Forsaken Weaver",
+   "enablers": "Sky Admiral Rogers",
+   "strategy": "Sky Admiral Rogers combined with Proud Privateer gives you lots of gold to hit more of your setup.  Additional cards that help you become infinite include Enterprising Escapee and Brann Bronzebeard, but can be cut once you commit more undeads to your board. Cycle every single free card (Refreshing Anomaly) so you stay infinite. After you're infinite, scale undead attack using bounties + Forsaken Weaver. Run a reborn golden Handless Forsaken to be strong. Also use Snazzy Phantom and cycle every single destroy undead effect such as Maw Caster and Disguised Graverobber to destroy reborns and give snazzy permanent stats."
+  },
+  {
+   "tribe": "Murlocs",
+   "name": "Murlocs - Keyword",
+   "tier": 1,
+   "core": [
+    {
+     "name": "Hackerfin",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Bile Spitter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sewer Escapee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Kelp Keeper",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Young Murk-Eye",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Bubble Gunner",
+     "tavern_tier": 1
+    },
+    {
+     "name": "Gormling Gourmet",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 2,
+   "rank": 3,
+   "summary": "Add Keywords to Murlocs and buff them",
+   "commit": "Brann Bronzebeard + Sewer Escapee",
+   "enablers": "Brann Bronzebeard; Sewer Escapee",
+   "strategy": "Use Sewer Escapee and start putting keywords on a premium murloc early. The best one is Bile Spitter. Then, use Brann Bronzebeard to cycle Primalfin Lookout and Hackerfin. Even better if you can proc a premium battecry repeatedly with Kelp Keeper. ADVANCED: Making perfect bubble gunners, hold them in hand, and summon them with golden Diremuck Forager later. Transition to scam with Bile Spitter + full keywords."
+  },
+  {
+   "tribe": "Undead",
+   "name": "Undead - Attack Scaling",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Handless Forsaken",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Mummifier",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Drustfallen Butcher",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Dead Bellringer",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Snazzy Phantom",
+     "tavern_tier": 6
+    }
+   ],
+   "addons": [
+    {
+     "name": "Titus Rivendare",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Eternal Summoner",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Barrier Banshee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Deathly Striker",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Friendly Geist",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 1,
+   "rank": 0,
+   "summary": "Summon high attack Undeads",
+   "commit": "Attack Scaling (Drustfallen Butcher) + summons (Handless Forsaken)",
+   "enablers": "Deathly Striker; Undead midgame (Plaguerunner)",
+   "strategy": "Scale the attack of your Undeads and summons with the Butchering spell from Drustfallen Butcher. Butchering spell improves with spell scaling from Friendly Geist. Your quality of summons come from Handless Forsaken. Snazzy Phantom provides a ton of attack and health to your right most unit in combat, but also during the shop phase. Start using Butchering spells on your reborn cards with Snazzy Phantom on board to capture permanent stats. The best variation of this comp is to run Dead Bellringer + Mummifier to first reborn your entire board. Then, with a full hand of butchering and also Snazzy, use bellringer activate on the mummifier, then the bellringer will get reborn, and then butcher the bellringer, and repeat for all your butchering spells. This'll give you an insane amount of Snazzy procs."
+  },
+  {
+   "tribe": "Beasts",
+   "name": "Beasts - Leviathan",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Banana Slamma",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Lurking Leviathan",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sewer Lord",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Headhunter Gryphon",
+     "tavern_tier": 4
+    }
+   ],
+   "addons": [
+    {
+     "name": "Ravaging Scorpid",
+     "tavern_tier": 6
+    }
+   ],
+   "difficulty": 3,
+   "rank": 0,
+   "summary": "Make huge attack summons",
+   "commit": "Early Lurking Leviathan + Beast summons (Sewer Lord)",
+   "enablers": "Beast summons midgame (beetles)",
+   "strategy": "Summon as many beasts as possible after you get early Lurking Leviathan. The best beast summoner is reborned Sewer lord. Hoarding Hyena summons a taunt summon which is the next best. Then, paired with Banana Slamma, every summon will have a ton of attack."
+  },
+  {
+   "tribe": "Demons",
+   "name": "Demons - Shop Buff",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Felboar",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Imp-lusionist",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Devilish Distractor",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Twisted Wrathguard",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Ashen Corruptor",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Insatiable Ur'zul",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Soul Rewinder",
+     "tavern_tier": 2
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Hot-Air Surveyor",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 2,
+   "rank": 0,
+   "summary": "Scale and consume shop",
+   "commit": "Buffed Shop (Devilish Distractor) + Twisted Wrathguard",
+   "enablers": "Brann Bronzebeard; Twisted Wrathguard",
+   "strategy": "Scale your shop with Devilish Distractor, best when paired with Balinda Stonehearth. Then, your payoff for the buffed shop is most commonly Felboar, but it could also be Twisted Wrathguard and/or reborn Imp-lusionist. Use Methodical Madness spells on shops with Divine shield or Venomous to give these keywords to all your demons."
+  },
+  {
+   "tribe": "Aberrations",
+   "name": "Aberrations - APM Deity",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "The Shadow of Doubt",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Sha of Fear",
+     "tavern_tier": 7
+    }
+   ],
+   "addons": [
+    {
+     "name": "Faceless Converter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Enterprising Escapee",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 1,
+   "rank": 1,
+   "summary": "Play cards to scale deity.",
+   "commit": "Sky Admiral Rogers + Proud Privateer + The Shadow of Doubt",
+   "enablers": "The Shadow of Doubt; Sky Admiral Rogers",
+   "strategy": "Go infinite with pirates, with Sky Admiral Rogers and Proud Privateer as core. Enterprising Escapee and Brann Bronzebeard help you spend gold at first to start snowballing economy. Then, your scaling is The Shadow of Doubt to scale your deity. Once infinite, buy every Greedy Conniver and golden them using Eyes of the Earth Mother or Elite Navigator in order to discover Sha of Fear. Make sure to always end of 3 abberations."
+  },
+  {
+   "tribe": "Beasts",
+   "name": "Beasts - Beetles",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Banana Slamma",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Turquoise Skitterer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Headhunter Gryphon",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Ravaging Scorpid",
+     "tavern_tier": 6
+    }
+   ],
+   "addons": [
+    {
+     "name": "Buzzing Vermin",
+     "tavern_tier": 1
+    },
+    {
+     "name": "Sewer Lord",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Lurking Leviathan",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Forest Rover",
+     "tavern_tier": 2
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Summon large beetles",
+   "commit": "Early Ravaging Scorpid or Turquoise Skitterer",
+   "enablers": "Headhunter Gryphon",
+   "strategy": "With early Ravaging Scorpid or Turquoise Skitterer, start scaling the stats of beetles. Headhunter Gryphon can help you generate pieces of the comp with the help of Snarky Shark. Run as many Banana Slamma as possible, as they double the attack of your beetles and helps deals with high HP boards."
+  },
+  {
+   "tribe": "Demons",
+   "name": "Demons - Deathrattle/Shop Buff",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Titus Rivendare",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sacrificial Wrathguard",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Imp-lusionist",
+     "tavern_tier": 4
+    }
+   ],
+   "addons": [
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Twisted Wrathguard",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Soulkeeping Jailer",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Scale and eat the shop with deathrattles.",
+   "commit": "Early Sacrificial Wrathguard",
+   "enablers": "Sacrificial Wrathguard",
+   "strategy": "Commit to this comp with an early Sacrificial Wrathguard (turn 6 latest). Activate it every turn. Use Titus Rivendare to double its effect and scale the shop a lot. Imp-lusionist + Balinda Stonehearth is the main payoff for this comp and can eat many shops. Soulkeeping Jailer is a great demon to help you stabilize."
+  },
+  {
+   "tribe": "Aberrations",
+   "name": "Aberrations - Deathrattle/Spells",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Titus Rivendare",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Headhunter Gryphon",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Deathstrider",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Faceless Converter",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "The Shadow of Doubt",
+     "tavern_tier": 6
+    },
+    {
+     "name": "N'raqi Sapper",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sin'dorei Straight Shot",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Nightmare Corroder",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Unwilling Slacker",
+     "tavern_tier": 3
+    }
+   ],
+   "difficulty": 1,
+   "rank": 1,
+   "summary": "Play spells and proc deathrattle to scale Deity",
+   "commit": "Faceless Converter + Titus Rivendare; Sky Admiral Rogers + Proud Privateer pivot highest cap",
+   "enablers": "Spell generation (Unwilling Slacker)",
+   "strategy": "A LOT BETTER WITH CHTUN AS DEITY! Scale your deity with Faceless Converter + Titus Rivendare. Generate spells to scale your Converter, best using Unwilling Slacker, but N'raqi Sapper, Nightmare Corroder, or the APM Bounty package works too. Then, proc the deathrattle as many times as possible, typically using Deathstrider. Best strategy is to use a beast rally (Headhunter Gryphon), cycle Snarky Shark and Lurking Lionfish to proc your deathrattle during shop phase."
+  },
+  {
+   "tribe": "Quilboar",
+   "name": "Quilboar - Gems from Hand",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Hot-Air Surveyor",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Sanguine Refiner",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Victorious Geomant",
+     "tavern_tier": 6
+    }
+   ],
+   "addons": [
+    {
+     "name": "Sanguine Champion",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Blade Collector",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Geomagus Roogug",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Mangled Bandit",
+     "tavern_tier": 3
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Add buffed gems to hand",
+   "commit": "Gem scaling (Sanguine Refiner) + Hot Air Surveyor",
+   "enablers": "Gem scaling (Sanguine Refiner)",
+   "strategy": "First, you need Gem scaling (Sanguine Refiner) to enable this build. Then, you scale by adding gems to your hand with mainly Victorious Geomant, and then casting them with Hot-Air Surveyor. Cast them onto great utility units such as Blade Collector. In the lategame, when you're done concentrating stats, fill the rest of your board with ending units such as Leeroy the Reckless"
+  },
+  {
+   "tribe": "Murlocs",
+   "name": "Murlocs - Magicfin",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Young Murk-Eye",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Drakkari Enchanter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Felfire Conjurer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Magicfin Apprentice",
+     "tavern_tier": 1
+    },
+    {
+     "name": "Magicfin Mycologist",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Azsharan Cutlassier",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Draconic Warden",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 1,
+   "rank": 1,
+   "summary": "Teach Murlocs spells and proc them",
+   "commit": "Brann Bronzebeard + Magicfin Mycologist + Young Murk-eye",
+   "enablers": "Magicfin Mycologist; Brann Bronzebeard",
+   "strategy": "This comp relies on teaching a great spell to Magicfin Apprentice and proccing it over and over again. Young Murk-eye is a must to proc these spells every turn, with its effect amplified by Brann Bronzebeard and Drakkari Enchanter. Teach the apprentice Shiny ring, Azerite Empowerment, or Time management with some spell scaling, which comes from Felfire Conjurer. Early on, it may be nice to teach it some econ spell as well, notable Strike Oil, or proc Refreshing Anomaly."
+  },
+  {
+   "tribe": "Mechs",
+   "name": "Mechs - Magnetics/Spells",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Utility Drone",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Hot-Air Surveyor",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Glambot",
+     "tavern_tier": 4
+    }
+   ],
+   "addons": [
+    {
+     "name": "Victorious Geomant",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Rescue Bot",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Drakkari Enchanter",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Cast spells on Mechs",
+   "commit": "Glambot + Balinda Stonehearth",
+   "enablers": "Glambot to stabilize",
+   "strategy": "Put targetted spells on mechs as much as possible with Glambot on board. Balinda Stonehearth doubles the effect. Cycle good gem cards such as Fearless Foodie and buy good spells such as 3 pointy arrow spell. Eventually, buy Utility Drone to capitalize on the magnetics you attached with Glambot in the midgame."
+  },
+  {
+   "tribe": "Beasts",
+   "name": "Beasts - Tasty Lobstah",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Titus Rivendare",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Tasty Lobster",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Headhunter Gryphon",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Deathstrider",
+     "tavern_tier": 6
+    }
+   ],
+   "addons": [
+    {
+     "name": "Lurking Lionfish",
+     "tavern_tier": 2
+    },
+    {
+     "name": "Hoarding Hyena",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Sin'dorei Straight Shot",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Trigger Lobster Deathrattle to scale",
+   "commit": "Headhunter Gryphon + Deathstrider",
+   "enablers": "Headhunter Gryphon",
+   "strategy": "Trigger Tasty Lobster deathrattle as many times as possible. This is done with multiple rallies + Deathstrider and Titus Rivendare, triggering Lobster deathrattle upon every rally. Trigger the lobster deathrattle during shop phase using golden Headhunter Gryphon and buying every Snarky Shark and Lurking Lionfish. Reborn taunt your lobster, and then windfury your Gryphon with Sprightly Scarab."
+  },
+  {
+   "tribe": "Murlocs",
+   "name": "Murlocs - Venom Scam",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Leeroy the Reckless",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Bile Spitter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Sewer Escapee",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Sky-hatch Runaway",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Diremuck Forager",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Deadly Spore",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Heroic Underdog",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Buy scam cards and try to preserve placements",
+   "commit": "When you have no future or are clearly getting outstatted",
+   "enablers": "Getting outscaled",
+   "strategy": "Buy all the scam cards and try to preserve placements by killing as many units as possible. Keep your strongest units on the board (that's why you want to concentrate stats!) and fill the rest of the board with units that may be able to trade 1 for 1. Aim to golden Expert Aviator and give it venom using Bile Spitter. Then, the Aviator will pull many scam units from your hand. Could give murlocs permanent Venom using Sky-hatch Runaway as well."
+  },
+  {
+   "tribe": "Quilboar",
+   "name": "Quilboar - Choose One",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Turbo Hogrider",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Gem Rat",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Sanguine Refiner",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Trench Fighter",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Bramble Tunneler",
+     "tavern_tier": 4
+    }
+   ],
+   "addons": [
+    {
+     "name": "Sky-hatch Runaway",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Thorned Trailblazer",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Sanguine Champion",
+     "tavern_tier": 6
+    }
+   ],
+   "difficulty": 3,
+   "rank": 2,
+   "summary": "Play Choose One cards to scale",
+   "commit": "Gem rat/Bramble Tunneler + Turbo Hogrider",
+   "enablers": "gem scaling (Gem Rat)",
+   "strategy": "First, have gem scaling, most commonly through Gem rat but could be with Sanguine Refiner. Turbo Hogrider is the payoff for your gem scaling. It helps to have some choose one generation through Gem Rat or Bramble Tunneler. If dragons are in, use Sky-hatch Runaway to proc Bramble Tunneler for very powerful choose one generation."
+  },
+  {
+   "tribe": "Pirates",
+   "name": "Pirates - APM Golden",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Sky Admiral Rogers",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Hooktusk, Master Marauder",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Enterprising Escapee",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Proud Privateer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Blade Collector",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 1,
+   "rank": 3,
+   "summary": "Use infinite money to scale pirates",
+   "commit": "Enterprising Escapee + Infinite gold",
+   "enablers": "Enterprising Escapee",
+   "strategy": "Go infinite with Enterprising Escapee + Sky Admiral Rogers + Proud Privateer setup, Brann Bronzebeard helps to get the ball rolling. With the escapee, you'll play a lot of goldens and discovers, both of which helps with Hooktusk, Master Marauder. Scale by being infinite and buying discover effects.  ADVANCED PLAYERS: Pivot higher cap which is demons shop buff comp"
+  },
+  {
+   "tribe": "Quilboar",
+   "name": "Quilboar - Gem Barrage",
+   "tier": 2,
+   "core": [
+    {
+     "name": "Razorfen Flapper",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Trench Fighter",
+     "tavern_tier": 3
+    }
+   ],
+   "addons": [
+    {
+     "name": "Drakkari Enchanter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Felboar",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Titus Rivendare",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 2,
+   "rank": 3,
+   "summary": "Make shop big with gems",
+   "commit": "Gem scaling/Spell Power + Razorfen Flapper + payoff (Trench Fighter/Felboar)",
+   "enablers": "Gem Scaling/Spell Power; Razorfen Flapper",
+   "strategy": "First, scale your gems or spell power in some way. Then, scale shop using Gem Barrage. This is usually done with Titus Rivendare or Brann Bronzebeard + Razorfen Flapper. Finally, the payoff for your buffed shops is Trench Fighter so you can use your Gem Confiscation in shop to triple a minion's stats. Do this on premium units such as Blade Collector. Use Drakkari Enchanter to farm Gem Confiscations."
+  },
+  {
+   "tribe": "Elementals",
+   "name": "Elementals - Unbound Tempest",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Unbound Tempest",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Kelp Keeper",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Tavern Tempest",
+     "tavern_tier": 4
+    }
+   ],
+   "addons": [
+    {
+     "name": "Air Revenant",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Flaming Enforcer",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Living Azerite",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 1,
+   "rank": 0,
+   "summary": "Play elementals to scale from big shop",
+   "commit": "Brann Bronzebeard + shop buff (Air Revenant) + Unbound Tempest",
+   "enablers": "Brann Bronzebeard; Tavern Tempest + Kelp Keeper",
+   "strategy": "Buff the shop with either Living Azerite or Air Revenant, whichever method you find first. Use Brann Bronzebeard + Tavern Tempest + Kelp Keeper for massive economy and elemental generation. You may use Flaming Enforcer to stabilize in the midgame, and Unbound Tempest to cap out your scaling. With tempest, cycle premium elementals such as Sellemental and Refreshing Anomaly."
+  },
+  {
+   "tribe": "Dragons",
+   "name": "Dragons - Copebringer",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Persistent Poet",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Hopebringer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Heroic Broodmother",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Nadina the Red",
+     "tavern_tier": 6
+    }
+   ],
+   "addons": [
+    {
+     "name": "Crimson Vindicator",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Bronze Warden",
+     "tavern_tier": 2
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Proc Divine Shields to scale",
+   "commit": "Early Hopebringer + shields",
+   "enablers": "Divine Shields (Bronze Warden)",
+   "strategy": "Find an early Hopebringer (latest turn 8) and start scaling its effect. Use Persistent Poet to keep the stats given by Hopebringer. The best dragon to buff is Heroic Broodmother, who additionally scales the Hopebringer a bunch. Nadina the Red gives permanent shield to your Hopebringer and also increases your Hopebringer scaling a bit. Crimson Vindicator can be used for stabilization."
+  },
+  {
+   "tribe": "Undead",
+   "name": "Undead - Eternal Knight",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Eternal Knight",
+     "tavern_tier": 2
+    },
+    {
+     "name": "Eternal Summoner",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Eternal Tycoon",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Snazzy Phantom",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Mummifier",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Dead Bellringer",
+     "tavern_tier": 4
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Summon many Eternal Knights",
+   "commit": "Early Eternal Knight + Eternal Summoner",
+   "enablers": "Early Eternal Knight",
+   "strategy": "Must have an Eternal Knight early on to start scaling it (turn 4 latest). Then, fill out the rest of your board with Eternal Summoner and Eternal Tycoon. If you find Snazzy Phantom + Dead Bellringer, use Bellringer's activate on your Eternal Knight every turn to scale."
+  },
+  {
+   "tribe": "Aberrations",
+   "name": "Aberrations - Sludge",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Drakkari Enchanter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Felfire Conjurer",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Dark Puppeteer",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Nightmare Corroder",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Mysterious K'Thir",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "N'raqi Sapper",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Mindbending Recruiter",
+     "tavern_tier": 4
+    },
+    {
+     "name": "N'raqi Frostcaller",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 2,
+   "rank": 1,
+   "summary": "Discard sludges to scale",
+   "commit": "Spell generation (Nightmare Corroder, Sludge Portrait) + Spell Power (N'raqi Frostcaller)",
+   "enablers": "Nightmare Corroder + discard midgame",
+   "strategy": "*BEST With Y'Shaarj as Deity* Use Nightmare Corroder +Drakkari Enchanter to generate sludges. Use N'raqi Frostcaller or Felfire Conjurer or Dark Puppeteer to scale spell power, which improves your sludges. Finally, use Mysterious K'thir and Frostcaller to discard the sludges you generate. Comp significantly improved by Sludge Portrait greater trinket, and also if your deity is Ysharjj."
+  },
+  {
+   "tribe": "Dragons",
+   "name": "Dragons - Spell Power",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Persistent Poet",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Crimson Vindicator",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Bronze Timewalker",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Sky-hatch Runaway",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Runic Arcanist",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Heroic Broodmother",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Hired Mount",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Felfire Conjurer",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Use spell power to scale dragons",
+   "commit": "Spell power (Bronze Timewalker) + Crimson Vindicator",
+   "enablers": "Spell power (Bronze Timewalker)",
+   "strategy": "First scale spell power through Chromadrake generation, typically via Bronze Timewalker + Sky-Hatch Runaway. Then, use Brann Bronzebeard to double the effect of your Chromadrakes. Use Crimson Vindicator as your payoff card, and then start proccing the rally of it with Sky-Hatch Runaway. Use Persistent Poet to capture the buffs in combat from Crimson Vindicator and also Runic Arcanist."
+  },
+  {
+   "tribe": "Mechs",
+   "name": "Mechs - Volumizer",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Utility Drone",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Drakkari Enchanter",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Conveyor Construct",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Resourceful Robot",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Spark Snapper",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Kelp Keeper",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Auto Accelerator",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Auto Reveille",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 3,
+   "rank": 1,
+   "summary": "Attach Magnetics to scale end of turn",
+   "commit": "Early Volumizer generation (Conveyor Construct) + Utility Drone",
+   "enablers": "Volumizer generation (Conveyor Construct)",
+   "strategy": "Generate Volumizers, starting with Resourceful Robot or reborn Conveyor Construct. Another option is Auto Accelerator + Brann Bronzebeard + Kelp Keeper. Play early volumizers for economy to hit Utility Drone which is your main payoff. Then, add Drakkari Enchanter to scale with the Volumizers you're attaching."
+  },
+  {
+   "tribe": "Murlocs",
+   "name": "Murlocs - Tidecaller",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Choral Mrrrglr",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Diremuck Forager",
+     "tavern_tier": 3
+    },
+    {
+     "name": "Magicfin Mycologist",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Balinda Stonehearth",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Shamanic Tidecaller",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Bile Spitter",
+     "tavern_tier": 5
+    }
+   ],
+   "difficulty": 2,
+   "rank": 2,
+   "summary": "Play spells to scale Murlocs.",
+   "commit": "Brann Bronzebeard + lots of economy + Shamanic Tidecaller",
+   "enablers": "Brann Bronzebeard; Shamanic Tidecaller",
+   "strategy": "First, have a ton of economy, typically starting from golden Brann Bronzebeard or Brann + Magicfin Mycologist, remembering premium economy spells such as Cloning Conch or Battlecry Discovery. Then, your payoff card for all that economy is Shamanic Tidecaller. Paired with Balinda Stonehearth, play as many spells on the tidecaller as possible, which could be bloodgems or Iron Groundskeeper spells. Scale premium murlocs in hand such as Bile Spitter and Expert Aviator so you can summon them and also Choral Mrrrglr can capture all of the stats of the murlocs in your hand."
+  },
+  {
+   "tribe": "Dragons",
+   "name": "Dragons - Battlecries",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Persistent Poet",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Draconic Warden",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Kelp Keeper",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Heroic Broodmother",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Brann Bronzebeard",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Kalecgos, Arcane Aspect",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Bronze Timewalker",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Nadina the Red",
+     "tavern_tier": 6
+    }
+   ],
+   "difficulty": 2,
+   "rank": 4,
+   "summary": "Cycle battlecries to scale dragons",
+   "commit": "Kalecgos, Arcane Aspect + Brann Bronzebeard",
+   "enablers": "Brann Bronzebeard; Bronze Timewalker",
+   "strategy": "Brann Bronzebeard + Kalecgos, Arcane Aspect gives all of your dragons +4/4 every single battlecry you play. You want to trigger as many battlecries as possible. After you have your setup, cycle only PREMIUM battlecries, such as Tavern Tempest, Refreshing Anomaly, Shell Collector or Draconic Warden. If Kelp Keeper is in the game, leave it on the board to proc a premium battlecry every turn, preferably Draconic Warden. The highest cap is to find as many double attack spell every turn, and permanently double the attack of Heroic Broodmother every turn with the help of Persistent Poet. Additionally, permanently attach divine shield to your dragons with Nadina, The Red."
+  },
+  {
+   "tribe": "Beasts",
+   "name": "Beasts - Summons",
+   "tier": 3,
+   "core": [
+    {
+     "name": "Titus Rivendare",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Banana Slamma",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Sewer Lord",
+     "tavern_tier": 5
+    },
+    {
+     "name": "Headhunter Gryphon",
+     "tavern_tier": 4
+    },
+    {
+     "name": "Deathstrider",
+     "tavern_tier": 6
+    },
+    {
+     "name": "Goldrinn, the Great Wolf",
+     "tavern_tier": 5
+    }
+   ],
+   "addons": [
+    {
+     "name": "Lurking Lionfish",
+     "tavern_tier": 2
+    }
+   ],
+   "difficulty": 2,
+   "rank": 4,
+   "summary": "Scale summoned beasts in combat",
+   "commit": "Headhunter Gryphon + Deathstrider + Goldrinn, the Great Wolf",
+   "enablers": "Headhunter Gryphon",
+   "strategy": "First, have Headhunter Gryphon in the midgame to start generating many beasts and along the way, generate the core pieces to this comp. Then, proc Goldrinn, the Great Wolf during shop phase with the help of Deathstrider. Titus Rivendare also doubles the effectiveness of this strategy. Force your Gryphon to attack using Lurking Lionfish activate or cycling Snarky Shark. Best case is when you chain shop attacks by generating more Lionfish and Sharks. Then, use Sewer Lord and Banana Slamma to benefit from the aura from Goldrinn and summon huge attack beasts."
+  }
+ ]
+}
