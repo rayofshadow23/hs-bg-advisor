@@ -9,7 +9,9 @@ Tesseract e suggerisce la mossa a terminale. **Non invia mai tap**: osserva e ba
 3. Database carte: `cards.json` (279 carte) piu' le illustrazioni 256x256 in `data/card_art/<id>.jpg`
    (oppure in una cartella indicata da `$HS_BG_CARD_ART`). `python tools/build_card_db.py` li rigenera da
    HearthstoneJSON (serve la rete, una volta per stagione). Senza illustrazioni i minion compaiono come "?".
-4. `python main.py` durante una partita di Battlegrounds (`--serial` se hai piu' dispositivi).
+4. Avvia l'advisor:
+   - `python main.py`: output solo a riga di comando sul terminale.
+   - `python main.py --gui`: **overlay visivo a video** con finestra grafica che mostra lo streaming del gioco ed evidenzia direttamente sullo schermo i minion da comprare (core, add-on, triple), il tasto taverna e l'HUD di stato.
 
 Il telefono deve essere 20:9 in orizzontale: `capture.py` porta ogni frame a 2000x900 e le coordinate
 in `vision/regions.yaml` sono calibrate su quella risoluzione. Per verificarle su un tuo screenshot:
@@ -43,7 +45,7 @@ core e add-on). Per aggiornarlo a ogni patch: esporta la pagina in markdown e la
 (peso pieno) o add-on (meta') di una comp forte, o di una comp gia' avviata sul board.
 
 ## Test
-`pytest` (27 test, solo la cartella `tests/`; i test OCR si saltano se `tesseract` non e' installato).
+`pytest` (29 test, solo la cartella `tests/`; i test OCR si saltano se `tesseract` non e' installato).
 
 ## Strumenti
 - `tools/calibrate.py shot.png`: overlay delle regioni e delle carte individuate.

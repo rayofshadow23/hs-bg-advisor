@@ -1,13 +1,26 @@
 """Euristiche v1 per i consigli in fase di acquisto. Solo suggerimenti: nessun input al telefono."""
 import json
 from collections import Counter
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 
 COMPS_PATH = Path(__file__).resolve().parent / "data" / "comps.json"
 # Peso della comp in base al tier HSReplay (1 = migliore); le carte add-on pesano la meta' dei core.
 TIER_WEIGHT = {1: 3, 2: 2, 3: 1}
 ADDON_FACTOR = 0.5
 MIN_SCORE = 2  # sotto questa soglia la carta non viene segnalata
+
+
+@dataclass
+class Tip:
+    text: str
+    action: str = "INFO"  # "BUY", "UPGRADE", "ROLL", "HOLD", "INFO"
+    card_index: Optional[int] = None
+    card_name: Optional[str] = None
+    role: str = ""  # "core", "add-on", "triple", "tribe", "tier"
+    score: float = 0.0
+    comp_name: str = ""
 
 
 def load_comps(path=COMPS_PATH):
@@ -25,8 +38,8 @@ def _norm(name):
     return name.strip().lower()
 
 
-def key_card_tips(state, comps=None):
-    """Segnala le carte dello shop che servono a una comp HSReplay.
+def structured_key_card_tips(state, comps=None):
+    """Segnala le carte dello shop che servono a una comp HSReplay in formato strutturato.
 
     Punteggio = peso del tier della comp (x0.5 se la carta e' solo add-on)
                 + carte core gia' sul board (1 ciascuna) + add-on gia' sul board (0.5 ciascuna).
@@ -34,7 +47,7 @@ def key_card_tips(state, comps=None):
     comps = COMPS if comps is None else comps
     board = {_norm(m.name) for m in state.board if m.name != "?"}
     tips = []
-    for m in state.shop:
+    for idx, m in enumerate(state.shop):
         if m.name == "?":
             continue
         name = _norm(m.name)
@@ -54,8 +67,21 @@ def key_card_tips(state, comps=None):
                 best = (score, c, role, have_core + have_add)
         if best and best[0] >= MIN_SCORE:
             score, c, role, have = best
-            tips.append((score, f"{m.name}: {role} di {c['name']} (Tier {c['tier']}, ne hai {have} sul board)."))
-    return [t for _, t in sorted(tips, key=lambda x: -x[0])]
+            tips.append(Tip(
+                text=f"{m.name}: {role} di {c['name']} (Tier {c['tier']}, ne hai {have} sul board).",
+                action="BUY",
+                card_index=idx,
+                card_name=m.name,
+                role=role,
+                score=score,
+                comp_name=c["name"]
+            ))
+    return sorted(tips, key=lambda x: -x.score)
+
+
+def key_card_tips(state, comps=None):
+    """Ritorna la lista di consigli testuali per le carte chiave (retrocompatibilita')."""
+    return [t.text for t in structured_key_card_tips(state, comps)]
 
 
 # Costo base per salire al tier successivo (scende di 1 ogni turno senza salire; qui usiamo il massimo)
@@ -72,10 +98,11 @@ def _target_tier(turn):
     return target
 
 
-def advise(state):
-    """Ritorna una lista di stringhe con i consigli, dal piu' importante."""
+def structured_advise(state):
+    """Ritorna una lista di oggetti Tip con dettagli per rendering e automazioni."""
     if state.phase != "recruit":
-        return ["In attesa della fase di acquisto..." if state.phase != "combat" else "Combattimento in corso."]
+        msg = "In attesa della fase di acquisto..." if state.phase != "combat" else "Combattimento in corso."
+        return [Tip(text=msg, action="INFO")]
 
     tips = []
     gold = state.gold or 0
@@ -83,34 +110,65 @@ def advise(state):
 
     # 1. Triple: due copie sul board + una nello shop
     board_names = Counter(m.name for m in state.board if m.name != "?")
-    for m in state.shop:
+    for idx, m in enumerate(state.shop):
         if m.name != "?" and board_names.get(m.name, 0) >= 2:
-            tips.append(f"Compra {m.name}: completa un triplo.")
+            tips.append(Tip(
+                text=f"Compra {m.name}: completa un triplo.",
+                action="BUY",
+                card_index=idx,
+                card_name=m.name,
+                role="triple",
+                score=10.0
+            ))
 
     # 1b. Carte chiave delle comp piu' forti
-    tips.extend(key_card_tips(state))
+    tips.extend(structured_key_card_tips(state))
 
     # 2. Salita di tier
-    # Costo letto dallo schermo se disponibile (e' gia' scontato); altrimenti il costo pieno, con 1 oro di margine
     cost, margin = (state.upgrade_cost, 0) if state.upgrade_cost else (UPGRADE_BASE_COST.get(tier), 1)
     if cost is not None and tier < _target_tier(state.turn) and gold >= cost - margin:
-        tips.append(f"Sali alla taverna {tier + 1} (sei indietro rispetto al turno {state.turn}).")
+        tips.append(Tip(
+            text=f"Sali alla taverna {tier + 1} (sei indietro rispetto al turno {state.turn}).",
+            action="UPGRADE",
+            role="tier",
+            score=4.0
+        ))
 
     # 3. Sinergie di tribu'
     tribes = Counter(m.tribe for m in state.board if m.tribe)
     if tribes:
         main_tribe, n = tribes.most_common(1)[0]
-        for m in state.shop:
+        for idx, m in enumerate(state.shop):
             if m.tribe == main_tribe and n >= 2:
-                tips.append(f"{m.name} e' della tua tribu' principale ({main_tribe}).")
+                tips.append(Tip(
+                    text=f"{m.name} e' della tua tribu' principale ({main_tribe}).",
+                    action="BUY",
+                    card_index=idx,
+                    card_name=m.name,
+                    role="tribe",
+                    score=2.0
+                ))
 
     # 4. Oro rimasto
     if gold >= 3 and not tips:
-        high = max(state.shop, key=lambda m: m.tier, default=None)
-        if high and high.name != "?":
-            tips.append(f"Valuta {high.name} (tier {high.tier}) oppure fai roll.")
+        valid_shop = [(i, m) for i, m in enumerate(state.shop) if m.name != "?"]
+        if valid_shop:
+            high_idx, high = max(valid_shop, key=lambda x: x[1].tier)
+            tips.append(Tip(
+                text=f"Valuta {high.name} (tier {high.tier}) oppure fai roll.",
+                action="BUY",
+                card_index=high_idx,
+                card_name=high.name,
+                role="tier",
+                score=1.0
+            ))
         else:
-            tips.append("Fai roll dello shop o congela se ci sono buoni minion.")
+            tips.append(Tip(text="Fai roll dello shop o congela se ci sono buoni minion.", action="ROLL"))
     if gold == 0:
-        tips.append("Oro finito: riordina il board e termina il turno.")
-    return tips or ["Nessun consiglio forte: usa l'oro per roll o acquisto."]
+        tips.append(Tip(text="Oro finito: riordina il board e termina il turno.", action="HOLD"))
+    return tips or [Tip(text="Nessun consiglio forte: usa l'oro per roll o acquisto.", action="INFO")]
+
+
+def advise(state):
+    """Ritorna una lista di stringhe con i consigli, dal piu' importante (retrocompatibilita')."""
+    return [t.text for t in structured_advise(state)]

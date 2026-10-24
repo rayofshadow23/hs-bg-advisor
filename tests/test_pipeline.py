@@ -252,3 +252,28 @@ def test_read_number_if_tesseract_available():
     img = np.zeros((60, 120, 3), np.uint8)
     cv2.putText(img, "7", (35, 48), cv2.FONT_HERSHEY_SIMPLEX, 1.8, (255, 255, 255), 4)
     assert read_number(img) == 7
+
+
+def test_structured_advisor():
+    st = GameState(phase="recruit", gold=6, tavern_tier=1, turn=4,
+                   shop=[Minion("Foo", 1, "Beast")],
+                   board=[Minion("Foo", 1, "Beast"), Minion("Foo", 1, "Beast")])
+    tips = advisor.structured_advise(st)
+    assert any(t.action == "BUY" and t.role == "triple" and t.card_index == 0 for t in tips)
+    assert any(t.action == "UPGRADE" for t in tips)
+
+
+def test_renderer_draw_overlay():
+    from vision.renderer import draw_overlay
+    r = load_regions()
+    frame = np.zeros((r["base_size"][1], r["base_size"][0], 3), np.uint8)
+    st = GameState(phase="recruit", gold=5, tavern_tier=2, turn=3,
+                   shop_rects=[[850, 282, 104, 100]],
+                   shop=[Minion("Test", 2)])
+    tips = [advisor.Tip(text="Compra Test", action="BUY", card_index=0, role="core", comp_name="TestComp")]
+    out = draw_overlay(frame, st, tips, r)
+    assert out.shape == frame.shape
+    assert out.dtype == frame.dtype
+    # Verifica che il rendering abbia modificato i pixel dell'overlay (non piu' tutti neri)
+    assert out.sum() > 0
+

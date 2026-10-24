@@ -25,6 +25,8 @@ class GameState:
     turn: Optional[int] = None          # non e' sullo schermo: vedi TurnTracker
     shop: list = field(default_factory=list)
     board: list = field(default_factory=list)
+    shop_rects: list = field(default_factory=list)
+    board_rects: list = field(default_factory=list)
 
     def is_plausible(self):
         """Controlli di coerenza per scartare letture OCR rumorose."""
