@@ -4,12 +4,14 @@ Assistente per Hearthstone Battlegrounds: cattura lo schermo del telefono Androi
 
 **Non invia mai tap o comandi di gioco**: si limita a osservare e consigliare.
 
+![Hearthstone BG Advisor Overlay - Turno 5](docs/images/preview_turn5.jpg)
+
 ---
 
 ## Funzionalità Principali
 
 * **Interfaccia Grafica a Video (`--gui`)**: 
-  * Finestra ridimensionabile in tempo reale che proietta lo streaming del gioco.
+  * Finestra ridimensionabile in tempo reale che proietta lo streaming del gioco catturato dal telefono.
   * **Evidenziazione visiva delle carte dello shop** con box colorati, aura e badge:
     * `3x TRIPLA` (oro brillante) per le triple completabili.
     * `★ CORE` (verde smeraldo) con nome della comp per le carte chiave.
@@ -17,6 +19,9 @@ Assistente per Hearthstone Battlegrounds: cattura lo schermo del telefono Androi
     * `SINERGIA` (arancione) per carte della tribù principale.
   * **Indicatori Taverna & Azioni**: freccia verde `⬆️ SALI TAVERNA`, indicatore `❄️ FREEZE` e `🎲 ROLL`.
   * **Barra HUD Superiore**: turno, fase, oro, livello taverna, salute/armatura e consiglio principale sintetico.
+
+![Hearthstone BG Advisor Overlay - Turno 4](docs/images/preview_turn4.jpg)
+
 * **Motore Strategico Basato sulle Guide di Jeefhs**:
   * **Curva Standard (Turni 1..5)**:
     * *Turno 1 (3 oro)*: priorità a minion di economia/token da conservare per il Turno 3; divieto assoluto di roll.
