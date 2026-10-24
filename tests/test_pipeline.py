@@ -293,3 +293,19 @@ def test_turn2_always_upgrades_tavern():
     assert not any("Turno 2: fai sempre l'upgrade" in t.text for t in tips_upgraded)
 
 
+def test_turn5_upgrades_tavern():
+    # Al turno 5 con 7 oro e taverna al tier 2 l'upgrade a taverna 3 e' prioritario (priorità 14.0)
+    st = GameState(phase="recruit", gold=7, max_gold=7, tavern_tier=2, turn=5,
+                   shop=[Minion("Felboar", 5)])
+    tips = advisor.structured_advise(st)
+    assert tips[0].action == "UPGRADE"
+    assert "Turno 5" in tips[0].text
+    assert "upgrade alla taverna 3" in tips[0].text
+
+    # Se invece la taverna e' gia' a tier 3, non deve suggerirlo di nuovo
+    st_upgraded = GameState(phase="recruit", gold=2, max_gold=7, tavern_tier=3, turn=5)
+    tips_upgraded = advisor.structured_advise(st_upgraded)
+    assert not any("Turno 5: fai l'upgrade" in t.text for t in tips_upgraded)
+
+
+

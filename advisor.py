@@ -108,7 +108,8 @@ def structured_advise(state):
     gold = state.gold or 0
     tier = state.tavern_tier or 1
 
-    # 0. Regola fondamentale Turno 2: si fa SEMPRE l'upgrade della taverna al Tier 2 (costo 4 oro)
+    # 0. Regole di curva standard della taverna:
+    # - Turno 2 (4 oro): upgrade SEMPRE al Tier 2 (costo 4 oro)
     is_turn_2 = (state.turn == 2) or (state.turn is None and state.max_gold == 4)
     if is_turn_2 and tier == 1 and gold >= (state.upgrade_cost or 4):
         tips.append(Tip(
@@ -116,6 +117,17 @@ def structured_advise(state):
             action="UPGRADE",
             role="tier",
             score=15.0
+        ))
+
+    # - Turno 5 (7 oro): upgrade alla taverna 3
+    is_turn_5 = (state.turn == 5) or (state.turn is None and state.max_gold == 7)
+    upgrade_to_3_cost = state.upgrade_cost if state.upgrade_cost is not None else 5
+    if is_turn_5 and tier <= 2 and gold >= upgrade_to_3_cost:
+        tips.append(Tip(
+            text="Turno 5: fai l'upgrade alla taverna 3 (curva standard a 7 oro).",
+            action="UPGRADE",
+            role="tier",
+            score=14.0
         ))
 
     # 1. Triple: due copie sul board + una nello shop
