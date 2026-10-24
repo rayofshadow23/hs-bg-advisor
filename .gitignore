@@ -31,5 +31,4 @@ htmlcov/
 Thumbs.db
 
 # Card illustrations (downloaded dynamically via tools/build_card_db.py)
-data/card_art/*
 !data/card_art/.gitkeep
