@@ -18,12 +18,14 @@ def read_cards(frame, rects, reader, max_tier=None, regions=None, kind="board"):
     """Riconosce le carte (nome, tier, tribu', attacco/vita); se regions e' dato, salta quelle dello shop
     che non sono minion (incantesimi). kind: 'shop' | 'board' (posizione delle cifre sotto la carta)."""
     out = []
-    for rect in rects:
+    # sul board le carte sono tutte minion: le cifre si leggono sull'intera riga (vedi read_strip_stats)
+    strip = nv.read_strip_stats(frame, rects, kind) if kind == "board" else None
+    for i, rect in enumerate(rects):
         if regions is not None and not mv.is_minion_card(frame, rect, regions):
             out.append(Minion("(incantesimo)", is_spell=True))
             continue
         card, _ = reader.read(crop(frame, rect), max_tier=max_tier)
-        att, hp = nv.read_minion_stats(frame, rect, kind)
+        att, hp = strip[i] if strip else nv.read_minion_stats(frame, rect, kind)
         out.append(Minion(card["name"], card["tier"], card.get("tribe", ""), att, hp) if card
                    else Minion(attack=att, health=hp))
     return out

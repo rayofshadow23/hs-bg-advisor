@@ -378,3 +378,20 @@ def test_minion_stats_three_digits_board6():
     rects = [[c - 52, 579, 104, 100] for c in (102, 274, 447, 619, 792, 964)]
     assert [nv.read_minion_stats(f, rc, "board") for rc in rects] == [
         (152, 131), (8, 5), (17, 14), (7, 6), (394, 279), (48, 41)]
+
+
+@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+def test_strip_stats_independent_of_card_centers():
+    """read_strip_stats abbina le cifre in sequenza (2 numeri per carta): regge centri sfasati di +-25 px,
+    come capita con 6-7 minion quando il passo reale e' piu' stretto di quello della griglia."""
+    f = cv2.imread(str(FIXTURES / "board6_big_numbers.png"))
+    expected = [(152, 131), (8, 5), (17, 14), (7, 6), (394, 279), (48, 41)]
+    for shift in (-25, 0, 25):
+        rects = [[c - 52 + shift, 579, 104, 100] for c in (102, 274, 447, 619, 792, 964)]
+        assert nv.read_strip_stats(f, rects, "board") == expected
+
+
+@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+def test_strip_stats_late_frame_ignores_art_blob():
+    f, r = real_frame("late_recruit.png"), load_regions()
+    assert nv.read_strip_stats(f, mv.locate_board(f, r), "board") == [(39, 31), (18, 21), (7, 23), (4, 5)]

@@ -188,3 +188,67 @@ def read_minion_stats(frame, rect, kind="board"):
     def num(chars):
         return int("".join(chars)) if chars and None not in chars else None
     return num(sides["att"]), num(sides["hp"])
+
+
+STAT_GROUP_PITCH = 1.05    # tra i centri di due cifre dello stesso numero (in altezze di cifra): oltre e' un altro numero
+
+
+def _glyphs_in(win):
+    """Glifi-cifra di una finestra (x, larghezza, altezza, maschera 4x) ordinati da sinistra; cifre fuse divise."""
+    mask = cv2.resize(_stat_mask(win), None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
+    n, _, stats, _ = cv2.connectedComponentsWithStats(mask)
+    out = []
+    for gx, gy, gw, gh, area in stats[1:]:
+        if not (STAT_GLYPH_H[0] * 4 <= gh <= STAT_GLYPH_H[1] * 4 and STAT_GLYPH_W[0] * 4 <= gw <= STAT_GLYPH_W[1] * 4):
+            continue
+        if area < 0.25 * gw * gh or gx <= 1 or gx + gw >= mask.shape[1] - 1:
+            continue
+        out.extend(_split_wide(gx, gy, gw, gh, mask))
+    return sorted(out), mask
+
+
+def _read_glyph(mask, g):
+    gx, gy, gw, gh = g
+    digit = mask[gy:gy + gh, gx:gx + gw]
+    ch = _ocr(cv2.copyMakeBorder(255 - digit, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=255), 8)
+    if ch == "" and _looks_like_zero(digit):
+        ch = "0"
+    if len(ch) == 1 and ch.isdigit():
+        return ch
+    # macchia quadrata e illeggibile (arte chiara fra le due cifre): non e' una cifra, si ignora
+    return "" if 0.9 <= gw / gh <= 1.4 else None
+
+
+def read_strip_stats(frame, rects, kind="board"):
+    """[(attacco, vita), ...] per tutte le carte di una riga, indipendente dalla posizione esatta dei centri.
+
+    Le cifre di tutta la riga si raggruppano in numeri (una cifra dello stesso numero dista circa un'altezza
+    di cifra dalla precedente, un altro numero molto di piu'). Con N carte ci sono 2N numeri, in ordine
+    attacco, vita, attacco, vita...: si abbinano in sequenza. Con il board a 6-7 carte il passo tra le carte
+    cambia e i centri della griglia sono sfasati: questo evita di dipendere da loro. Se i numeri non sono 2N
+    (carta senza statistiche, cifra persa) si torna alla lettura carta per carta."""
+    if not rects:
+        return []
+    cy = rects[0][1] + STAT_DY[kind]
+    x0 = max(0, min(r[0] for r in rects) - 90)
+    win = frame[max(0, cy - 22):cy + 22, x0:max(r[0] for r in rects) + 200]
+    if win.size == 0:
+        return [(None, None)] * len(rects)
+    glyphs, mask = _glyphs_in(win)
+    groups = []
+    for g in glyphs:
+        if groups:
+            prev = groups[-1][-1]
+            pitch = (g[0] + g[2] / 2) - (prev[0] + prev[2] / 2)
+            if pitch <= STAT_GROUP_PITCH * (g[3] + prev[3]) / 2:
+                groups[-1].append(g)
+                continue
+        groups.append([g])
+    if len(groups) != 2 * len(rects):
+        return [read_minion_stats(frame, r, kind) for r in rects]
+    nums = []
+    for grp in groups:
+        chars = [c for c in (_read_glyph(mask, g) for g in grp) if c != ""]
+        nums.append(int("".join(chars)) if chars and None not in chars else None)
+    return list(zip(nums[0::2], nums[1::2]))
