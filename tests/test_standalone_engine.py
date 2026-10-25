@@ -89,3 +89,32 @@ def test_global_bridge_functions():
     assert "tips" in data
     assert data["gold"] == 0
     assert data["max_gold"] == 3
+
+
+def test_rgba_stride_with_short_last_row():
+    """ImageReader puo' consegnare un buffer senza il padding dell'ultima riga."""
+    bgr = cv2.imread(str(FIXTURES / "turn1_recruit.png"))
+    h, w = bgr.shape[:2]
+    rgba = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGBA)
+    stride = w * 4 + 64
+    padded = np.zeros((h, stride), dtype=np.uint8)
+    padded[:, :w * 4] = rgba.reshape((h, w * 4))
+    short = padded.tobytes()[: (h - 1) * stride + w * 4]  # ultima riga senza padding
+    data = json.loads(StandaloneEngine().process_frame_rgba_bytes(short, w, h, row_stride=stride, force_update=True))
+    assert data["phase"] == "recruit" and data["max_gold"] == 3
+
+
+def test_signed_byte_array_like_java():
+    """Un byte[] Java ha valori con segno (-128..127): la conversione deve ridare gli stessi pixel."""
+    from standalone_engine import _as_uint8
+
+    class JavaLikeArray:  # senza buffer protocol, come se Chaquopy non lo esponesse
+        def __init__(self, data):
+            self.data = [b - 256 if b > 127 else b for b in data]
+
+        def __iter__(self):
+            return iter(self.data)
+
+    raw = bytes(range(256))
+    assert _as_uint8(JavaLikeArray(raw)).tobytes() == raw
+    assert _as_uint8(raw).tobytes() == raw

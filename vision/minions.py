@@ -17,9 +17,7 @@ import os
 from pathlib import Path
 
 import cv2
-import imagehash
 import numpy as np
-from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "cards.json"
@@ -105,6 +103,7 @@ def load_db(path=DB_PATH):
     for c in cards:
         if "hash" in c:
             try:
+                import imagehash  # import tardivo: sul telefono (Chaquopy) serve solo il riconoscimento per template
                 c["_hash"] = imagehash.hex_to_hash(c["hash"])
             except Exception:
                 pass
@@ -116,6 +115,8 @@ def load_db(path=DB_PATH):
 
 
 def hash_crop(crop_bgr):
+    import imagehash
+    from PIL import Image
     rgb = cv2.cvtColor(crop_bgr, cv2.COLOR_BGR2RGB)
     return imagehash.phash(Image.fromarray(rgb), hash_size=16)
 

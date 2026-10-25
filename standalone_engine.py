@@ -24,6 +24,15 @@ from vision.phase import detect_phase
 logger = logging.getLogger("StandaloneEngine")
 
 
+def _as_uint8(buf) -> np.ndarray:
+    """Buffer di byte -> array uint8. Accetta bytes/bytearray/memoryview e, su Android, un byte[] Java
+    (jarray di Chaquopy): se non espone il buffer protocol si ripiega sulla conversione via int8."""
+    try:
+        return np.frombuffer(buf, dtype=np.uint8)
+    except (TypeError, ValueError):
+        return np.asarray(list(buf), dtype=np.int8).view(np.uint8)
+
+
 class StandaloneEngine:
     """Motore stateful per l'analisi dei frame in tempo reale."""
 
@@ -142,12 +151,16 @@ class StandaloneEngine:
         force_update: bool = False,
     ) -> str:
         """Riceve un buffer byte RGBA (es. ImageReader Android) e restituisce il JSON."""
-        # Se c'è row padding (stride > width * 4)
+        buf = _as_uint8(rgba_bytes)
         if row_stride > 0 and row_stride != width * 4:
-            arr = np.frombuffer(rgba_bytes, dtype=np.uint8).reshape((height, row_stride))
-            arr = arr[:, :width * 4].reshape((height, width, 4))
+            # ImageReader: l'ultima riga spesso non ha il padding, quindi il buffer puo' essere piu' corto di
+            # height * row_stride. Si completa con zeri prima di rimodellare.
+            need = height * row_stride
+            if buf.size < need:
+                buf = np.concatenate([buf, np.zeros(need - buf.size, np.uint8)])
+            arr = buf[:need].reshape((height, row_stride))[:, :width * 4].reshape((height, width, 4))
         else:
-            arr = np.frombuffer(rgba_bytes, dtype=np.uint8).reshape((height, width, 4))
+            arr = buf[:height * width * 4].reshape((height, width, 4))
 
         frame_bgr = cv2.cvtColor(arr, cv2.COLOR_RGBA2BGR)
         return self.process_frame_bgr(frame_bgr, force_update=force_update)

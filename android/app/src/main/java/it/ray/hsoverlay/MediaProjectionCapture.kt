@@ -49,6 +49,13 @@ class MediaProjectionCapture(
             }, handler)
         }
 
+        // Android 14+: la callback va registrata PRIMA di createVirtualDisplay, altrimenti lancia IllegalStateException
+        mediaProjection.registerCallback(object : MediaProjection.Callback() {
+            override fun onStop() {
+                isRunning = false
+            }
+        }, handler)
+
         virtualDisplay = mediaProjection.createVirtualDisplay(
             "HS-BG-Advisor-Display",
             width,
