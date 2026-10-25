@@ -18,8 +18,9 @@ PALETTE = {
     "roll": (220, 130, 240),    # Viola / magenta chiaro per roll
     "freeze": (255, 220, 100),  # Ciano glaciale per freeze
     "default": (70, 220, 70),   # Verde standard
-    "dark_bg": (20, 22, 28),    # Sfondo scuro per badge e banner
-    "text_white": (255, 255, 255),
+    "dark_bg": (18, 20, 26),    # Sfondo scuro per badge e banner
+    "border": (70, 80, 105),    # Bordo pannelli
+    "text_white": (245, 245, 245),
     "text_dark": (15, 15, 15),
 }
 
@@ -39,6 +40,31 @@ def _draw_translucent_rect(
     overlay = img[y1:y2, x1:x2].copy()
     cv2.rectangle(overlay, (0, 0), (x2 - x1, y2 - y1), color, -1)
     cv2.addWeighted(overlay, alpha, img[y1:y2, x1:x2], 1.0 - alpha, 0, img[y1:y2, x1:x2])
+
+
+def _wrap_text(
+    text: str,
+    font: int,
+    scale: float,
+    thickness: int,
+    max_width: int,
+) -> List[str]:
+    """Spezza il testo in righe senza troncare le parole per rimanere entro max_width."""
+    words = text.split(" ")
+    lines = []
+    current_line = []
+    for word in words:
+        test_line = " ".join(current_line + [word])
+        (tw, _), _ = cv2.getTextSize(test_line, font, scale, thickness)
+        if tw <= max_width:
+            current_line.append(word)
+        else:
+            if current_line:
+                lines.append(" ".join(current_line))
+            current_line = [word]
+    if current_line:
+        lines.append(" ".join(current_line))
+    return lines
 
 
 def _draw_badge(
@@ -67,20 +93,20 @@ def _draw_badge(
     cv2.putText(img, text, (cx - tw // 2, y + baseline // 2), font, scale, text_color, thickness, cv2.LINE_AA)
 
 
-def _draw_hud(img: np.ndarray, state: GameState, top_tip: Optional[Tip]) -> None:
-    """Disegna la barra di stato superiore (HUD) con turno, oro, taverna, vita e consiglio principale."""
+def _draw_hud(img: np.ndarray, state: GameState) -> None:
+    """Disegna la barra di stato superiore (HUD) con turno, fase, oro, taverna, vita e armatura."""
     w = img.shape[1]
-    hud_h = 48
-    _draw_translucent_rect(img, (0, 0, w, hud_h), PALETTE["dark_bg"], alpha=0.85)
-    cv2.line(img, (0, hud_h), (w, hud_h), (80, 90, 110), 1, cv2.LINE_AA)
+    hud_h = 44
+    _draw_translucent_rect(img, (0, 0, w, hud_h), PALETTE["dark_bg"], alpha=0.88)
+    cv2.line(img, (0, hud_h), (w, hud_h), PALETTE["border"], 1, cv2.LINE_AA)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
     # Informazioni a sinistra: Turno, Fase
     turn_str = f"TURNO {state.turn}" if state.turn else "TURNO -"
     phase_str = state.phase.upper()
     phase_col = (80, 230, 80) if state.phase == "recruit" else (70, 70, 240)
-    cv2.putText(img, turn_str, (18, 30), font, 0.7, (240, 240, 240), 2, cv2.LINE_AA)
-    cv2.putText(img, f"[{phase_str}]", (160, 30), font, 0.65, phase_col, 2, cv2.LINE_AA)
+    cv2.putText(img, turn_str, (18, 30), font, 0.72, (240, 240, 240), 2, cv2.LINE_AA)
+    cv2.putText(img, f"[{phase_str}]", (168, 30), font, 0.65, phase_col, 2, cv2.LINE_AA)
 
     # Informazioni al centro: Oro, Taverna, Vita
     gold_str = f"ORO: {state.gold if state.gold is not None else '?'}/{state.max_gold if state.max_gold is not None else '?'}"
@@ -89,17 +115,96 @@ def _draw_hud(img: np.ndarray, state: GameState, top_tip: Optional[Tip]) -> None
     if state.hero_armor:
         health_str += f" (+{state.hero_armor})"
 
-    stats_str = f"{gold_str}   |   {tavern_str}   |   {health_str}"
-    cv2.putText(img, stats_str, (340, 30), font, 0.65, (230, 230, 180), 2, cv2.LINE_AA)
+    stats_str = f"{gold_str}    |    {tavern_str}    |    {health_str}"
+    cv2.putText(img, stats_str, (330, 30), font, 0.65, (230, 230, 180), 2, cv2.LINE_AA)
 
-    # Consiglio principale sintetico a destra
-    if top_tip:
-        rec_color = PALETTE.get(top_tip.role, PALETTE["default"])
-        # Tronca il testo per la barra superiore se troppo lungo
-        display_text = top_tip.text
-        if len(display_text) > 75:
-            display_text = display_text[:72] + "..."
-        cv2.putText(img, f"> {display_text}", (950, 30), font, 0.65, rec_color, 2, cv2.LINE_AA)
+
+def _draw_sidebar_tips(img: np.ndarray, tips: List[Tip]) -> None:
+    """Disegna il pannello dei consigli sulla destra dello schermo, con testi completi a capo senza troncature."""
+    if not tips:
+        return
+
+    x = 1665
+    y = 54
+    w = 325
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    scale = 0.44
+    thickness = 1
+    line_h = 19
+    pad_x = 12
+    max_text_w = w - 2 * pad_x
+
+    # Pre-calcola le righe per ogni consiglio attivo (mostra i primi 4 o 5 più rilevanti)
+    tip_blocks = []
+    total_h = 40  # Header bar
+    for t in tips[:5]:
+        if "Jeef" in t.text or "curva" in t.text.lower():
+            tag = "JEEFHS"
+        elif t.action == "UPGRADE":
+            tag = "TAVERNA"
+        elif t.action == "FREEZE":
+            tag = "FREEZE"
+        elif t.action == "HOLD":
+            tag = "NO ROLL"
+        elif t.action == "BUY":
+            tag = "COMPRA"
+        elif "Posizionamento" in t.text:
+            tag = "POSIZIONE"
+        else:
+            tag = "INFO"
+
+        lines = _wrap_text(t.text, font, scale, thickness, max_text_w)
+        block_h = 16 + len(lines) * line_h + 8
+        tip_blocks.append((tag, lines, t))
+        total_h += block_h
+
+    # Limita l'altezza massima per non uscire dallo schermo
+    total_h = min(total_h, img.shape[0] - y - 15)
+
+    # Disegna sfondo pannello semitrasparente
+    _draw_translucent_rect(img, (x, y, w, total_h), PALETTE["dark_bg"], alpha=0.90)
+    cv2.rectangle(img, (x, y), (x + w, y + total_h), PALETTE["border"], 1, cv2.LINE_AA)
+
+    # Intestazione pannello
+    cv2.line(img, (x, y + 32), (x + w, y + 32), PALETTE["border"], 1, cv2.LINE_AA)
+    cv2.putText(img, "STRATEGIA & JEEFHS", (x + pad_x, y + 22), font, 0.52, (255, 215, 0), 2, cv2.LINE_AA)
+
+    cur_y = y + 48
+    for i, (tag, lines, t) in enumerate(tip_blocks):
+        if cur_y + len(lines) * line_h > y + total_h:
+            break
+
+        # Colore del tag
+        if t.action == "UPGRADE":
+            tag_col = PALETTE["upgrade"]
+        elif t.action == "FREEZE":
+            tag_col = PALETTE["freeze"]
+        elif t.action == "HOLD":
+            tag_col = (0, 140, 255)
+        elif tag == "JEEFHS":
+            tag_col = (250, 190, 50)
+        else:
+            tag_col = PALETTE.get(t.role, PALETTE["default"])
+
+        # Tag pill
+        (tw, _), _ = cv2.getTextSize(tag, font, 0.38, 1)
+        pill_w = tw + 8
+        cv2.rectangle(img, (x + pad_x, cur_y - 12), (x + pad_x + pill_w, cur_y + 4), tag_col, -1)
+        cv2.putText(img, tag, (x + pad_x + 4, cur_y), font, 0.38, (15, 15, 15), 1, cv2.LINE_AA)
+        cur_y += 18
+
+        # Linee di testo del consiglio a capo
+        for line in lines:
+            if cur_y >= y + total_h - 4:
+                break
+            cv2.putText(img, line, (x + pad_x, cur_y), font, scale, PALETTE["text_white"], thickness, cv2.LINE_AA)
+            cur_y += line_h
+
+        cur_y += 6
+        # Divisore sottile tra consigli
+        if i < len(tip_blocks) - 1 and cur_y < y + total_h - 14:
+            cv2.line(img, (x + pad_x, cur_y), (x + w - pad_x, cur_y), (42, 48, 62), 1, cv2.LINE_AA)
+            cur_y += 10
 
 
 def draw_overlay(
@@ -111,11 +216,11 @@ def draw_overlay(
     """Disegna tutti gli elementi grafici dell'advisor sopra una copia del frame."""
     out = frame.copy()
 
-    # 1. Trova il consiglio principale
-    top_tip = tips[0] if tips else None
+    # 1. Barra superiore HUD (turno, fase, oro, taverna, vita)
+    _draw_hud(out, state)
 
-    # 2. Barra superiore HUD
-    _draw_hud(out, state, top_tip)
+    # 2. Pannello laterale destro con i consigli e le strategie di Jeefhs leggibili al 100%
+    _draw_sidebar_tips(out, tips)
 
     # 3. Mappa dei consigli sullo shop per indice carta
     shop_tips_by_idx = {}
