@@ -76,6 +76,9 @@ val syncPython by tasks.registering(Sync::class) {
     into("src/main/python")
 }
 tasks.named("preBuild") { dependsOn(syncPython) }
+// Chaquopy legge src/main/python in mergeXxxPythonSources e generateXxxPythonRequirements: devono aspettare la copia
+tasks.matching { it.name.startsWith("merge") && it.name.endsWith("PythonSources") }
+    .configureEach { dependsOn(syncPython) }
 
 chaquopy {
     defaultConfig {
