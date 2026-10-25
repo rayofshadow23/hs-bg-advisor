@@ -357,3 +357,14 @@ def test_jeef_positioning_rules():
 
 
 
+
+
+# --- statistiche attacco/vita (turno 8, tutte le carte lette a occhio dallo screenshot) ---
+@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+def test_minion_stats_late_frame():
+    f, r = real_frame("late_recruit.png"), load_regions()
+    shop = [nv.read_minion_stats(f, rc, "shop") for rc in mv.locate_shop(f, r)]
+    board = [nv.read_minion_stats(f, rc, "board") for rc in mv.locate_board(f, r)]
+    assert shop[:5] == [(4, 4), (3, 2), (1, 1), (4, 4), (1, 1)]
+    assert shop[5] == (None, None)  # incantesimo: nessuna statistica
+    assert board == [(39, 31), (18, 21), (7, 23), (4, 5)]  # cifre verdi (potenziate) e a due cifre

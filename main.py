@@ -14,15 +14,18 @@ from vision.phase import detect_phase
 from vision.renderer import draw_overlay
 
 
-def read_cards(frame, rects, reader, max_tier=None, regions=None):
-    """Riconosce le carte; se regions e' dato, salta quelle dello shop che non sono minion (incantesimi)."""
+def read_cards(frame, rects, reader, max_tier=None, regions=None, kind="board"):
+    """Riconosce le carte (nome, tier, tribu', attacco/vita); se regions e' dato, salta quelle dello shop
+    che non sono minion (incantesimi). kind: 'shop' | 'board' (posizione delle cifre sotto la carta)."""
     out = []
     for rect in rects:
         if regions is not None and not mv.is_minion_card(frame, rect, regions):
-            out.append(Minion("(incantesimo)"))
+            out.append(Minion("(incantesimo)", is_spell=True))
             continue
         card, _ = reader.read(crop(frame, rect), max_tier=max_tier)
-        out.append(Minion(card["name"], card["tier"], card.get("tribe", "")) if card else Minion())
+        att, hp = nv.read_minion_stats(frame, rect, kind)
+        out.append(Minion(card["name"], card["tier"], card.get("tribe", ""), att, hp) if card
+                   else Minion(attack=att, health=hp))
     return out
 
 
@@ -39,9 +42,9 @@ def read_state(frame, regions, reader):
         st.upgrade_cost = nv.read_region(frame, regions, "upgrade_cost")
         tier = st.tavern_tier  # nel negozio ci sono carte fino al tier della taverna; sul board puo' esserci 1 in piu'
         st.shop_rects = mv.locate_shop(frame, regions)
-        st.shop = read_cards(frame, st.shop_rects, reader, tier, regions)
+        st.shop = read_cards(frame, st.shop_rects, reader, tier, regions, "shop")
         st.board_rects = mv.locate_board(frame, regions)
-        st.board = read_cards(frame, st.board_rects, reader, tier + 1 if tier else None)
+        st.board = read_cards(frame, st.board_rects, reader, tier + 1 if tier else None, kind="board")
     return st
 
 

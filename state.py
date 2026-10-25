@@ -11,6 +11,7 @@ class Minion:
     tribe: str = ""
     attack: Optional[int] = None
     health: Optional[int] = None
+    is_spell: bool = False              # incantesimo della taverna (nello shop, senza goccia della vita)
 
 
 @dataclass
@@ -25,6 +26,8 @@ class GameState:
     turn: Optional[int] = None          # non e' sullo schermo: vedi TurnTracker
     shop: list = field(default_factory=list)
     board: list = field(default_factory=list)
+    hand: list = field(default_factory=list)   # non ancora letta dallo schermo: lista vuota = sconosciuta
+    frozen: Optional[bool] = None              # shop congelato? non ancora letto
     shop_rects: list = field(default_factory=list)
     board_rects: list = field(default_factory=list)
 

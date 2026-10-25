@@ -80,7 +80,7 @@ python main.py --gui --image tests/fixtures/turn4_recruit.png
 
 Il telefono deve essere orientato in **orizzontale (20:9)**:
 * `capture.py` normalizza automaticamente ogni frame a **2000x900**.
-* Le coordinate sono definite e calibrate in [`vision/regions.yaml`](file:///home/ray/hs-bg-advisor/vision/regions.yaml).
+* Le coordinate sono definite e calibrate in [`vision/regions.yaml`](vision/regions.yaml).
 * Per ricalibrare su un tuo screenshot:
   ```bash
   python tools/calibrate.py shot.png --out calibration.png

@@ -114,3 +114,56 @@ def count_stars(crop, min_area=30):
     mask = cv2.inRange(hsv, (15, 120, 170), (34, 255, 255))
     n, _, stats, _ = cv2.connectedComponentsWithStats(mask)
     return int(sum(1 for s in stats[1:] if s[4] >= min_area))
+
+
+# Cifre di attacco (moneta a sinistra) e vita (goccia a destra) sotto ogni carta.
+# Offset rispetto al rettangolo dell'illustrazione (vision.minions): verificati su shop e board del turno 8.
+STAT_DY = {"shop": 122, "board": 129}
+STAT_SPLIT = 56            # i glifi a sinistra di rect.x + 56 sono l'attacco, gli altri la vita
+STAT_GLYPH_H = (28, 44)    # altezza plausibile di una cifra a 2000x900
+STAT_GLYPH_W = (6, 32)
+
+
+def _stat_mask(crop):
+    """Cifre bianche (statistiche base) o verdi (potenziate) col loro contorno scuro."""
+    hsv = cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)
+    return _white_mask(crop, vmin=200) | cv2.inRange(hsv, (45, 190, 170), (80, 255, 255))
+
+
+def read_minion_stats(frame, rect, kind="board"):
+    """(attacco, vita) di una carta, ciascuno None se illeggibile. kind: 'shop' | 'board'.
+
+    Si segmentano i glifi con le componenti connesse, scartando macchie fuori misura (arte chiara,
+    scintille), poi si legge ogni cifra da sola come per l'oro."""
+    x, y, _, _ = rect
+    cy = y + STAT_DY[kind]
+    x0, y0 = max(0, x - 15), max(0, cy - 22)
+    win = frame[y0:cy + 22, x0:x + 137]
+    if win.size == 0:
+        return None, None
+    m1 = _stat_mask(win)
+    m1[:, x + 46 - x0:x + 68 - x0] = 0  # fascia centrale: solo arte della carta, mai cifre
+    mask = cv2.resize(m1, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    n, _, stats, _ = cv2.connectedComponentsWithStats(mask)
+    glyphs = []
+    for gx, gy, gw, gh, area in stats[1:]:
+        if not (STAT_GLYPH_H[0] * 4 <= gh <= STAT_GLYPH_H[1] * 4 and STAT_GLYPH_W[0] * 4 <= gw <= STAT_GLYPH_W[1] * 4):
+            continue
+        if area < 0.25 * gw * gh:  # sottile/frastagliato: non e' una cifra
+            continue
+        glyphs.append((gx, gy, gw, gh))
+    sides = {"att": [], "hp": []}
+    split = (x + STAT_SPLIT - x0) * 4
+    for gx, gy, gw, gh in sorted(glyphs):
+        digit = mask[gy:gy + gh, gx:gx + gw]
+        ch = _ocr(cv2.copyMakeBorder(255 - digit, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=255), 8)
+        if ch == "" and _looks_like_zero(digit):
+            ch = "0"
+        if ch.isdigit() and len(ch) == 1:
+            sides["att" if gx + gw / 2 < split else "hp"].append(ch)
+        else:  # una cifra illeggibile rende inaffidabile tutto il numero di quel lato
+            sides["att" if gx + gw / 2 < split else "hp"].append(None)
+    def num(chars):
+        return int("".join(chars)) if chars and None not in chars else None
+    return num(sides["att"]), num(sides["hp"])
