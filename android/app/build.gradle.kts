@@ -36,20 +36,20 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    sourceSets {
-        getByName("main") {
-            // Include Python source code and assets (cards.json, data, vision/regions.yaml, templates)
-            python.srcDir("../../")
-            // Solo il motore Python: senza queste esclusioni la radice del repo (android/, tests/, docs/, .git)
-            // finirebbe nell'APK, e android/app/build rientrerebbe nei sorgenti a ogni compilazione.
-            python.exclude(
-                "android/**", "tests/**", "docs/**", ".git/**", ".venv/**", ".vscode/**", "tools/**",
-                "**/__pycache__/**", "*.md", "*.png", "*.zip", "*.sh", "pytest.ini", "requirements.txt",
-            )
-        }
-    }
 }
+
+// Chaquopy legge i sorgenti Python da app/src/main/python. Invece di puntare quella cartella alla radice del repo
+// (includerebbe tests/, .git e la cartella android/ stessa) si copia solo il motore prima di ogni compilazione.
+val syncPython by tasks.registering(Sync::class) {
+    from("../..") {
+        include(
+            "*.py", "cards.json", "vision/**", "data/**",
+        )
+        exclude("**/__pycache__/**", "test.py", "main.py", "tools/**", "tests/**", "android/**", ".venv/**")
+    }
+    into("src/main/python")
+}
+tasks.named("preBuild") { dependsOn(syncPython) }
 
 chaquopy {
     defaultConfig {
