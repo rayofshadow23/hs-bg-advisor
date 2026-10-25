@@ -25,7 +25,8 @@ def _noise_card(seed):
 
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
-HAS_TESSERACT = shutil.which("tesseract") is not None
+# Template matching sostituisce Tesseract per l'esecuzione standalone su Android
+HAS_TESSERACT = True
 # Screenshot reali dell'app (fase di acquisto): (file, carte shop, minion board, oro, livello, upgrade, armatura)
 REAL_FRAMES = [
     ("turn1_recruit.png", 3, 1, (0, 3), 1, 5, 17),
@@ -76,7 +77,7 @@ def card_reader():
     return mv.CardReader(db)
 
 
-@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+
 @pytest.mark.parametrize("name", list(EXPECTED_CARDS))
 def test_real_frame_card_names(name, card_reader):
     import main
@@ -114,7 +115,7 @@ def test_board_grid_ignores_stray_cue_and_keeps_missing_one():
     assert len(mv._fit_board(four, g)) == 4
 
 
-@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+
 @pytest.mark.parametrize("name,shop,board,gold,tier,upgrade,armor", REAL_FRAMES)
 def test_real_frame_numbers(name, shop, board, gold, tier, upgrade, armor):
     r, f = load_regions(), real_frame(name)
@@ -130,10 +131,10 @@ def test_combat_frame_phase_and_numbers():
     # il marcatore "Combat" non deve scattare in acquisto, e il pulsante reroll non in combattimento
     for name, *_ in REAL_FRAMES:
         assert detect_phase(real_frame(name), r) == "recruit"
-    if HAS_TESSERACT:
-        assert nv.read_gold(crop(f, r["gold"])) == (0, 9)      # in combattimento il contatore resta visibile
-        assert nv.read_region(f, r, "hero_health") == 30
-        assert nv.read_region(f, r, "hero_armor") == 14
+
+    assert nv.read_gold(crop(f, r["gold"])) == (0, 9)      # in combattimento il contatore resta visibile
+    assert nv.read_region(f, r, "hero_health") == 30
+    assert nv.read_region(f, r, "hero_armor") == 14
     assert nv.count_stars(crop(f, r["tavern_stars"])) == 0      # il badge di Bob non c'e'
 
 
@@ -243,15 +244,20 @@ def test_advisor_other_phases():
     assert advisor.advise(GameState(phase="combat")) == ["Combattimento in corso."]
 
 
-def test_read_number_if_tesseract_available():
-    pytest.importorskip("pytesseract")
-    import shutil
-    if not shutil.which("tesseract"):
-        pytest.skip("tesseract non installato")
-    from vision.numbers import read_number
-    img = np.zeros((60, 120, 3), np.uint8)
-    cv2.putText(img, "7", (35, 48), cv2.FONT_HERSHEY_SIMPLEX, 1.8, (255, 255, 255), 4)
-    assert read_number(img) == 7
+def test_read_number_template_matching():
+    f = real_frame("turn1_recruit.png")
+    r = load_regions()
+    assert nv.read_region(f, r, "upgrade_cost") == 5
+    assert nv.read_region(f, r, "hero_health") == 30
+    assert nv.read_region(f, r, "hero_armor") == 17
+
+
+
+    
+
+
+
+
 
 
 def test_structured_advisor():
@@ -360,7 +366,7 @@ def test_jeef_positioning_rules():
 
 
 # --- statistiche attacco/vita (turno 8, tutte le carte lette a occhio dallo screenshot) ---
-@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+
 def test_minion_stats_late_frame():
     f, r = real_frame("late_recruit.png"), load_regions()
     shop = [nv.read_minion_stats(f, rc, "shop") for rc in mv.locate_shop(f, r)]
@@ -372,7 +378,7 @@ def test_minion_stats_late_frame():
 
 # Board da 6 minion con numeri a 3 cifre (152/131, 394/279): ricostruito da uno screenshot dell'utente
 # (finestra ingrandita e riportata a 2000x900), quindi i rettangoli sono dati a mano, non da locate_board.
-@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+
 def test_minion_stats_three_digits_board6():
     f = cv2.imread(str(FIXTURES / "board6_big_numbers.png"))
     rects = [[c - 52, 579, 104, 100] for c in (102, 274, 447, 619, 792, 964)]
@@ -380,7 +386,7 @@ def test_minion_stats_three_digits_board6():
         (152, 131), (8, 5), (17, 14), (7, 6), (394, 279), (48, 41)]
 
 
-@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+
 def test_strip_stats_independent_of_card_centers():
     """read_strip_stats abbina le cifre in sequenza (2 numeri per carta): regge centri sfasati di +-25 px,
     come capita con 6-7 minion quando il passo reale e' piu' stretto di quello della griglia."""
@@ -391,7 +397,7 @@ def test_strip_stats_independent_of_card_centers():
         assert nv.read_strip_stats(f, rects, "board") == expected
 
 
-@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+
 def test_strip_stats_late_frame_ignores_art_blob():
     f, r = real_frame("late_recruit.png"), load_regions()
     assert nv.read_strip_stats(f, mv.locate_board(f, r), "board") == [(39, 31), (18, 21), (7, 23), (4, 5)]

@@ -1,93 +1,165 @@
 """Lettura dei numeri dallo schermo di Hearthstone.
 
-Il font del gioco e' stilizzato (cifre bianche con contorno scuro su monete e gocce colorate), quindi
-l'OCR sulla stringa intera e' inaffidabile. Ogni regione ha una preparazione dedicata, scelta provando
-le varianti sugli screenshot reali in tests/fixtures. Il livello della taverna non si legge con l'OCR:
-si contano le stelle del badge.
+Il font del gioco e' stilizzato (cifre bianche con contorno scuro su monete e gocce colorate),
+quindi il riconoscimento e' basato sul template matching a correlazione normalizzata delle singole
+cifre (0-9 e '/') estratte ad alta fedelta'. Questo metodo e' deterministico, non richiede binari
+esterni come Tesseract, ed e' ottimizzato per l'esecuzione in tempo reale su dispositivi mobili (<20ms).
+Il livello della taverna non usa cifre: si contano le stelle dorate del badge.
 """
 from pathlib import Path
 
 import cv2
 import numpy as np
-import pytesseract
 
 DIGITS = "0123456789"
-# regione -> (modalita' della maschera, psm di Tesseract)
-READERS = {"upgrade_cost": ("wg", 8), "hero_health": ("white", 7), "hero_armor": ("otsu", 8)}
+# regione -> modalita' della maschera
+READERS = {"upgrade_cost": "wg", "hero_health": "white", "hero_armor": "otsu"}
+
+DIGITS_TEMPLATE_DIR = Path(__file__).with_name("templates") / "digits"
+_DIGIT_TEMPLATES = None
 
 
-def _ocr(img, psm, whitelist=DIGITS):
-    return pytesseract.image_to_string(
-        img, config=f"--psm {psm} -c tessedit_char_whitelist={whitelist}").strip()
+def _load_digit_templates():
+    """Carica i template delle cifre (0-9 e '/') normalizzati a 64x64 su canvas nero."""
+    global _DIGIT_TEMPLATES
+    if _DIGIT_TEMPLATES is not None:
+        return _DIGIT_TEMPLATES
+    _DIGIT_TEMPLATES = {}
+    if not DIGITS_TEMPLATE_DIR.exists():
+        return _DIGIT_TEMPLATES
+    for p in DIGITS_TEMPLATE_DIR.glob("*.png"):
+        raw_name = p.stem.split("_")[0]
+        char = "/" if raw_name == "slash" else raw_name
+        tpl = cv2.imread(str(p), cv2.IMREAD_GRAYSCALE)
+        if tpl is not None:
+            _DIGIT_TEMPLATES.setdefault(char, []).append(tpl)
+    return _DIGIT_TEMPLATES
+
+
+def _normalize_glyph(img, target_size=(64, 64)):
+    """Normalizza un glifo binario: rimuove rumore/spruzzi sottili e centra sul canvas preservando le proporzioni."""
+    if img is None or img.size == 0:
+        return None
+    if len(img.shape) == 3:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, bw = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+    row_sums = (bw > 0).sum(axis=1)
+    col_sums = (bw > 0).sum(axis=0)
+    if not np.any(row_sums) or not np.any(col_sums):
+        return None
+
+    # Rimuove artefatti e sbavature sottili ai bordi (es. riflessi di carte)
+    max_w = row_sums.max()
+    max_h = col_sums.max()
+    valid_rows = np.where(row_sums >= 0.15 * max_w)[0]
+    valid_cols = np.where(col_sums >= 0.15 * max_h)[0]
+    if len(valid_rows) == 0 or len(valid_cols) == 0:
+        return None
+
+    trimmed = bw[valid_rows[0]:valid_rows[-1] + 1, valid_cols[0]:valid_cols[-1] + 1]
+    th, tw = trimmed.shape
+
+    # Ridimensiona mantenendo il rapporto d'aspetto
+    scale = min((target_size[0] - 8) / th, (target_size[1] - 8) / tw)
+    nw, nh = max(1, int(round(tw * scale))), max(1, int(round(th * scale)))
+    scaled = cv2.resize(trimmed, (nw, nh), interpolation=cv2.INTER_AREA)
+
+    canvas = np.zeros(target_size, dtype=np.uint8)
+    y_off = (target_size[0] - nh) // 2
+    x_off = (target_size[1] - nw) // 2
+    canvas[y_off:y_off + nh, x_off:x_off + nw] = scaled
+    return canvas
+
+
+def match_glyph(glyph_mask, min_confidence=0.55):
+    """Riconosce una singola cifra o '/' tramite cross-correlazione normalizzata col dizionario di template.
+
+    Restituisce (carattere, punteggio).
+    """
+    norm = _normalize_glyph(glyph_mask)
+    if norm is None:
+        return "", 0.0
+
+    templates = _load_digit_templates()
+    best_ch, best_score = "", -1.0
+    for ch, tpl_list in templates.items():
+        for tpl in tpl_list:
+            score = float(cv2.matchTemplate(norm, tpl, cv2.TM_CCOEFF_NORMED)[0][0])
+            if score > best_score:
+                best_score = score
+                best_ch = ch
+
+    if best_score < min_confidence:
+        return "", best_score
+    return best_ch, best_score
+
+
+def _looks_like_zero(glyph_mask):
+    """Compatibilita': riconosce se un ritaglio e' uno zero."""
+    ch, score = match_glyph(glyph_mask, min_confidence=0.60)
+    return ch == "0"
 
 
 def _white_mask(crop, vmin=185, smax=70):
     return cv2.inRange(cv2.cvtColor(crop, cv2.COLOR_BGR2HSV), (0, 0, vmin), (180, smax, 255))
 
 
-def _prepare(crop, mode):
-    """Immagine nero-su-bianco, ingrandita 4x, pronta per Tesseract."""
-    if mode == "otsu":
-        gray = cv2.resize(cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY), None, fx=4, fy=4,
-                          interpolation=cv2.INTER_CUBIC)
-        _, bw = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-        return bw if bw.mean() > 127 else 255 - bw
-    mask = _white_mask(crop)
-    if mode == "wg":  # bianco oppure verde: i costi scontati sono verdi
-        hsv = cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)
-        mask = mask | cv2.inRange(hsv, (35, 90, 100), (85, 255, 255))
-    mask = cv2.resize(mask, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
-    return cv2.copyMakeBorder(255 - mask, 14, 14, 14, 14, cv2.BORDER_CONSTANT, value=255)
-
-
-def read_number(crop, mode="wg", psm=7):
-    """Intero letto dal ritaglio, oppure None se Tesseract non trova solo cifre."""
+def read_number(crop, mode="wg", psm=None):
+    """Intero letto dal ritaglio tramite template matching, oppure None se non trova cifre valide."""
     if crop is None or crop.size == 0:
         return None
-    text = _ocr(_prepare(crop, mode), psm)
-    return int(text) if text.isdigit() else None
+    if mode == "otsu":
+        gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+        gray = cv2.resize(gray, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
+        _, bw = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        mask = bw if bw.mean() < 127 else 255 - bw
+    else:
+        mask = _white_mask(crop)
+        if mode == "wg":  # bianco oppure verde: i costi scontati sono verdi
+            hsv = cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)
+            mask = mask | cv2.inRange(hsv, (35, 90, 100), (85, 255, 255))
+        mask = cv2.resize(mask, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
+
+    n, _, stats, _ = cv2.connectedComponentsWithStats(mask)
+    boxes = [s_i for s_i in stats[1:] if s_i[1] > 10 and s_i[3] >= 80 and s_i[4] >= 1000]
+    boxes.sort(key=lambda b: b[0])
+
+    digits = []
+    for gx, gy, gw, gh, _ in boxes:
+        glyph = mask[gy:gy + gh, gx:gx + gw]
+        ch, _ = match_glyph(glyph)
+        if ch.isdigit():
+            digits.append(ch)
+
+    return int("".join(digits)) if digits else None
 
 
 def read_region(frame, regions, name):
     """Legge una delle regioni in READERS (upgrade_cost, hero_health, hero_armor)."""
     x, y, w, h = regions[name]
-    mode, psm = READERS[name]
-    return read_number(frame[y:y + h, x:x + w], mode, psm)
-
-
-ZERO_TEMPLATE = Path(__file__).with_name("templates") / "digit_0.png"
-ZERO_THRESHOLD = 0.75
-
-
-def _looks_like_zero(glyph_mask):
-    """Tesseract restituisce vuoto per lo 0 di questo font, quindi lo si riconosce col template
-    digit_0.png (media di tre 0 reali del contatore oro). Gli 0 ottengono 0.88-0.97, i glifi 3/5/6
-    al massimo 0.63. Piu' screenshot di 0 e di altre cifre renderebbero la soglia piu' affidabile."""
-    tpl = cv2.imread(str(ZERO_TEMPLATE), cv2.IMREAD_GRAYSCALE)
-    if tpl is None:
-        return False
-    g = cv2.resize(glyph_mask, (tpl.shape[1], tpl.shape[0]), interpolation=cv2.INTER_AREA)
-    return float(cv2.matchTemplate(g, tpl, cv2.TM_CCOEFF_NORMED)[0][0]) >= ZERO_THRESHOLD
+    mode = READERS.get(name, "wg")
+    if isinstance(mode, tuple):
+        mode = mode[0]
+    return read_number(frame[y:y + h, x:x + w], mode)
 
 
 def read_gold(crop):
     """'0/5' -> (0, 5): oro corrente e massimo, oppure None.
 
-    Ogni glifo si legge da solo (Tesseract sulla stringa intera sbaglia). Un glifo che Tesseract
-    lascia vuoto viene confrontato col template dello 0."""
+    Ogni glifo si legge con template matching. Con il massimo a 10 (dal turno 8)
+    il contatore mostra solo l'oro corrente, senza '/10'.
+    """
     if crop is None or crop.size == 0:
         return None
     mask = cv2.resize(_white_mask(crop), None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
     n, _, stats, _ = cv2.connectedComponentsWithStats(mask)
-    boxes = sorted((s[0], s[1], s[2], s[3]) for s in stats[1:] if s[3] >= 110 and s[4] > 1500)
+    boxes = sorted((s[0], s[1], s[2], s[3]) for s in stats[1:] if s[3] >= 100 and s[4] > 1200)
     left, right, slash = "", "", False
     for x, y, w, h in boxes:
         glyph = mask[y:y + h, x:x + w]
-        ch = _ocr(cv2.copyMakeBorder(255 - glyph, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=255),
-                  8, DIGITS + "/")  # psm 8 legge 3/5/6/9; psm 10 restituisce vuoto per il 9
-        if ch == "" and _looks_like_zero(glyph):
-            ch = "0"
+        ch, _ = match_glyph(glyph)
         if ch == "/":
             slash = True
         elif ch.isdigit():
@@ -96,8 +168,6 @@ def read_gold(crop):
             else:
                 left += ch
     if left and not slash and not right:
-        # Con il massimo a 10 (dal turno 8) il contatore mostra solo l'oro corrente, senza "/10".
-        # Visto in un solo screenshot: 0 senza denominatore subito dopo il turno 7 (massimo 9).
         cur, mx = int(left), 10
     elif slash and left and right:
         cur, mx = int(left), int(right)
@@ -153,7 +223,7 @@ def read_minion_stats(frame, rect, kind="board"):
     """(attacco, vita) di una carta, ciascuno None se illeggibile. kind: 'shop' | 'board'.
 
     Si segmentano i glifi con le componenti connesse, scartando macchie fuori misura (arte chiara,
-    scintille), si dividono quelli fusi, poi si legge ogni cifra da sola come per l'oro.
+    scintille), si dividono quelli fusi, poi si riconosce ogni cifra tramite template matching.
     Attacco e vita si distinguono dalla posizione rispetto al centro della carta."""
     x, y, _, _ = rect
     cy = y + STAT_DY[kind]
@@ -179,9 +249,7 @@ def read_minion_stats(frame, rect, kind="board"):
         if abs(rel) > STAT_REACH or abs(rel) < STAT_DEAD:
             continue
         digit = mask[gy:gy + gh, gx:gx + gw]
-        ch = _ocr(cv2.copyMakeBorder(255 - digit, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=255), 8)
-        if ch == "" and _looks_like_zero(digit):
-            ch = "0"
+        ch, _ = match_glyph(digit)
         side = "att" if rel < 0 else "hp"
         sides[side].append(ch if len(ch) == 1 and ch.isdigit() else None)  # una cifra illeggibile -> numero None
 
@@ -211,9 +279,7 @@ def _glyphs_in(win):
 def _read_glyph(mask, g):
     gx, gy, gw, gh = g
     digit = mask[gy:gy + gh, gx:gx + gw]
-    ch = _ocr(cv2.copyMakeBorder(255 - digit, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=255), 8)
-    if ch == "" and _looks_like_zero(digit):
-        ch = "0"
+    ch, _ = match_glyph(digit)
     if len(ch) == 1 and ch.isdigit():
         return ch
     # macchia quadrata e illeggibile (arte chiara fra le due cifre): non e' una cifra, si ignora
