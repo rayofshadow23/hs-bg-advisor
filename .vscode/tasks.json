@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Overlay: avvia tutto",
+      "type": "shell",
+      "command": "./run_overlay.sh",
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Overlay: avvia con finestra PC",
+      "type": "shell",
+      "command": "./run_overlay.sh --gui",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": ".venv/bin/python -m pytest -q",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -21,7 +21,8 @@ htmlcov/
 
 # IDEs and editors
 .idea/
-.vscode/
+.vscode/*
+!.vscode/tasks.json
 *.swp
 *.swo
 *~
