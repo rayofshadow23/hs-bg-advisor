@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -7,13 +9,14 @@ plugins {
 // Chaquopy 15 esegue pip con il Python del PC e non funziona con 3.13+ (manca il modulo 'cgi'): serve un Python
 // 3.8-3.12. Si usa quello indicato in android/local.properties (chaquopy.buildPython=/usr/bin/python3.12)
 // oppure il primo python3.x compatibile trovato nel PATH.
-val localProps = java.util.Properties().apply {
+val localProps = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) f.inputStream().use { load(it) }
 }
 
 fun findBuildPython(): String? {
-    localProps.getProperty("chaquopy.buildPython")?.let { return it }
+    val configured = localProps.getProperty("chaquopy.buildPython")
+    if (!configured.isNullOrBlank()) return configured
     for (v in listOf("3.12", "3.11", "3.10", "3.9", "3.8")) {
         val out = try {
             val p = ProcessBuilder("which", "python$v").redirectErrorStream(true).start()
