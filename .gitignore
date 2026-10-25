@@ -32,3 +32,9 @@ Thumbs.db
 
 # Card illustrations (downloaded dynamically via tools/build_card_db.py)
 !data/card_art/.gitkeep
+tests/fixtures/photo_2026-10-25_10-14-59.jpg
+.gitignore
+tavola.png
+test.py
+tests/fixtures/photo_2026-10-25_10-14-56.jpg
+tests/fixtures/photo_2026-10-25_10-14-57.jpg

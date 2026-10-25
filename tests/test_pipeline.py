@@ -368,3 +368,13 @@ def test_minion_stats_late_frame():
     assert shop[:5] == [(4, 4), (3, 2), (1, 1), (4, 4), (1, 1)]
     assert shop[5] == (None, None)  # incantesimo: nessuna statistica
     assert board == [(39, 31), (18, 21), (7, 23), (4, 5)]  # cifre verdi (potenziate) e a due cifre
+
+
+# Board da 6 minion con numeri a 3 cifre (152/131, 394/279): ricostruito da uno screenshot dell'utente
+# (finestra ingrandita e riportata a 2000x900), quindi i rettangoli sono dati a mano, non da locate_board.
+@pytest.mark.skipif(not HAS_TESSERACT, reason="tesseract non installato")
+def test_minion_stats_three_digits_board6():
+    f = cv2.imread(str(FIXTURES / "board6_big_numbers.png"))
+    rects = [[c - 52, 579, 104, 100] for c in (102, 274, 447, 619, 792, 964)]
+    assert [nv.read_minion_stats(f, rc, "board") for rc in rects] == [
+        (152, 131), (8, 5), (17, 14), (7, 6), (394, 279), (48, 41)]
