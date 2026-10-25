@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.chaquo.python")
 }
 
 android {
@@ -11,13 +12,21 @@ android {
         applicationId = "it.ray.hsoverlay"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1"
+        versionCode = 2
+        versionName = "0.2-standalone"
+
+        ndk {
+            abiFilters += listOf("arm64-v8a", "x86_64")
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -27,5 +36,28 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    sourceSets {
+        getByName("main") {
+            // Include Python source code and assets (cards.json, data, vision/regions.yaml, templates)
+            python.srcDir("../../")
+        }
+    }
 }
-// Nessuna dipendenza esterna: solo SDK Android (org.json, HttpURLConnection) e libreria standard di Kotlin.
+
+chaquopy {
+    defaultConfig {
+        version = "3.10"
+        pip {
+            install("opencv-python")
+            install("numpy")
+            install("imagehash")
+            install("Pillow")
+            install("pyyaml")
+        }
+    }
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+}

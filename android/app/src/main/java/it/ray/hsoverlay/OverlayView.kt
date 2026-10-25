@@ -13,8 +13,8 @@ import android.view.View
 
 /**
  * Disegna i consigli SOLO nei margini dello schermo e in una fascia stretta sopra lo shop:
- * il PC legge lo schermo con adb screencap, che include l'overlay, e le zone lette (shop, board, oro,
- * numeri) non devono essere coperte. Margini in coordinate normalizzate 2000x900:
+ * non copre la visuale centrale e non interferisce con la lettura dello schermo.
+ * Margini in coordinate normalizzate 2000x900:
  *   sinistra x 8..262 (HUD), destra x 1700..1992 (consigli), fascia marcatori y 208..230 sopra le carte.
  */
 class OverlayView(context: Context) : View(context) {
@@ -72,10 +72,9 @@ class OverlayView(context: Context) : View(context) {
     private fun drawHud(canvas: Canvas, s: OverlayState?, u: Float) {
         val lines = ArrayList<Pair<String, Int>>()
         if (error != null) {
-            lines += "PC non raggiungibile" to Color.rgb(255, 110, 110)
-            lines += "adb reverse tcp:8765 tcp:8765" to Color.LTGRAY
+            lines += "Stato: $error" to Color.rgb(255, 110, 110)
         } else if (s == null) {
-            lines += "In attesa del PC..." to Color.LTGRAY
+            lines += "In attesa del gioco..." to Color.LTGRAY
         } else {
             val phase = when (s.phase) {
                 "recruit" -> "Acquisto"
