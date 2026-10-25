@@ -76,6 +76,13 @@ python main.py --gui --image tests/fixtures/turn4_recruit.png
 
 ---
 
+### 3. Overlay sul telefono (Android)
+`python main.py --serve` pubblica lo stato su `http://127.0.0.1:8765/state` per l'app in `android/`
+(consigli disegnati sopra il gioco). Istruzioni in [`android/README.md`](android/README.md), piano in
+[`docs/ANDROID_PLAN.md`](docs/ANDROID_PLAN.md).
+
+---
+
 ## Risoluzione Schermo
 
 Il telefono deve essere orientato in **orizzontale (20:9)**:

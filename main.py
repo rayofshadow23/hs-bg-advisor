@@ -55,6 +55,9 @@ def main():
     ap.add_argument("--serial", help="seriale adb se hai piu' dispositivi")
     ap.add_argument("--interval", type=float, default=0.7)
     ap.add_argument("--gui", action="store_true", help="mostra finestra video con overlay grafico in tempo reale")
+    ap.add_argument("--serve", type=int, nargs="?", const=8765, metavar="PORT",
+                    help="pubblica lo stato in JSON su http://host:PORT/state per l'app overlay Android (default 8765)")
+    ap.add_argument("--serve-host", default="127.0.0.1", help="0.0.0.0 per collegare il telefono via Wi-Fi")
     ap.add_argument("--image", help="invece di adb, usa un'immagine statica (utile per test e demo)")
     args = ap.parse_args()
 
@@ -66,6 +69,12 @@ def main():
         print("illustrazioni non trovate in data/card_art (o in $HS_BG_CARD_ART): riconoscimento solo per hash, molto meno preciso")
     reader = mv.CardReader(db)
     smoother, tracker = Smoother(), TurnTracker()
+    server = None
+    if args.serve:
+        from overlay_server import StateServer
+        server = StateServer(args.serve_host, args.serve).start()
+        print(f"Server overlay su http://{args.serve_host}:{server.port}/state "
+              f"(cavo: adb reverse tcp:{server.port} tcp:{server.port})")
     prev, last_print = None, None
     st = GameState()
     structured_tips = []
@@ -84,6 +93,9 @@ def main():
         print("  board:", ", ".join(m.name for m in st.board) or "-")
         for t in structured_tips:
             print("  >", t.text)
+        if server:
+            server.publish(st, structured_tips)
+            input("Server attivo: premi Invio per chiudere...")
         if args.gui:
             rendered = draw_overlay(frame, st, structured_tips, regions)
             cv2.namedWindow("Hearthstone BG Advisor", cv2.WINDOW_NORMAL)
@@ -105,6 +117,8 @@ def main():
                 st = smoother.update(read_state(frame, regions, reader))
                 st.turn = tracker.update(st.phase, st.max_gold)
                 structured_tips = advisor.structured_advise(st)
+                if server:
+                    server.publish(st, structured_tips)
                 tips = [t.text for t in structured_tips]
                 key = (st.phase, st.gold, st.max_gold, st.tavern_tier, tuple(m.name for m in st.shop), tuple(tips))
                 if key != last_print:
