@@ -60,23 +60,84 @@ def _norm(name):
     return name.strip().lower()
 
 
+# Impegno su una comp: dal turno COMMIT_TURN, se sul board hai gia' almeno COMMIT_MIN_HAVE carte della stessa comp
+# (core = 1, add-on = 0.5), si consigliano solo le carte di quella comp. Dal turno TRIBE_COMMIT_TURN, con almeno
+# TRIBE_COMMIT_MIN minion della stessa tribu', si scartano le comp di altre tribu'. Dal turno LATE_TURN, senza
+# alcun impegno, una carta chiave si segnala solo se ne hai gia' una della sua comp.
+COMMIT_TURN = 5
+COMMIT_MIN_HAVE = 2.0
+TRIBE_COMMIT_TURN = 6
+TRIBE_COMMIT_MIN = 3
+LATE_TURN = 8
+COMMIT_BONUS = 2.0
+
+
+def _tribe_key(tribe):
+    """'Mechs' (comp) e 'Mech' (carta) -> 'mech'; tribu' assente o neutra -> ''."""
+    t = (tribe or "").strip().lower()
+    if t in ("", "none"):
+        return ""
+    return t[:-1] if t.endswith("s") else t
+
+
+def _comp_sets(c):
+    core = {_norm(x["name"]) for x in c["core"]}
+    return core, {_norm(x["name"]) for x in c["addons"]} - core
+
+
+def commitment(state, comps=None):
+    """Su cosa si e' impegnato il giocatore, dal board: {'comp': comp|None, 'have': float, 'tribe': str|''}.
+
+    Prima del turno COMMIT_TURN non c'e' impegno (si esplora)."""
+    comps = COMPS if comps is None else comps
+    out = {"comp": None, "have": 0.0, "tribe": ""}
+    turn = state.turn
+    if turn is None:
+        return out
+    board = {_norm(m.name) for m in state.board if m.name not in ("?", "(incantesimo)")}
+    if turn >= COMMIT_TURN:
+        best = None
+        for c in comps:
+            core, addons = _comp_sets(c)
+            have = len(core & board) + ADDON_FACTOR * len(addons & board)
+            if best is None or have > best[0]:
+                best = (have, c)
+        if best and best[0] >= COMMIT_MIN_HAVE:
+            out["have"], out["comp"] = best
+    if turn >= TRIBE_COMMIT_TURN:
+        tribes = Counter(_tribe_key(m.tribe) for m in state.board if _tribe_key(m.tribe))
+        if tribes:
+            tribe, n = tribes.most_common(1)[0]
+            if n >= TRIBE_COMMIT_MIN:
+                out["tribe"] = tribe
+    return out
+
+
 def structured_key_card_tips(state, comps=None):
     """Segnala le carte dello shop che servono a una comp HSReplay in formato strutturato.
 
     Punteggio = peso del tier della comp (x0.5 se la carta e' solo add-on)
                 + carte core gia' sul board (1 ciascuna) + add-on gia' sul board (0.5 ciascuna).
-    Si segnala solo sopra MIN_SCORE: una comp forte, oppure una gia' avviata."""
+    Si segnala solo sopra MIN_SCORE: una comp forte, oppure una gia' avviata.
+    A turno avanzato, con una comp o una tribu' gia' scelte (vedi commitment), le carte delle altre comp non
+    vengono piu' proposte."""
     comps = COMPS if comps is None else comps
-    board = {_norm(m.name) for m in state.board if m.name != "?"}
+    board = {_norm(m.name) for m in state.board if m.name not in ("?", "(incantesimo)")}
+    commit = commitment(state, comps)
+    locked = commit["comp"]["name"] if commit["comp"] else None
+    late = state.turn is not None and state.turn >= LATE_TURN
     tips = []
     for idx, m in enumerate(state.shop):
-        if m.name == "?":
+        if m.name in ("?", "(incantesimo)"):
             continue
         name = _norm(m.name)
         best = None
         for c in comps:
-            core = {_norm(x["name"]) for x in c["core"]}
-            addons = {_norm(x["name"]) for x in c["addons"]} - core
+            if locked and c["name"] != locked:
+                continue
+            if not locked and commit["tribe"] and _tribe_key(c["tribe"]) != commit["tribe"]:
+                continue
+            core, addons = _comp_sets(c)
             if name in core:
                 role, base = "core", TIER_WEIGHT.get(c["tier"], 0)
             elif name in addons:
@@ -84,7 +145,9 @@ def structured_key_card_tips(state, comps=None):
             else:
                 continue
             have_core, have_add = len(core & board), len(addons & board)
-            score = base + have_core + ADDON_FACTOR * have_add
+            if late and not locked and have_core + have_add == 0:
+                continue
+            score = base + have_core + ADDON_FACTOR * have_add + (COMMIT_BONUS if locked else 0)
             if best is None or score > best[0]:
                 best = (score, c, role, have_core + have_add)
         if best and best[0] >= MIN_SCORE:
@@ -249,6 +312,15 @@ def structured_advise(state):
     # 1b. CARTE CHIAVE DELLE COMP (HSReplay Tier List)
     # ---------------------------------------------------------
     tips.extend(structured_key_card_tips(state))
+    commit = commitment(state)
+    if commit["comp"]:
+        tips.append(Tip(
+            text=f"Sei impegnato su {commit['comp']['name']}: compro solo carte di questa comp.",
+            action="INFO", role="commit", score=1.5, comp_name=commit["comp"]["name"]))
+    elif commit["tribe"]:
+        tips.append(Tip(
+            text=f"Tribu' scelta: {commit['tribe']}. Non propongo comp di altre tribu'.",
+            action="INFO", role="commit", score=1.5))
 
     # ---------------------------------------------------------
     # 2. SALITA DI TIER PER TURNI AVANZATI O RECUPERO RITARDI
@@ -346,7 +418,12 @@ def structured_advise(state):
     # ---------------------------------------------------------
     # 7. GESTIONE DELL'ORO RIMASTO
     # ---------------------------------------------------------
-    if gold >= 3 and not any(t.action == "BUY" for t in tips):
+    commit = commitment(state)
+    if (commit["comp"] or commit["tribe"]) and gold >= 2 and not any(t.action == "BUY" for t in tips):
+        # impegnato: una carta a caso, anche di tier alto, non serve; meglio cercare quelle della propria comp
+        tips.append(Tip(text="Nessuna carta utile alla tua comp nello shop: fai roll (o congela se hai gia' i pezzi).",
+                        action="ROLL", score=1.2))
+    elif gold >= 3 and not any(t.action == "BUY" for t in tips):
         valid_shop = [(i, m) for i, m in enumerate(state.shop) if m.name != "?"]
         if valid_shop:
             high_idx, high = max(valid_shop, key=lambda x: x[1].tier)

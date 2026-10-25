@@ -401,3 +401,54 @@ def test_strip_stats_independent_of_card_centers():
 def test_strip_stats_late_frame_ignores_art_blob():
     f, r = real_frame("late_recruit.png"), load_regions()
     assert nv.read_strip_stats(f, mv.locate_board(f, r), "board") == [(39, 31), (18, 21), (7, 23), (4, 5)]
+
+
+# --- impegno su comp/tribu' a turno avanzato ---
+def _other_core(comps, comp, tier=1):
+    """Un core di una comp diversa che non compare ne' come core ne' come add-on di `comp`."""
+    mine = {x["name"] for x in comp["core"] + comp["addons"]}
+    for c in comps:
+        if c["tier"] == tier and c["name"] != comp["name"]:
+            for x in c["core"]:
+                if x["name"] not in mine:
+                    return x["name"], c
+    raise AssertionError("nessun core alternativo")
+
+
+def test_committed_comp_hides_other_comps_late():
+    comps = advisor.load_comps()
+    mine = comps[0]
+    board = [Minion(x["name"], 4) for x in mine["core"][:2]]
+    other, _ = _other_core(comps, mine)
+    mine_next = mine["core"][2]["name"]
+    st = GameState(phase="recruit", gold=6, tavern_tier=4, turn=7, shop=[Minion(other, 5), Minion(mine_next, 5)], board=board)
+    tips = advisor.structured_key_card_tips(st)
+    assert [t.card_name for t in tips] == [mine_next] and tips[0].comp_name == mine["name"]
+    # stessa situazione a turno 3: si esplora, quindi anche l'altra comp Tier 1 viene segnalata
+    st.turn = 3
+    assert other in {t.card_name for t in advisor.structured_key_card_tips(st)}
+
+
+def test_committed_tribe_hides_other_tribes_late():
+    comps = advisor.load_comps()
+    board = [Minion("Pezzo A", 3, "Mech"), Minion("Pezzo B", 3, "Mech"), Minion("Pezzo C", 4, "Mech")]
+    other = next(c for c in comps if c["tier"] == 1 and c["tribe"] == "Quilboar")["core"][0]["name"]
+    mech_core = next(c for c in comps if c["tier"] == 1 and c["tribe"] == "Mechs")["core"][0]["name"]
+    st = GameState(phase="recruit", gold=6, tavern_tier=4, turn=7, shop=[Minion(other, 5), Minion(mech_core, 5)], board=board)
+    assert [t.card_name for t in advisor.structured_key_card_tips(st)] == [mech_core]
+    assert any(t.role == "commit" for t in advisor.structured_advise(st))
+
+
+def test_late_game_lone_core_not_suggested_without_commitment():
+    comps = advisor.load_comps()
+    core = comps[0]["core"][0]["name"]
+    st = GameState(phase="recruit", gold=6, tavern_tier=5, turn=9, shop=[Minion(core, 5)], board=[Minion("Altro", 3, "Beast")])
+    assert advisor.structured_key_card_tips(st) == []
+
+
+def test_committed_player_is_told_to_roll_not_to_buy_random_card():
+    board = [Minion("A", 3, "Mech"), Minion("B", 3, "Mech"), Minion("C", 4, "Mech")]
+    st = GameState(phase="recruit", gold=5, max_gold=9, tavern_tier=4, turn=7, shop=[Minion("Random", 4, "Beast")], board=board)
+    tips = advisor.structured_advise(st)
+    assert not any(t.action == "BUY" for t in tips)
+    assert any(t.action == "ROLL" for t in tips)
