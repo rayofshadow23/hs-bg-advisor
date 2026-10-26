@@ -488,3 +488,28 @@ def test_never_sell_comp_cards_or_triple_progress():
     st.board = [m for m in board if m.name != "Debole"] + [extra_core]
     assert len(st.board) == 7
     assert st.board[advisor.sell_candidate(st)].name == "Solo"  # le coppie (triplo) e le carte comp restano
+
+
+# --- carte da aspettare ---
+def test_wanted_cards_for_dragon_board():
+    st = GameState(phase="recruit", gold=5, max_gold=7, tavern_tier=4, turn=5,
+                   shop=[Minion("Sconosciuta", 2)], board=[Minion("Persistent Poet", 4, "Dragon", 5, 5)])
+    w = advisor.wanted_cards(st)
+    assert w["comp"]["tribe"] == "Dragons"
+    assert w["now"] and all(n != "Persistent Poet" for n in w["now"])
+    tip = next(t for t in advisor.structured_advise(st) if t.role == "target")
+    assert tip.text.startswith("Cerca:") and tip.action == "INFO"
+
+
+def test_wanted_cards_empty_or_irrelevant_board():
+    assert advisor.wanted_cards(GameState(phase="recruit", tavern_tier=3)) is None
+    st = GameState(phase="recruit", tavern_tier=3, board=[Minion("Carta Inventata", 2)])
+    assert advisor.wanted_cards(st) is None
+
+
+def test_wanted_cards_higher_tier_when_nothing_available_now():
+    st = GameState(phase="recruit", gold=5, tavern_tier=1, turn=2, board=[Minion("Persistent Poet", 4)])
+    w = advisor.wanted_cards(st)
+    assert w["now"] == [] and w["later"] and w["later"][0][1] >= 4
+    tip = next(t for t in advisor.structured_advise(st) if t.role == "target")
+    assert tip.text.startswith("Sali di taverna per")

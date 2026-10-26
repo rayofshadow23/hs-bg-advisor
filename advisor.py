@@ -185,6 +185,45 @@ def _target_tier(turn):
 
 
 BOARD_MAX = 7
+TARGET_SCORE = 5.5   # sotto upgrade/acquisti forti, sopra freeze e posizionamento
+TARGET_NAMES = 3     # quante carte da cercare mostrare
+
+
+def wanted_cards(state, comps=None):
+    """Quali carte aspettare, in base a cosa hai sul board.
+
+    Sceglie la comp piu' vicina al tuo board (quella gia' scelta, se c'e'; altrimenti la migliore con almeno
+    1 core o 2 add-on gia' sul board, a parita' vince il tier piu' alto) e ne elenca le carte che ti mancano:
+    prima quelle che possono gia' comparire nel tuo shop (tier carta <= tier taverna), nell'ordine di importanza
+    della tier list, poi quelle che richiedono di salire. Ritorna None se il board non indica nessuna comp."""
+    comps = COMPS if comps is None else comps
+    board = {_norm(m.name) for m in state.board if m.name not in ("?", "(incantesimo)")}
+    if not board:
+        return None
+    commit = commitment(state, comps)
+    scored = []
+    for c in comps:
+        core, addons = _comp_sets(c)
+        hc, ha = len(core & board), len(addons & board)
+        if commit["comp"]:
+            if c["name"] != commit["comp"]["name"]:
+                continue
+        elif hc < 1 and ha < 2:
+            continue
+        scored.append((hc + ADDON_FACTOR * ha + 0.1 * TIER_WEIGHT.get(c["tier"], 0), hc, c))
+    if not scored:
+        return None
+    scored.sort(key=lambda x: -x[0])
+    top, hc, comp = scored[0]
+    tier = state.tavern_tier or 1
+    shop = {_norm(m.name) for m in state.shop}
+    missing = [x for x in comp["core"] + comp["addons"] if _norm(x["name"]) not in board]
+    now = [x["name"] for x in missing if x["tavern_tier"] <= tier and _norm(x["name"]) not in shop]
+    later = [x for x in missing if x["tavern_tier"] > tier]
+    later.sort(key=lambda x: (x not in comp["core"], x["tavern_tier"]))  # prima i core, poi per tier
+    return {"comp": comp, "have_core": hc, "n_core": len(comp["core"]), "now": now,
+            "later": [(x["name"], x["tavern_tier"]) for x in later],
+            "alt": scored[1][2]["name"] if len(scored) > 1 and top - scored[1][0] < 0.5 else None}
 
 
 def sell_candidate(state, comps=None):
@@ -346,6 +385,21 @@ def structured_advise(state):
     # 1b. CARTE CHIAVE DELLE COMP (HSReplay Tier List)
     # ---------------------------------------------------------
     tips.extend(structured_key_card_tips(state))
+    want = wanted_cards(state)
+    if want and (want["now"] or want["later"]):
+        c = want["comp"]
+        if want["now"]:
+            names = ", ".join(want["now"][:TARGET_NAMES])
+            text = f"Cerca: {names} ({c['name']}, core {want['have_core']}/{want['n_core']})"
+            if want["later"]:
+                nm, t = want["later"][0]
+                text += f"; dopo la taverna {t}: {nm}"
+        else:
+            nm, t = want["later"][0]
+            text = f"Sali di taverna per {nm} (T{t}, {c['name']}, core {want['have_core']}/{want['n_core']})"
+        if want["alt"]:
+            text += f"; in alternativa {want['alt']}"
+        tips.append(Tip(text=text + ".", action="INFO", role="target", score=TARGET_SCORE, comp_name=c["name"]))
     commit = commitment(state)
     if commit["comp"]:
         tips.append(Tip(
