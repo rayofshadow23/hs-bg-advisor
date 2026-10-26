@@ -539,9 +539,6 @@ def structured_advise(state):
         elif not is_early_turn:
             tips.append(Tip(text="Fai roll dello shop o congela se ci sono buoni minion.", action="ROLL"))
 
-    if gold == 0:
-        tips.append(Tip(text="Oro finito: riordina il board e termina il turno.", action="HOLD"))
-
     if tips:
         tips = sorted(tips, key=lambda x: -x.score)
     return tips or [Tip(text="Nessun consiglio forte: usa l'oro per roll o acquisto.", action="INFO")]

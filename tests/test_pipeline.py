@@ -513,3 +513,8 @@ def test_wanted_cards_higher_tier_when_nothing_available_now():
     assert w["now"] == [] and w["later"] and w["later"][0][1] >= 4
     tip = next(t for t in advisor.structured_advise(st) if t.role == "target")
     assert tip.text.startswith("Sali di taverna per")
+
+
+def test_no_end_of_turn_reorder_tip():
+    st = GameState(phase="recruit", gold=0, max_gold=6, tavern_tier=2, turn=4, board=[Minion("A", 1)])
+    assert not any("riordina" in t.text.lower() for t in advisor.structured_advise(st))
