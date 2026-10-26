@@ -1,114 +1,98 @@
 # hs-bg-advisor
 
-Assistente per Hearthstone Battlegrounds: cattura lo schermo del telefono Android (via adb) o analizza screenshot con OpenCV e Tesseract, consigliando in tempo reale le mosse ottimali a terminale o tramite un'**interfaccia grafica a video con overlay in tempo reale**.
+Assistente per Hearthstone Battlegrounds: legge lo schermo del telefono Android con OpenCV (cattura via `adb` sul PC, oppure direttamente sul telefono con l'app in `android/`) e consiglia la mossa, a terminale, in una finestra sul PC o con un **overlay sopra il gioco**.
 
-**Non invia mai tap o comandi di gioco**: si limita a osservare e consigliare.
+**Non invia mai tap o comandi di gioco**: osserva e consiglia.
 
-![Hearthstone BG Advisor Overlay - Turno 5](docs/images/preview_turn5.jpg)
-
----
-
-## Funzionalità Principali
-
-* **Interfaccia Grafica a Video (`--gui`)**: 
-  * Finestra ridimensionabile in tempo reale che proietta lo streaming del gioco catturato dal telefono.
-  * **Evidenziazione visiva delle carte dello shop** con box colorati, aura e badge:
-    * `3x TRIPLA` (oro brillante) per le triple completabili.
-    * `★ CORE` (verde smeraldo) con nome della comp per le carte chiave.
-    * `+ ADD-ON` (ciano elettrico) per carte di supporto/transizione.
-    * `SINERGIA` (arancione) per carte della tribù principale.
-  * **Indicatori Taverna & Azioni**: freccia verde `⬆️ SALI TAVERNA`, indicatore `❄️ FREEZE` e `🎲 ROLL`.
-  * **Barra HUD Superiore**: turno, fase, oro, livello taverna, salute/armatura e consiglio principale sintetico.
-
-![Hearthstone BG Advisor Overlay - Turno 4](docs/images/preview_turn4.jpg)
-
-* **Motore Strategico Basato sulle Guide di Jeefhs**:
-  * **Curva Standard (Turni 1..5)**:
-    * *Turno 1 (3 oro)*: priorità a minion di economia/token da conservare per il Turno 3; divieto assoluto di roll.
-    * *Turno 2 (4 oro)*: upgrade obbligatorio a Taverna 2.
-    * *Turno 3 (5 oro)*: vendita del token per doppio acquisto a 6 oro (o acquisto 1 pezzo + magia); non salire di taverna e non rollare.
-    * *Turno 4 (6 oro)*: doppio acquisto di stabilizzazione per non perdere salute.
-    * *Turno 5 (7 oro)*: upgrade obbligatorio a Taverna 3 (curva standard).
-  * **Regola "Never Roll Early"**: divieto di rollare nei turni 1-4 per non sacrificare statistiche e vita.
-  * **Holding Triples**: valuta il momento migliore per riscattare le triple (es. attendere Taverna 3 o 4 per scoprire minion determinanti di Tier 4 o Tier 5).
-  * **Regola del Freeze ("Never freeze for one")**: congela solo per una tripla o per almeno 2 pezzi chiave; mai congelare per una sola carta per non sprecare il refresh gratuito.
-  * **Posizionamento Ottimale del Board**: minion con Scudo Divino o Fendente (Cleave) a sinistra; Taunt a destra; motori passivi (*Titus, Brann, Drakkari*) protetti all'estrema destra.
-* **Sinergie e Comp HSReplay**:
-  * Integrazione con `data/comps.json` (tier, carte core e add-on).
+![Overlay - Turno 5](docs/images/preview_turn5.jpg)
 
 ---
 
-## Setup e Requisiti
+## Cosa fa
 
-1. **Telefono Android**: attiva *Opzioni sviluppatore > Debug USB*, collega il PC via cavo. Il comando `adb devices` deve mostrare il dispositivo connesso.
-2. **Dipendenze Python**:
+**Lettura dello schermo** (senza OCR esterno, solo OpenCV e template):
+- fase (acquisto / combattimento), oro e oro massimo, livello taverna, costo upgrade, vita e armatura;
+- carte dello shop (anche incantesimi) e minion del board: nome, tier, tribù, **attacco e vita** (anche a 3 cifre, cifre verdi potenziate);
+- il turno si deduce dall'oro massimo (non è sullo schermo).
+
+**Consigli** (`advisor.py`):
+- **Curva dei turni 1-5** (guide di Jeefhs): economia/token al turno 1, upgrade a taverna 2 al turno 2 e a taverna 3 al turno 5, doppio acquisto ai turni 3-4.
+- **Triple**: segnala la carta che chiude una tripla.
+- **Carte chiave delle comp** HSReplay (`data/comps.json`): core e add-on pesati per tier della comp e per quanto hai già sul board.
+- **Impegno su comp/tribù**: dal turno 5, con una comp avviata (o dal turno 6 con 3+ minion della stessa tribù), propone solo carte di quella comp e non più core di altre; se nello shop non c'è nulla di utile, suggerisce il roll.
+- **Cerca**: in base al board, quali carte aspettare (disponibili ora, poi quelle che richiedono di salire di taverna).
+- **Vendita**: a board pieno e con una comp scelta, quale minion fuori comp vendere per fare spazio (mai carte della comp, né minion con 2+ copie).
+- **Freeze** quando c'è una tripla da chiudere o almeno 2 carte chiave; sinergie di tribù.
+- `actions.py`: elenco delle azioni legali (compra, vendi, gioca, roll, sali, freeze) e loro effetto sullo stato, base per una futura scelta "matematica" della mossa.
+
+---
+
+## Modi di usarlo
+
+| Modo | Dove gira la visione | Dove vedi i consigli |
+|---|---|---|
+| **PC, solo testo** (`python main.py`) | PC | terminale |
+| **PC con finestra** (`--gui`) | PC | finestra con overlay e barra laterale |
+| **PC + overlay sul telefono** (`--serve`) | PC | sopra il gioco, sul telefono |
+| **Standalone sul telefono** | telefono (Python embedded con Chaquopy) | sopra il gioco, sul telefono |
+
+Le istruzioni per le due modalità Android sono in [`android/README.md`](android/README.md).
+
+---
+
+## Setup del PC
+
+1. **Telefono**: *Opzioni sviluppatore > Debug USB*, collega il cavo. `adb devices` deve mostrarlo (serve `adb`: `sudo apt install adb`).
+2. **Python** (3.10+) e dipendenze:
    ```bash
+   python3 -m venv .venv && source .venv/bin/activate
    pip install -r requirements.txt
    ```
-   *(e installa `tesseract-ocr` dal gestore pacchetti di sistema se desideri il supporto OCR completo).*
-3. **Database carte**:
-   * `cards.json` (279 carte) e illustrazioni in `data/card_art/<id>.jpg` (o `$HS_BG_CARD_ART`).
-   * Per rigenerarli: `python tools/build_card_db.py` (richiede connessione internet).
+3. **Database carte**: `cards.json` (279 carte) e le illustrazioni in `data/card_art/<id>.jpg` (o in `$HS_BG_CARD_ART`) servono al riconoscimento. Per rigenerarli: `python tools/build_card_db.py` (richiede internet).
+
+Il telefono deve essere in **orizzontale (20:9)**: `capture.py` porta ogni frame a 2000x900 e le regioni di `vision/regions.yaml` sono calibrate su quella risoluzione.
 
 ---
 
-## Come Avviare
+## Avvio
 
-### 1. In partita reale (con il telefono collegato)
 ```bash
-# Modalità interfaccia grafica a video (finestra con overlay e HUD)
-python main.py --gui
-
-# Oppure modalità classica solo testo a terminale
-python main.py
+python main.py                  # consigli a terminale
+python main.py --gui            # finestra con overlay e barra dei consigli (q per chiudere)
+python main.py --serve          # pubblica lo stato su http://127.0.0.1:8765/state per l'app Android
+./run_overlay.sh [--gui]        # tutto in uno per l'overlay sul telefono (adb reverse + app + server)
 ```
-*(Se hai più dispositivi Android collegati: aggiungi `--serial <ID>`)*.
 
-### 2. Modalità Demo / Test (senza telefono)
-Puoi testare l'advisor e l'interfaccia grafica su qualunque screenshot:
+Opzioni: `--serial <ID>` con più telefoni, `--interval <s>` (default 0,7), `--serve-host 0.0.0.0` per il Wi-Fi.
+
+**Demo senza telefono**, su uno screenshot:
 ```bash
 python main.py --gui --image tests/fixtures/turn4_recruit.png
 ```
 
-> **Controlli Finestra Grafica**:
-> * Premi **`q`** (o qualsiasi tasto in modalità `--image`) per chiudere la finestra.
-> * La finestra è liberamente ridimensionabile.
+In VS Code ci sono dei task pronti (`Ctrl+Shift+P > Tasks: Run Task`): avvio overlay, avvio con finestra, test.
 
 ---
 
-### 3. Overlay sul telefono (Android)
-`python main.py --serve` pubblica lo stato su `http://127.0.0.1:8765/state` per l'app in `android/`
-(consigli disegnati sopra il gioco). Istruzioni in [`android/README.md`](android/README.md), piano in
-[`docs/ANDROID_PLAN.md`](docs/ANDROID_PLAN.md).
-
----
-
-## Risoluzione Schermo
-
-Il telefono deve essere orientato in **orizzontale (20:9)**:
-* `capture.py` normalizza automaticamente ogni frame a **2000x900**.
-* Le coordinate sono definite e calibrate in [`vision/regions.yaml`](vision/regions.yaml).
-* Per ricalibrare su un tuo screenshot:
-  ```bash
-  python tools/calibrate.py shot.png --out calibration.png
-  ```
-
----
-
-## Test di Unità
-
-La suite automatizzata copre riconoscimento della visione, calibrazione, euristica Jeefhs e overlay grafico:
+## Test
 
 ```bash
-pytest
+python -m pytest -q        # 73 test, ~10 secondi, non serve nessun programma esterno
 ```
-*(35 test unitari eseguiti in ~7 secondi).*
 
----
+## Strumenti (`tools/`)
 
-## Strumenti Inclusi
+- `calibrate.py shot.png`: sovrappone allo screenshot le regioni calibrate.
+- `match_report.py shot.png [...] [--sheet tavola.png]`: carte riconosciute con punteggio e tavola di controllo.
+- `debug_stats.py shot.png`: dove il codice vede le carte e quali attacco/vita legge (per diagnosticare errori sui numeri).
+- `parse_hsreplay_comps.py export.md`: aggiorna `data/comps.json` da un export in markdown della tier list HSReplay.
+- `build_card_db.py`: scarica carte e illustrazioni da HearthstoneJSON.
 
-* `tools/calibrate.py shot.png`: genera un'immagine con il reticolo di tutte le regioni calibrate.
-* `tools/match_report.py shot.png [...] [--sheet tavola.png]`: report dettagliato del riconoscimento delle carte con tavola illustrazioni.
-* `tools/parse_hsreplay_comps.py export.md`: compila la tier list da HSReplay in `data/comps.json`.
-* `tools/build_card_db.py`: scarica e compila il database carte da HearthstoneJSON.
+## Limiti noti
+
+- La **mano** e lo stato di **freeze** non sono ancora letti dallo schermo.
+- Il passo della griglia del board è calibrato con 1-4 minion; con 6-7 minion le posizioni possono essere sfasate (le cifre di attacco e vita si leggono comunque, i nomi potrebbero no).
+- I dati delle comp sono quelli dell'ultimo export HSReplay (`_scraped` in `data/comps.json`): vanno aggiornati a ogni patch.
+- Un'app di terze parti sopra il gioco non è garantita dalle regole di Blizzard: nessun tap automatico, e un'automazione dei tap renderebbe reale il rischio di ban.
+
+Piano e stato del lavoro Android: [`docs/ANDROID_PLAN.md`](docs/ANDROID_PLAN.md).
