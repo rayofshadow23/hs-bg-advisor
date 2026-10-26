@@ -452,3 +452,39 @@ def test_committed_player_is_told_to_roll_not_to_buy_random_card():
     tips = advisor.structured_advise(st)
     assert not any(t.action == "BUY" for t in tips)
     assert any(t.action == "ROLL" for t in tips)
+
+
+# --- vendita per fare spazio ---
+def _committed_board(extra):
+    comps = advisor.load_comps()
+    mine = comps[0]  # Mechs - APM Magnetic
+    core = [Minion(x["name"], 5, "Mech", 10, 10) for x in mine["core"][:3]]
+    return mine, core + extra
+
+
+def test_sell_weakest_offcomp_minion_when_board_full():
+    mine, board = _committed_board([
+        Minion("Debole", 2, "Beast", 2, 3), Minion("Medio", 3, "Beast", 6, 6), Minion("Altro", 3, "Beast", 4, 4), Minion("Extra", 3, "Beast", 4, 5)])
+    board = board[:7]
+    assert len(board) == 7
+    st = GameState(phase="recruit", gold=6, max_gold=9, tavern_tier=4, turn=7,
+                   shop=[Minion(mine["core"][3]["name"], 5)], board=board)
+    tips = advisor.structured_advise(st)
+    sell = [t for t in tips if t.action == "SELL"]
+    assert len(sell) == 1 and sell[0].zone == "board" and st.board[sell[0].card_index].name == "Debole"
+    assert sell[0].score < max(t.score for t in tips if t.action == "BUY")
+    # board non pieno -> nessuna vendita
+    st.board = board[:6]
+    assert not any(t.action == "SELL" for t in advisor.structured_advise(st))
+
+
+def test_never_sell_comp_cards_or_triple_progress():
+    mine, board = _committed_board([Minion("Coppia", 2, "Beast", 2, 2), Minion("Coppia", 2, "Beast", 2, 2),
+                                    Minion("Debole", 1, "Beast", 1, 1), Minion("Solo", 4, "Beast", 8, 8)])
+    st = GameState(phase="recruit", gold=6, max_gold=9, tavern_tier=4, turn=7, board=board[:7],
+                   shop=[Minion(mine["core"][3]["name"], 5)])
+    assert st.board[advisor.sell_candidate(st)].name == "Debole"
+    extra_core = Minion(mine["core"][3]["name"], 5, "Mech", 10, 10)
+    st.board = [m for m in board if m.name != "Debole"] + [extra_core]
+    assert len(st.board) == 7
+    assert st.board[advisor.sell_candidate(st)].name == "Solo"  # le coppie (triplo) e le carte comp restano

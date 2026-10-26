@@ -30,7 +30,7 @@ def to_payload(state, tips, seq=0, base_size=BASE_SIZE):
         "upgrade_cost": state.upgrade_cost, "hero_health": state.hero_health, "hero_armor": state.hero_armor,
         "shop": _cards(state.shop, state.shop_rects), "board": _cards(state.board, state.board_rects),
         "tips": [{"text": t.text, "action": t.action, "card_index": t.card_index, "card_name": t.card_name,
-                  "role": t.role, "score": t.score, "comp": t.comp_name} for t in tips],
+                  "role": t.role, "zone": t.zone, "score": t.score, "comp": t.comp_name} for t in tips],
     }
 
 

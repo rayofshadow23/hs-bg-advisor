@@ -40,6 +40,7 @@ class OverlayView(context: Context) : View(context) {
         action == "UPGRADE" -> Color.rgb(120, 235, 80)
         action == "FREEZE" -> Color.rgb(100, 220, 255)
         action == "ROLL" -> Color.rgb(240, 130, 220)
+        action == "SELL" -> Color.rgb(235, 70, 70)
         action == "HOLD" -> Color.rgb(255, 120, 120)
         else -> Color.rgb(200, 200, 200)
     }
@@ -101,7 +102,7 @@ class OverlayView(context: Context) : View(context) {
         val best = HashMap<Int, Tip>()
         for (t in s.tips) {
             val i = t.cardIndex ?: continue
-            if (t.action != "BUY") continue
+            if (t.action != "BUY" || t.zone != "shop") continue
             if (best[i] == null || t.score > best[i]!!.score) best[i] = t
         }
         text.textSize = 18f
@@ -115,6 +116,18 @@ class OverlayView(context: Context) : View(context) {
             canvas.drawRoundRect(r, 8f, 8f, fill)
             text.color = Color.rgb(15, 15, 15)
             canvas.drawText(label, r.left + 10f, r.bottom - 5f, text)
+        }
+        // Vendita: marcatore rosso sopra il minion del board da vendere, nella fascia libera y 436..458
+        for (t in s.tips) {
+            if (t.action != "SELL" || t.zone != "board") continue
+            val rect = s.board.getOrNull(t.cardIndex ?: continue)?.rect ?: continue
+            val cx = rect[0] + 52f
+            val w = text.measureText("VENDI") + 20f
+            val r = RectF(cx - w / 2, 436f, cx + w / 2, 458f)
+            fill.color = Color.rgb(235, 70, 70)
+            canvas.drawRoundRect(r, 8f, 8f, fill)
+            text.color = Color.WHITE
+            canvas.drawText("VENDI", r.left + 10f, r.bottom - 5f, text)
         }
     }
 

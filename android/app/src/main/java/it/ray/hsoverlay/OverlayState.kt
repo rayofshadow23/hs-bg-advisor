@@ -18,6 +18,7 @@ data class Tip(
     val action: String,
     val cardIndex: Int?,
     val role: String,
+    val zone: String,
     val score: Double,
 )
 
@@ -34,6 +35,7 @@ data class OverlayState(
     val health: Int?,
     val armor: Int?,
     val shop: List<Card>,
+    val board: List<Card>,
     val tips: List<Tip>,
 )
 
@@ -45,7 +47,7 @@ private fun JSONArray.objects(): List<JSONObject> = (0 until length()).map { get
 fun parseState(body: String): OverlayState {
     val o = JSONObject(body)
     val size = o.optJSONArray("base_size")
-    val shop = (o.optJSONArray("shop") ?: JSONArray()).objects().map { c ->
+    fun cards(key: String) = (o.optJSONArray(key) ?: JSONArray()).objects().map { c ->
         val r = c.optJSONArray("rect")
         Card(
             name = c.optString("name", "?"),
@@ -56,12 +58,15 @@ fun parseState(body: String): OverlayState {
             rect = if (r != null && r.length() == 4) IntArray(4) { r.getInt(it) } else null,
         )
     }
+    val shop = cards("shop")
+    val board = cards("board")
     val tips = (o.optJSONArray("tips") ?: JSONArray()).objects().map { t ->
         Tip(
             text = t.optString("text", ""),
             action = t.optString("action", "INFO"),
             cardIndex = t.intOrNull("card_index"),
             role = t.optString("role", ""),
+            zone = t.optString("zone", "shop"),
             score = t.optDouble("score", 0.0),
         )
     }
@@ -78,6 +83,7 @@ fun parseState(body: String): OverlayState {
         health = o.intOrNull("hero_health"),
         armor = o.intOrNull("hero_armor"),
         shop = shop,
+        board = board,
         tips = tips,
     )
 }

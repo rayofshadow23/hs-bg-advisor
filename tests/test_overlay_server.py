@@ -46,3 +46,10 @@ def test_server_serves_latest_state():
             assert e.code == 404
     finally:
         srv.stop()
+
+
+def test_payload_exposes_zone_for_sell_tips():
+    from advisor import Tip
+    st = sample_state()
+    p = to_payload(st, [Tip(text="Vendi X", action="SELL", card_index=0, role="sell", zone="board")])
+    assert p["tips"][0]["zone"] == "board" and p["tips"][0]["action"] == "SELL"

@@ -40,7 +40,8 @@ class Tip:
     action: str = "INFO"  # "BUY", "UPGRADE", "ROLL", "HOLD", "FREEZE", "INFO"
     card_index: Optional[int] = None
     card_name: Optional[str] = None
-    role: str = ""  # "core", "add-on", "triple", "tribe", "tier", "freeze"
+    role: str = ""  # "core", "add-on", "triple", "tribe", "tier", "freeze", "commit", "sell"
+    zone: str = "shop"  # dove punta card_index: "shop" o "board"
     score: float = 0.0
     comp_name: str = ""
 
@@ -181,6 +182,39 @@ def _target_tier(turn):
         if turn is not None and turn >= t:
             target = tier
     return target
+
+
+BOARD_MAX = 7
+
+
+def sell_candidate(state, comps=None):
+    """Indice sul board del minion da vendere per fare spazio, oppure None.
+
+    Si vende solo se sei impegnato su una comp/tribu' e il board e' pieno. Non si vende mai: carte della tua
+    comp, minion della tua tribu', carte di cui hai 2+ copie (triplo in corso). Tra i restanti si sceglie il piu'
+    debole: tier piu' basso, poi minor somma di attacco+vita (le statistiche mancanti contano come 0)."""
+    comps = COMPS if comps is None else comps
+    commit = commitment(state, comps)
+    if not (commit["comp"] or commit["tribe"]) or len(state.board) < BOARD_MAX:
+        return None
+    keep_names = set()
+    if commit["comp"]:
+        core, addons = _comp_sets(commit["comp"])
+        keep_names = core | addons
+    copies = Counter(_norm(m.name) for m in state.board if m.name != "?")
+    best = None
+    for i, m in enumerate(state.board):
+        n = _norm(m.name)
+        if n in keep_names or copies.get(n, 0) >= 2:
+            continue
+        if not commit["comp"] and _tribe_key(m.tribe) == commit["tribe"]:
+            continue  # impegno solo di tribu': le carte della tribu' restano
+        if commit["comp"] and _tribe_key(m.tribe) == _tribe_key(commit["comp"]["tribe"]) and m.name != "?":
+            continue  # stessa tribu' della comp: probabile pezzo di supporto
+        key = (m.tier or 0, (m.attack or 0) + (m.health or 0))
+        if best is None or key < best[0]:
+            best = (key, i)
+    return best[1] if best else None
 
 
 def structured_advise(state):
@@ -414,6 +448,19 @@ def structured_advise(state):
                 action="INFO",
                 score=1.8
             ))
+
+    # ---------------------------------------------------------
+    # 6b. VENDITA PER FARE SPAZIO (solo con comp/tribu' scelta e board pieno)
+    # ---------------------------------------------------------
+    buys = [t for t in tips if t.action == "BUY" and t.role in ("core", "add-on", "triple", "tribe")]
+    sell_i = sell_candidate(state) if buys and gold >= 3 else None
+    if sell_i is not None:
+        m, target = state.board[sell_i], max(buys, key=lambda t: t.score)
+        stats = f" ({m.attack}/{m.health})" if m.attack is not None and m.health is not None else ""
+        tips.append(Tip(
+            text=f"Board pieno: vendi {m.name}{stats}, fuori dalla tua comp, per fare spazio a {target.card_name}.",
+            action="SELL", card_index=sell_i, card_name=m.name, role="sell", zone="board",
+            score=target.score - 0.1))
 
     # ---------------------------------------------------------
     # 7. GESTIONE DELL'ORO RIMASTO
