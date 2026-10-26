@@ -19,20 +19,6 @@ ECONOMY_TIER_1 = {
     "passenger", "alleycat", "murloc tidehunter", "scanchest", "flighty scout"
 }
 
-# Minion con Scudo Divino o Fendente (Cleave) che Jeef consiglia di mettere a sinistra (primi attaccanti)
-FIRST_ATTACKERS = {
-    "crackling cyclone", "deflect-o-bot", "foe reaper 4000", "wildfire elemental",
-    "mecha-jaraxxus", "blade collector", "bronze warden", "annoy-o-tron",
-    "glowscale", "righteous protector"
-}
-
-# Minion motore di scaling / passivi che Jeef consiglia di proteggere a destra dietro i Taunt
-PROTECTED_MINIONS = {
-    "titus rivendare", "baron rivendare", "brann bronzebeard", "drakkari enchanter",
-    "moira bronzebeard", "nomi, kitchen nightmare", "kalecgos, arcane aspect",
-    "mama bear", "lightfang enforcer", "peggy brittlebone"
-}
-
 
 @dataclass
 class Tip:
@@ -300,11 +286,6 @@ def structured_advise(state):
                     role="core",
                     score=9.0
                 ))
-        tips.append(Tip(
-            text="Regola Jeef: NON rollare mai al Turno 1 (lo spreco di 1 oro compromette la curva iniziale).",
-            action="HOLD",
-            score=3.0
-        ))
 
     # Turno 2 (4 oro): Upgrade obbligatorio al Tier 2
     is_turn_2 = (turn == 2) or (turn is None and max_gold == 4)
@@ -367,19 +348,6 @@ def structured_advise(state):
                 role="triple",
                 score=10.0
             ))
-            # Regola timing tripli di Jeef:
-            if tier == 2 and (turn is not None and turn < 5):
-                tips.append(Tip(
-                    text=f"Timing Triplo (Jeef): con Taverna 2 scopriresti un Tier 3. Valuta di congelare e scoprire al Turno 5 (Taverna 3) per un Tier 4 decisivo!",
-                    action="INFO",
-                    score=8.5
-                ))
-            elif tier == 3 and (turn is not None and turn >= 6):
-                tips.append(Tip(
-                    text="Timing Triplo (Jeef): se puoi salire a Taverna 4 a breve, conserva la tripla per scoprire un Tier 5 (motore di vittoria).",
-                    action="INFO",
-                    score=8.0
-                ))
 
     # ---------------------------------------------------------
     # 1b. CARTE CHIAVE DELLE COMP (HSReplay Tier List)
@@ -441,16 +409,6 @@ def structured_advise(state):
                 ))
 
     # ---------------------------------------------------------
-    # 4. REGOLA DEL DIVIETO DI ROLL PRECOCE (Turni 1..4)
-    # ---------------------------------------------------------
-    if is_early_turn and 0 < gold < 3:
-        tips.append(Tip(
-            text="Regola Jeef: NON rollare nei turni 1-4. Conserva l'oro o compra incantesimi (ogni roll precoce sacrifica statistiche).",
-            action="HOLD",
-            score=3.5
-        ))
-
-    # ---------------------------------------------------------
     # 5. REGOLA DEL CONGELAMENTO ("NEVER FREEZE FOR ONE" DI JEEF)
     # ---------------------------------------------------------
     if gold <= 1:
@@ -470,37 +428,6 @@ def structured_advise(state):
                 action="FREEZE",
                 role="freeze",
                 score=6.5
-            ))
-        elif len(key_buys) == 1 and not has_triple_in_shop:
-            tips.append(Tip(
-                text="Freeze (Jeef): NON congelare per una sola carta (sprecheresti il refresh naturale di inizio turno).",
-                action="INFO",
-                role="freeze",
-                score=4.5
-            ))
-
-    # ---------------------------------------------------------
-    # 6. POSIZIONAMENTO DEL BOARD (JEEF BOARD ORDERING)
-    # ---------------------------------------------------------
-    board_lower = {_norm(m.name) for m in state.board if m.name != "?"}
-    if board_lower:
-        if any(name in FIRST_ATTACKERS for name in board_lower):
-            tips.append(Tip(
-                text="Posizionamento (Jeef): minion con Scudo Divino o Fendente (Cleave) a sinistra per primi attacchi.",
-                action="INFO",
-                score=2.2
-            ))
-        if any(name in PROTECTED_MINIONS for name in board_lower):
-            tips.append(Tip(
-                text="Posizionamento (Jeef): proteggi Brann/Titus/Drakkari/motori passivi all'estrema destra dietro i Taunt.",
-                action="INFO",
-                score=2.1
-            ))
-        if len(state.board) >= 4:
-            tips.append(Tip(
-                text="Posizionamento (Jeef): posiziona i Taunt a destra per evitare che i contraccolpi colpiscano i tuoi attaccanti principali.",
-                action="INFO",
-                score=1.8
             ))
 
     # ---------------------------------------------------------

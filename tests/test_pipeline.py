@@ -320,7 +320,7 @@ def test_jeef_turn1_rules():
                    shop=[Minion("Bubble Gunner", 1), Minion("Cord Puller", 1)])
     tips = advisor.structured_advise(st)
     assert any("Cord Puller" in t.text and "economia/token" in t.text for t in tips)
-    assert any("NON rollare mai al Turno 1" in t.text for t in tips)
+    assert not any("NON rollare" in t.text for t in tips)  # messaggio rimosso: troppo rumore
 
 
 def test_jeef_turn3_and_turn4_rules():
@@ -342,7 +342,8 @@ def test_jeef_tripling_timing_and_freeze():
                           shop=[Minion("Foo", 1)],
                           board=[Minion("Foo", 1), Minion("Foo", 1)])
     tips_triple = advisor.structured_advise(st_triple)
-    assert any("Timing Triplo" in t.text and "Tier 4 decisivo" in t.text for t in tips_triple)
+    assert any(t.role == "triple" for t in tips_triple)
+    assert not any("Timing Triplo" in t.text for t in tips_triple)
 
     # Freeze con tripla a fine turno (gold = 0)
     st_freeze = GameState(phase="recruit", gold=0, max_gold=6, tavern_tier=2, turn=4,
@@ -352,17 +353,16 @@ def test_jeef_tripling_timing_and_freeze():
     assert any(t.action == "FREEZE" and "CONGELA lo shop" in t.text for t in tips_freeze)
 
 
-def test_jeef_positioning_rules():
-    # Scudo divino a sinistra, Titus Rivendare a destra
+def test_positioning_tips_removed():
     st_pos = GameState(phase="recruit", gold=0, max_gold=10, tavern_tier=5, turn=9,
                        board=[Minion("Crackling Cyclone", 3), Minion("Titus Rivendare", 5),
                               Minion("MinionA", 2), Minion("MinionB", 2)])
-    tips = advisor.structured_advise(st_pos)
-    assert any("Scudo Divino o Fendente" in t.text and "a sinistra" in t.text for t in tips)
-    assert any("Brann/Titus/Drakkari" in t.text and "all'estrema destra" in t.text for t in tips)
+    assert not any("Posizionamento" in t.text for t in advisor.structured_advise(st_pos))
 
 
-
+def test_no_freeze_for_one_message():
+    st = GameState(phase="recruit", gold=0, max_gold=6, tavern_tier=2, turn=4, shop=[Minion("Felboar", 5)])
+    assert not any("NON congelare" in t.text for t in advisor.structured_advise(st))
 
 
 # --- statistiche attacco/vita (turno 8, tutte le carte lette a occhio dallo screenshot) ---
